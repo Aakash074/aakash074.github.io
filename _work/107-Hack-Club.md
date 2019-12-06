@@ -1,18 +1,18 @@
 ---
-title: Hack Club
-permalink: /hackclub
+title: CybSec
+permalink: /cybsec
 
 
-web: https://wayback.archive.org/web/20171101000000*/hackclub.com
-web-display: HackClub.com (archived)
+web: https://cybsec.in
+web-display: cybsec.in 
 
 tagline: Hack Together!
-description: Landing page empowering students to start coding clubs.
-lead: A nonprofit founded by Forbes 30 Under 30’s Zach Latta, <strong>Hack Club</strong> brings student-led coding clubs to high schools across the world. I worked with Hack Club to create a new homepage and design system that demonstrates how coding is for everyone.
+description: Landing page empowering students to learn cyber-security.
+lead: A nonprofit IG team of NITW <strong>CybSec</strong> brings study-material related to ethical hacking & cyber-security.
 
-tags: [ design, dev, education, foundation, website, 2016 ]
+tags: [ ethical hacking, cyber-security, pentesting, CybSec, 2019 ]
 deliverables: [ Frontend, Design, Writing ]
-technologies: [ Rails, Foundation, Sass, Sketch ]
+technologies: [ NodeJS ]
 
 accent: "#E43143"
 accent-light: "#FFDEE2"
@@ -32,20 +32,19 @@ screenshots-mobile: hackclub/homepage-m.png
 
 {% include components/sticker.html sticker=1 float="right" top="-3em" %}
 
-# Homepage Design
+# WebSite Design
 
-I created a homepage that answers the nonprofit's age-old questions of “What is a hack club?” to students, teachers, and parents. It shows that coding can be fun and inspires students to start their own Hack Club.
+The purpose of this website is to evaluate the security of and identify vulnerabilities in the systems, networks or system infrastructure. It includes finding and attempting to exploit any vulnerabilities to determine whether unauthorised access etc.
 
 <blockquote class="accent-light-bg">
 	<row>
-		<column><img src="{{ site.baseurl }}/media/hackclub/homepage-top.png" alt="Top half of Hack Club homepage"></column>
-		<column><img src="{{ site.baseurl }}/media/hackclub/homepage-bottom.png" alt="Bottom half of Hack Club homepage"></column>
+		<img src="{{ site.baseurl }}/media/hackclub/homepage-top.png" alt="CybSec homepage">
 	</row>
 </blockquote>
 
 # Inclusive Icons
 
-It is well know that the tech industry has a diversity problem, and Hack Club was founded on the belief that coding is for everyone. I created a simple avatar and icon system that represents the diversity of students everywhere.
+Simple avatar and icon system that represents the diversity of students everywhere.
 
 <blockquote class="text-center">
 	<row>
@@ -98,8 +97,3 @@ It is well know that the tech industry has a diversity problem, and Hack Club wa
 	</row>
 </blockquote>
 
-I also worked on a few smaller things within their design system, including business cards and tiled patterns:
-
-> ![Business cards]({{ site.baseurl }}/media/hackclub/beeswax.png)
-
-> ![Business cards]({{ site.baseurl }}/media/patterns/hackclub-05.svg) ![Business cards]({{ site.baseurl }}/media/patterns/hackclub-10.svg) ![Business cards]({{ site.baseurl }}/media/patterns/hackclub-20.svg)

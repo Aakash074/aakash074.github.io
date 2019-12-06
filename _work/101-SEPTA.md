@@ -38,8 +38,8 @@ FSEV is a worldwide competition consisting of several teams made up of college s
 <blockquote class="accent-light-bg text-center">
 	<strong>Main Page</strong>
 	<row>
-		<column class="no-margin-bottom"><i>Before</i><img src="{{ site.baseurl }}/media/septa/home-before.png" alt="Before my rewrite"></column>
-		<column class="no-margin-bottom"><i>After</i><img src="{{ site.baseurl }}/media/septa/home-after.png" alt="After my rewrite"></column>
+		<center><img src="{{ site.baseurl }}/media/septa/home-before.png" alt="Team"></center>
+		
 	</row>
 </blockquote>
 
@@ -50,12 +50,5 @@ FSEV is a worldwide competition consisting of several teams made up of college s
 
 Ronin Racing was a team of students from the National Institute of Technology, Warangal, India that competed in the 2019 FSEV Design Competition in Bangalore. Their team had a drive to learn from their mistakes, improve their team unity, and progress to achieve the impossible. Through their experience at the 2019 FSEV Competition, they built a multitude of connections related to various aspects of the competition, developed a vast platform for communication and team branding, and understood the actions necessary to succeed at the world finals. Ronin Racing: one team, one goal, one passion.
 
-<blockquote class="accent-light-bg text-center">
-	<strong>Mobile User Flow</strong>
-	<row>
-		<column class="no-margin-bottom"><i>Mode Selection</i><img src="{{ site.baseurl }}/media/septa/mobile-1.png" alt="Before my rewrite"></column>
-		<column class="no-margin-bottom"><i>Route Selection</i><img src="{{ site.baseurl }}/media/septa/mobile-2.png" alt="After my rewrite"></column>
-		<column class="no-margin-bottom"><i>Route Status Display</i><img src="{{ site.baseurl }}/media/septa/mobile-3.png" alt="After my rewrite"></column>
-	</row>
-</blockquote>
+
 

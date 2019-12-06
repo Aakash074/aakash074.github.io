@@ -1,0 +1,63 @@
+---
+# This block will make Jekyll render this file as CSS
+---
+
+@charset "utf-8";
+
+// Typography
+$base-font-family: "FF Tisa Sans Pro", "FF Tisa Sans", "ff-tisa-sans-web-pro", "Tisa Sans Pro", "Source Sans Pro", Helvetica, Arial, sans-serif;
+$base-font-size: 18px;
+$base-line-height: 1.65;
+
+$title-font-family: "FatFrank", "Bjola", Helvetica, Arial, sans-serif;
+$heading-font-family: "FatFrank", "Source Serif Pro", "house-slant", "House Slant", "house-slant", "Gastromond", Helvetica, Arial, sans-serif;
+$accent-font-family: $base-font-family;
+
+$title-font-weight: normal;
+$heading-font-weight: normal;
+
+$small-font-size: $base-font-size * 0.875;
+
+// Grid spacing unit
+$spacing-unit: 32px;
+
+// Max width of the content area
+$content-width: 1280px;
+$on-phone: 600px;
+$on-palm: $on-phone;
+$on-tablet: 900px;
+$on-netbook: 1240px;
+
+// Required colors
+$red: #F44336;
+$white: #ffffff;
+$gray: #828282;
+$black: #343a40;
+
+// Brand colors
+$yellow: #F8D667;
+$blue: #1B4B83;
+$purple: rebeccapurple;
+
+$primary: $yellow;
+$secondary: $blue;
+$tertiary: $purple;
+
+$brand-color: $primary;
+$text-color: $black;
+$background-color: $white;
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import "cutie/mixins";
+@import "cutie/reset";
+@import "cutie/base";
+@import "cutie/helpers";
+@import "cutie/grid";
+@import "cutie/sections";
+@import "cutie/content";
+@import "cutie/forms";
+@import "cutie/social";
+@import "nav";
+@import "site";
+@import "wordart";
+

@@ -29,7 +29,7 @@ I consider myself to be a lifetime learner. Here are skills I am working on impr
 
 # Things I Love
 
-This can be summed up in 4 words:
+This can be summed up in 3 words:
 
 - **Music!** 🎶 Listening to music is the one thing I always do while coding or in my free time. Trust me.
 - **Burgers!** :hamburger: Actually I'm foodie. People eat to live & I live to eat. So, I prefer to try all dishes once. [What about Coffee?](https://ko-fi.com/aakashkumar)!

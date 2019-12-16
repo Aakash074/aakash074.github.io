@@ -36,9 +36,9 @@ screenshots-mobile: hackclub/homepage-m.png
 
 The purpose of this website is to evaluate the security of and identify vulnerabilities in the systems, networks or system infrastructure. It includes finding and attempting to exploit any vulnerabilities to determine whether unauthorised access etc.
 
-<blockquote class="accent-light-bg">
+<blockquote class="accent-light-bg text-center">
 	<row>
-		<img src="{{ site.baseurl }}/media/hackclub/homepage-top.png" alt="CybSec homepage">
+		<center><img src="{{ site.baseurl }}/media/hackclub/homepage-top.png" alt="CybSec homepage"></center>
 	</row>
 </blockquote>
 

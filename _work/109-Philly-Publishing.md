@@ -1,19 +1,19 @@
 ---
-title: Philly Publishing Co.
-permalink: /drafts/phillypublishing
+title: Call for Makers
+permalink: /drafts/callformakers
 soon: true
 
 web: #
 web-display: #
 
-tagline: Jawn
-description: Tiny wins and logo redesigns for a news publisher.
-lead: Tiny wins and logo redesigns for a news publisher.
+tagline: Cyber-Security
+description: Initiative by IG for interested ones in cyber-security.
+lead: Initiative by IG for interested ones in cyber-security.
 
-tags: [ design, dev, adtech, wordpress, website, 2018 ]
-deliverables: [ WordPress Plugins, Logo Designs, Frontend JS ]
+tags: [ Innovation Garage, IG, Call for Makers ]
+deliverables: [ Logo Designs, Frontend JS ]
 technologies: [ Javascript, WordPress ]
-contributors: [ "Davis Shaver" ]
+contributors: [ "Arpit Goyal" ]
 
 accent: "#2B5D94"
 accent-light: "#CCEBFF"

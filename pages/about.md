@@ -3,7 +3,7 @@ title: About
 permalink: /about
 layout: page
 
-lead: <b>Heya!</b> I'm Aakash ($root) currently studying Bachelor of Technology in Computer Science at National Institute of Technology Warangal. I've been doing web development seriously for over 2 years and before that I still couldn't put my computer away. I was always doing web development and penetration tests in my free time, and even in class! It was something I was and still am very passionate about today, I also do penetration testing and do bug bounty and provide cyber-security. <br> <br> One day I hope to be able to travel and meet new people around the world.
+lead: <b>Heya!</b> I'm Aakash ($root) currently studying Bachelor of Technology in Computer Science at National Institute of Technology Warangal. I've been doing web development seriously for over 2 years and before that I still couldn't put my computer away. I was always doing web development and penetration tests in my free time, and even in class! It was something I was and still am very passionate about today, I also do penetration testing and do bug bounty and provide cyber-security.<br> Here is your flag pCTF{1_4m_r00t}. All the best. <br> <br> One day I hope to be able to travel and meet new people around the world.
 
 header-text: white
 accent: rebeccapurple

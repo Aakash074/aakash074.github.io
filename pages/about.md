@@ -3,7 +3,7 @@ title: About
 permalink: /about
 layout: page
 
-lead: <b>Heya!</b> I'm Aakash ($root) currently studying Bachelor of Technology in Computer Science at National Institute of Technology Warangal. I've been doing development seriously for over 2 years and before that I still couldn't put my computer away. I was always doing web development and penetration tests(hacking) in my free time, and even in class! It was something I was and still am very passionate about today, I also do bug bounty and provide cyber-security.<br> Here is your flag pCTF{1_4m_r00t}. All the best. <br> <br> Hacker | Coder | Web Developer | Programmer | Memer | Foodie | Omniscient HackTheBox | Iron Man Fan | Night-Owl | TIFLS | Interested in Astrophysycs | Jack of All Trades | South Delhi | O -ve <br> <br> "Break security, not hearts!😎"
+lead: <b>Heya!</b> I'm Aakash ($root) currently studying Bachelor of Technology in Computer Science at National Institute of Technology Warangal. I've been doing development seriously for over 2 years and before that I still couldn't put my computer away. I was always doing web development and penetration tests(hacking) in my free time, and even in class! It was something I was and still am very passionate about today, I also do bug bounty and provide cyber-security. <br> <br> Hacker | Coder | Web Developer | Programmer | Memer | Foodie | Omniscient HackTheBox | Iron Man Fan | Night-Owl | TIFLS | Interested in Astrophysycs | Jack of All Trades | South Delhi | O -ve <br> <br> "Break security, not hearts!😎"
 
 header-text: white
 accent: rebeccapurple

@@ -8,6 +8,7 @@ pids
 lib-cov
 coverage
 nbproject
+node_modules/
 .next
 
 *.log

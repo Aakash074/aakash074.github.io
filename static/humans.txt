@@ -1,9 +1,6 @@
 /* humanstxt.org */
 
 /* TEAM */
-  Romel Perez
-  romelperez.com
-  Colombia
-
-  Mario Ordonez
-  Colombia
+  Aakash Kumar
+  0xaakash.tech
+  India

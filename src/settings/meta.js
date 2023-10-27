@@ -1,9 +1,11 @@
 module.exports = {
-  title: 'Soul Extract',
-  description: 'Alternative Rock injected with electronic and cinematic elements. Proud member of the FiXT roster.',
-  keywords: 'soul extract, soulextract, alternative electronic rock, cinematic elements, fixt, fixt roster, science fiction',
-  url: 'https://soulextract.com',
-  twitter: '@soulextract',
-  seoImage: 'https://soulextract.com/images/soulextract.jpg',
-  color: '#000000'
+  title: "Aakash Kumar",
+  description:
+    "Computer Engineer, Security Reasearcher, Hacker & Web3 Developer",
+  keywords:
+    "cybersecurity, cybsec, 0xaakash.tech, aakash, web3, security, hacker, full stack, developer, engineer",
+  url: "https://0xaakash.tech",
+  twitter: "@Kumaaraakash074",
+  seoImage: "https://avatars.githubusercontent.com/u/47667315?v=4",
+  color: "#000000",
 };

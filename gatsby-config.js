@@ -1,36 +1,36 @@
-const theme = require('./src/settings/theme');
+const theme = require("./src/settings/theme");
 
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-plugin-jss',
-      options: { theme }
+      resolve: "gatsby-plugin-jss",
+      options: { theme },
     },
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: 'Soul Extract',
-        short_name: 'Soul Extract',
-        start_url: '/',
-        background_color: '#000000',
-        theme_color: '#000000',
-        display: 'standalone',
-        orientation: 'portrait',
-        icon: 'src/images/favicon.png'
-      }
+        name: "Aakash",
+        short_name: "Aakash",
+        start_url: "/",
+        background_color: "#000000",
+        theme_color: "#000000",
+        display: "standalone",
+        orientation: "portrait",
+        icon: "src/images/favicon.png",
+      },
     },
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layouts/Template`)
-      }
+        component: require.resolve(`./src/layouts/Template`),
+      },
     },
     {
-      resolve: 'gatsby-plugin-google-analytics',
+      resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: 'UA-64916263-1'
-      }
-    }
-  ]
+        trackingId: "UA-64916263-1",
+      },
+    },
+  ],
 };

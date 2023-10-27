@@ -59,6 +59,11 @@ class Component extends React.Component {
       <Secuence ref={(ref) => (this.secuenceElement = ref)}>
         <div className={classes.root}>
           <div className={classes.content}>
+            <Legal
+              // className={classes.legal}
+              opaque
+              onLinkStart={this.onLinkStart}
+            />
             <Brand className={classes.brand} onLinkStart={this.onLinkStart} />
             <Menu
               className={classes.menu}
@@ -71,11 +76,6 @@ class Component extends React.Component {
               onLinkStart={this.onLinkStart}
             />
           </div>
-          <Legal
-            className={classes.legal}
-            opaque
-            onLinkStart={this.onLinkStart}
-          />
         </div>
       </Secuence>
     );

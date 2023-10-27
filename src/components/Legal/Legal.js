@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import cx from "classnames";
 
 import { Text } from "../Text";
+import { Button } from "../Button";
 import { Link } from "../Link";
 
 class Component extends React.Component {
@@ -37,20 +38,26 @@ class Component extends React.Component {
     const show = energy.entering || energy.entered;
 
     return (
-      <p className={cx(classes.root, className)} {...etc}>
+      <div className={cx(classes.root, className)} {...etc}>
         <Link
-          className={classes.link}
+          // className={classes.link}
           href="https://github.com/Aakash074"
           target="github"
           onMouseEnter={() => sounds.hover.play()}
           onLinkStart={onLinkStart}
           onLinkEnd={onLinkEnd}
         >
-          {/* <Text animation={{ animate, show, duration }} stableTime>
-            — Open Source by Contributors —
-          </Text> */}
+          <Button animation={{ animate, show, duration }} stableTime noText>
+            <div>
+              <img
+                src="https://avatars.githubusercontent.com/u/47667315?v=4"
+                alt="aakash"
+                style={{ height: "270px" }}
+              />
+            </div>
+          </Button>
         </Link>
-      </p>
+      </div>
     );
   }
 }

@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'classnames';
-import anime from 'animejs';
+import React from "react";
+import PropTypes from "prop-types";
+import cx from "classnames";
+import anime from "animejs";
 
-import { getViewportRange } from '../../tools/viewport';
-import { Link } from '../Link';
-import { Text } from '../Text';
-import { Secuence } from '../Secuence';
-import { SCHEME_NORMAL, SCHEME_EXPAND } from './Menu.constants';
+import { getViewportRange } from "../../tools/viewport";
+import { Link } from "../Link";
+import { Text } from "../Text";
+import { Secuence } from "../Secuence";
+import { SCHEME_NORMAL, SCHEME_EXPAND } from "./Menu.constants";
 
 class Component extends React.PureComponent {
-  static displayName = 'Menu';
+  static displayName = "Menu";
 
   static propTypes = {
     theme: PropTypes.object.isRequired,
@@ -23,26 +23,26 @@ class Component extends React.PureComponent {
     onEnter: PropTypes.func,
     onExit: PropTypes.func,
     onLinkStart: PropTypes.func,
-    onLinkEnd: PropTypes.func
+    onLinkEnd: PropTypes.func,
   };
 
   static defaultProps = {
-    scheme: SCHEME_NORMAL
+    scheme: SCHEME_NORMAL,
   };
 
-  constructor () {
+  constructor() {
     super(...arguments);
 
     this.state = {
-      showSecuence: false
+      showSecuence: false,
     };
   }
 
-  componentDidMount () {
-    window.addEventListener('route-change', this.onURLChange);
+  componentDidMount() {
+    window.addEventListener("route-change", this.onURLChange);
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     const { energy } = this.props;
 
     if (prevProps.energy.status !== energy.status) {
@@ -54,18 +54,18 @@ class Component extends React.PureComponent {
     }
   }
 
-  componentWillUnmount () {
-    const elements = this.element.querySelectorAll('a, b');
+  componentWillUnmount() {
+    const elements = this.element.querySelectorAll("a, b");
     anime.remove(elements);
 
-    window.removeEventListener('route-change', this.onURLChange);
+    window.removeEventListener("route-change", this.onURLChange);
   }
 
   onURLChange = () => {
     this.forceUpdate();
-  }
+  };
 
-  enter () {
+  enter() {
     const { scheme } = this.props;
 
     if (scheme === SCHEME_NORMAL) {
@@ -75,86 +75,86 @@ class Component extends React.PureComponent {
     }
   }
 
-  animateNormalEnter () {
+  animateNormalEnter() {
     const { energy, onEnter } = this.props;
     const { duration } = energy;
 
-    const divisors = this.element.querySelectorAll('b');
-    const links = this.element.querySelectorAll('a');
+    const divisors = this.element.querySelectorAll("b");
+    const links = this.element.querySelectorAll("a");
 
     anime.set(links, { opacity: 1 });
 
     anime({
       targets: divisors,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       scaleY: [0, 1],
       duration: duration.enter,
       delay: (divisor, index) => index * duration.stagger,
-      complete: () => onEnter && onEnter()
+      complete: () => onEnter && onEnter(),
     });
   }
 
-  animateExpandEnter () {
+  animateExpandEnter() {
     const { energy, sounds, onEnter } = this.props;
     const { duration } = energy;
     const viewportRange = getViewportRange();
 
-    const divisors = this.element.querySelectorAll('b');
-    const links = this.element.querySelectorAll('a');
+    const divisors = this.element.querySelectorAll("b");
+    const links = this.element.querySelectorAll("a");
 
     sounds.expand.play();
 
     if (!viewportRange.small) {
       anime({
         targets: divisors[1],
-        easing: 'easeOutCubic',
+        easing: "easeOutCubic",
         scaleY: [0, 1],
-        duration: duration.enter / 2
+        duration: duration.enter / 2,
       });
       anime({
         targets: [divisors[0], divisors[2]],
-        easing: 'easeOutCubic',
+        easing: "easeOutCubic",
         scaleY: [0, 1],
         translateX: (divisor, index) => [[100, 0, -100][index], 0],
         delay: duration.enter / 2,
-        duration: duration.enter / 2
+        duration: duration.enter / 2,
       });
     }
 
     anime({
       targets: links,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       opacity: 1,
       translateX: (link, index) => [[150, 75, -75, -150][index], 0],
       delay: viewportRange.small ? 0 : duration.enter / 2,
       duration: viewportRange.small ? duration.enter : duration.enter / 2,
-      complete: () => onEnter && onEnter()
+      complete: () => onEnter && onEnter(),
     });
   }
 
-  exit () {
+  exit() {
     const { energy, onExit } = this.props;
     const { duration } = energy;
 
-    const divisors = this.element.querySelectorAll('b');
-    const links = this.element.querySelectorAll('a');
+    const divisors = this.element.querySelectorAll("b");
+    const links = this.element.querySelectorAll("a");
 
     anime({
       targets: divisors,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       scaleY: [1, 0],
-      duration: duration.exit
+      duration: duration.exit,
     });
     anime({
       targets: links,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       opacity: 0,
       duration: duration.exit,
-      complete: () => onExit && onExit()
+      complete: () => onExit && onExit(),
     });
   }
 
-  render () {
+  render() {
     const {
       theme,
       classes,
@@ -176,52 +176,49 @@ class Component extends React.PureComponent {
       className: cx(classes.item, classes.link),
       onMouseEnter: () => sounds.hover.play(),
       onLinkStart,
-      onLinkEnd
+      onLinkEnd,
     };
 
     return (
-      <Secuence
-        animation={{ show: showSecuence, independent: true }}
-        stagger
-      >
+      <Secuence animation={{ show: showSecuence, independent: true }} stagger>
         <nav
           className={cx(classes.root, className)}
-          ref={ref => (this.element = ref)}
+          ref={(ref) => (this.element = ref)}
           {...etc}
         >
-          <Link href='/news' {...linkProps}>
-            <Text
-              animation={{ animate: animateText }}
-              audio={{ silent: !animateText }}
-            >
-              News
-            </Text>
-          </Link>
-          <b className={cx(classes.item, classes.divisor)}>|</b>
-          <Link href='/music' {...linkProps}>
-            <Text
-              animation={{ animate: animateText }}
-              audio={{ silent: !animateText }}
-            >
-              Music
-            </Text>
-          </Link>
-          <b className={cx(classes.item, classes.divisor)}>|</b>
-          <Link href='/charity' {...linkProps}>
-            <Text
-              animation={{ animate: animateText }}
-              audio={{ silent: !animateText }}
-            >
-              Charity
-            </Text>
-          </Link>
-          <b className={cx(classes.item, classes.divisor)}>|</b>
-          <Link href='/about' {...linkProps}>
+          <Link href="/about" {...linkProps}>
             <Text
               animation={{ animate: animateText }}
               audio={{ silent: !animateText }}
             >
               About
+            </Text>
+          </Link>
+          <b className={cx(classes.item, classes.divisor)}>|</b>
+          <Link href="/projects" {...linkProps}>
+            <Text
+              animation={{ animate: animateText }}
+              audio={{ silent: !animateText }}
+            >
+              Projects
+            </Text>
+          </Link>
+          <b className={cx(classes.item, classes.divisor)}>|</b>
+          <Link href="/security" {...linkProps}>
+            <Text
+              animation={{ animate: animateText }}
+              audio={{ silent: !animateText }}
+            >
+              Security
+            </Text>
+          </Link>
+          <b className={cx(classes.item, classes.divisor)}>|</b>
+          <Link href="/hire-me" {...linkProps}>
+            <Text
+              animation={{ animate: animateText }}
+              audio={{ silent: !animateText }}
+            >
+              Hire Me
             </Text>
           </Link>
         </nav>

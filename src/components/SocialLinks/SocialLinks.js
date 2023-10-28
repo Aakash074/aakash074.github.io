@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import cx from 'classnames';
-import anime from 'animejs';
+import React from "react";
+import PropTypes from "prop-types";
+import cx from "classnames";
+import anime from "animejs";
 
-import { Link } from '../Link';
+import { Link } from "../Link";
 
 class Component extends React.PureComponent {
-  static displayName = 'SocialLinks';
+  static displayName = "SocialLinks";
 
   static propTypes = {
     theme: PropTypes.object.isRequired,
@@ -20,14 +20,14 @@ class Component extends React.PureComponent {
     onEnter: PropTypes.func,
     onExit: PropTypes.func,
     onLinkStart: PropTypes.func,
-    onLinkEnd: PropTypes.func
+    onLinkEnd: PropTypes.func,
   };
 
   static defaultProps = {
-    animateY: true
+    animateY: true,
   };
 
-  enter () {
+  enter() {
     const { energy, sounds, animateY, onEnter } = this.props;
     const { duration } = energy;
 
@@ -35,26 +35,26 @@ class Component extends React.PureComponent {
 
     anime({
       targets: this.element,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       keyframes: [
         { opacity: 1, duration: duration.enter / 3 },
         { opacity: 0, duration: duration.enter / 5 },
-        { opacity: 1, duration: duration.enter / 2 }
+        { opacity: 1, duration: duration.enter / 2 },
       ],
-      complete: () => onEnter && onEnter()
+      complete: () => onEnter && onEnter(),
     });
 
     if (animateY) {
       anime({
         targets: this.element,
-        easing: 'easeOutCubic',
+        easing: "easeOutCubic",
         translateY: [-10, 0],
-        duration: duration.enter
+        duration: duration.enter,
       });
     }
   }
 
-  exit () {
+  exit() {
     const { energy, sounds, onExit } = this.props;
     const { duration } = energy;
 
@@ -62,17 +62,17 @@ class Component extends React.PureComponent {
 
     anime({
       targets: this.element,
-      easing: 'easeOutCubic',
+      easing: "easeOutCubic",
       keyframes: [
         { opacity: 0, duration: duration.exit / 3 },
         { opacity: 1, duration: duration.exit / 5 },
-        { opacity: 0, duration: duration.exit / 2 }
+        { opacity: 0, duration: duration.exit / 2 },
       ],
-      complete: () => onExit && onExit()
+      complete: () => onExit && onExit(),
     });
   }
 
-  render () {
+  render() {
     const {
       theme,
       classes,
@@ -89,7 +89,9 @@ class Component extends React.PureComponent {
       ...etc
     } = this.props;
 
-    const A = elprops => (
+    //htb badge https://www.hackthebox.com/badge/image/295457
+
+    const A = (elprops) => (
       <Link
         className={cx(classes.item, itemClassName)}
         onLinkStart={onLinkStart}
@@ -102,29 +104,46 @@ class Component extends React.PureComponent {
     return (
       <div
         className={cx(classes.root, className)}
-        ref={ref => (this.element = ref)}
+        ref={(ref) => (this.element = ref)}
         {...etc}
       >
-        <A href='https://www.youtube.com/channel/UCS8LdV8eOeK6XnMMkRP3pXA' title='YouTube' target='youtube'>
-          <span className='mdi mdi-youtube' />
+        <A href="https://0xaakash.tech/resume" title="Resume" target="resume">
+          <span className="mdi mdi-file-document" />
         </A>
-        <A href='https://open.spotify.com/artist/1cEPAqNFhmARDe0HgKOD3h' title='Spotify' target='spotify'>
-          <span className='mdi mdi-spotify' />
+        <A href="mailto:aakashkumaar074@gmail.com" title="Email" target="email">
+          <span className="mdi mdi-email-outline" />
         </A>
-        <A href='https://soundcloud.com/soulextract' title='SoundCloud' target='soundcloud'>
-          <span className='mdi mdi-soundcloud' />
+        <A
+          href="https://www.instagram.com/_aakash.js"
+          title="Instagram"
+          target="instagram"
+        >
+          <span className="mdi mdi-instagram" />
         </A>
-        <A href='https://www.facebook.com/soulextract' title='Facebook' target='facebook'>
-          <span className='mdi mdi-facebook' />
+
+        <A
+          href="https://twitter.com/Kumaaraakash074"
+          title="Twitter"
+          target="twitter"
+        >
+          <span className="mdi mdi-twitter" />
         </A>
-        <A href='https://twitter.com/soulextract' title='Twitter' target='twitter'>
-          <span className='mdi mdi-twitter' />
+        <A
+          href="https://www.facebook.com/aakash.074"
+          title="Facebook"
+          target="facebook"
+        >
+          <span className="mdi mdi-facebook" />
         </A>
-        <A href='https://www.instagram.com/soulextract' title='Instagram' target='instagram'>
-          <span className='mdi mdi-instagram' />
+        <A
+          href="https://www.linkedin.com/in/aakash074/"
+          title="LinkedIn"
+          target="linkedin"
+        >
+          <span className="mdi mdi-linkedin" />
         </A>
-        <A href='mailto:soulextractmusic@gmail.com' title='Email' target='email'>
-          <span className='mdi mdi-email-outline' />
+        <A href="https://github.com/Aakash074" title="Github" target="github">
+          <span className="mdi mdi-github-circle" />
         </A>
       </div>
     );

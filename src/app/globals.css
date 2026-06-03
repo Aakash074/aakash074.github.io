@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --glow-purple: var(--accent-glow);
+  --glow-purple-soft: var(--accent-glow-soft);
+}
+
+:root {
+  --background: #06080d;
+  --foreground: #e8e6f0;
+  --primary: #e8e6f0;
+  --primary-foreground: #06080d;
+  --secondary: #0d0f17;
+  --secondary-foreground: #e8e6f0;
+  --muted: #0f111a;
+  --muted-foreground: #8b87a0;
+  --accent: #131524;
+  --accent-foreground: #e8e6f0;
+  --border: #1a1c2e;
+  --ring: #8b5cf6;
+  --card: #0c0e18;
+  --card-foreground: #e8e6f0;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #e8e6f0;
+  --radius: 0.75rem;
+  --accent-glow: #8b5cf6;
+  --accent-glow-soft: rgba(139, 92, 246, 0.15);
+}
+
+* { border-color: var(--border); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Glass card utility */
+.glass {
+  background: rgba(15, 17, 26, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 92, 246, 0.1);
+}
+
+.glass:hover {
+  border-color: rgba(139, 92, 246, 0.25);
+}
+
+/* Glow utilities */
+.glow-text {
+  color: var(--foreground);
+}
+
+.glow-border {
+  box-shadow: 0 0 20px var(--glow-purple-soft), inset 0 0 20px var(--glow-purple-soft);
+}
+
+.glow-sm {
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.08);
+}
+
+.glow-md {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.12);
+}

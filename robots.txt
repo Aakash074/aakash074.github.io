@@ -1,4 +1,0 @@
-User-Agent: *
-Allow: /
-
-Sitemap: https://aakash074.github.io/sitemap.xml

@@ -1,0 +1,14 @@
+1:"$Sreact.fragment"
+2:I[42192,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"Hero"]
+3:I[6595,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"FounderStory"]
+4:I[45740,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"Achievements"]
+5:I[39630,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"Ventures"]
+6:I[95449,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"Experience"]
+7:I[72907,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"FeaturedProjects"]
+8:I[44733,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"Skills"]
+9:I[12598,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"GitHubIntelligence"]
+a:I[82465,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js","/_next/static/chunks/2tsyw0lnqpovv.js"],"CTASection"]
+b:I[26392,["/_next/static/chunks/03eiv14rwo4ku.js","/_next/static/chunks/42erksfi8cxb7.js","/_next/static/chunks/00nerjeh4qdkf.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}],["$","$La",null,{}]],[["$","script","script-0",{"src":"/_next/static/chunks/2tsyw0lnqpovv.js","async":true}]],["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"dz3S0-lCt1NUpByhR2aEF"}
+d:null

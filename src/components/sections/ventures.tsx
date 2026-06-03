@@ -146,7 +146,8 @@ export function Ventures() {
                   href={venture.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-border/40 bg-white/50 text-muted-foreground transition-all hover:bg-foreground hover:text-background hover:border-foreground shadow-sm"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/[0.06] bg-white/[0.04] text-foreground/40 transition-all hover:border-[#8b5cf6]/40 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa] hover:shadow-[0_0_15px_rgba(139,92,246,0.15)]"
+                  aria-label={`Visit ${venture.name}`}
                 >
                   <ArrowUpRight className="h-3.5 w-3.5" />
                 </a>

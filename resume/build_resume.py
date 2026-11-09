@@ -62,7 +62,7 @@ section("Summary")
 story.append(Paragraph(
     "AI product engineer with 4+ years of building and shipping products from zero to scale. Former CTO of "
     "CloneMyTrips (acquired) and Head of AI at WanderOn. Builds production AI systems: semantic search and "
-    "reranking over nearly 300M patent records, RAG pipelines, AI agents and workflow automation. Strong full-stack "
+    "reranking over ~26M patent families, RAG pipelines, AI agents and workflow automation. Strong full-stack "
     "foundation (Python, TypeScript, React, Node.js) and a security background: top 5 globally on HackTheBox, "
     "2x ETHGlobal winner, and holder of an Australian patent in ML-based vulnerability detection.", body))
 
@@ -70,9 +70,12 @@ story.append(Paragraph(
 section("Experience")
 job("AI Consultant", "Shifu Ventures (Product Studio &amp; VC)", "Aug 2026 – Present", "India", [
     "Designed and built the core AI of <b>Photon Legal's Product Pulse</b>: a prior-art search engine over "
-    "nearly <b>300M Google Patents records</b>.",
+    "<b>~26M deduplicated Google Patents families</b>.",
     "Embedded patent text with <b>MiniLM</b> sentence embeddings for semantic vector retrieval and reranked candidates "
     "with <b>Cohere Rerank</b> to surface the closest matching prior art.",
+    "Built a CI-gated evaluation harness that scores retrieval recall against the prior art patent examiners actually "
+    "cited; found and fixed a family-level scoring flaw that had been understating recall and reversed a planned "
+    "switch to a smaller corpus.",
     "Built an idea-scoring system that compares inventors' disclosures against matched prior art, helping client "
     "companies decide which inventions to file as patents.",
     "Work with Shifu Ventures portfolio startups on product, AI and engineering to get their products working "
@@ -91,9 +94,7 @@ job("Chief Technology Officer", "CloneMyTrips (Acquired)", "Mar 2024 – Sep 202
     "Worked directly with the founders on technical strategy, product roadmap and scaling.",
 ])
 job("Senior Frontend Developer (Web3)", "Safle", "Feb 2023 – Mar 2024", "Abu Dhabi, UAE (Remote)", [
-    "Integrated 6 additional blockchains into the Safle crypto wallet and Web3 browser; built transaction flows "
-    "and dApp integrations.",
-    "Managed development of Web3 developer tools with a distributed international team.",
+    "Built a crypto wallet that works without an internet connection, for a Web3 wallet and browser used by a global user base.",
 ])
 job("Co-Founder", "Calmverse", "Aug 2022 – Feb 2023", "Remote", [
     "Co-founded a Web3 metaverse for mental health; owned the product concept and technical architecture.",

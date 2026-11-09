@@ -24,7 +24,7 @@ const VENTURES: Venture[] = [
     description:
       "IP law and patent consulting firm. Product Pulse helps inventors at client companies check how novel an idea is against existing patents before they file.",
     contribution:
-      "Designed and built the core AI: a prior-art search pipeline over nearly 300M Google Patents records. Patents are embedded with MiniLM for fast semantic retrieval, candidates are reranked with Cohere, and the closest matches are shown and used to score each inventor's idea for patentability. Built via Shifu Ventures.",
+      "Designed and built the core AI: a prior-art search pipeline over ~26M deduplicated Google Patents families, with a CI-gated eval harness that scores recall against the prior art patent examiners actually cited. Patents are embedded with MiniLM for fast semantic retrieval, candidates are reranked with Cohere, and the closest matches are shown and used to score each inventor's idea for patentability. Built via Shifu Ventures.",
     tech: ["Semantic Search", "MiniLM Embeddings", "Cohere Rerank", "Google Patents Data", "Vector Retrieval", "Idea Scoring"],
     industry: "Legal Tech / AI Search",
     initials: "PL",

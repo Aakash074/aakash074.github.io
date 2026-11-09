@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | Aakash Kumar",
   },
   description:
-    "AI Product Engineer, Startup Operator, and Full Stack Architect. Building AI systems, fintech infrastructure, and Web3 products. Former CTO of CloneMyTrips (acquired) and Head of AI at WanderOn. AI consultant at Shifu Ventures, building prior-art patent search over ~300M records.",
+    "AI Product Engineer, Startup Operator, and Full Stack Architect. Building AI systems, fintech infrastructure, and Web3 products. Former CTO of CloneMyTrips (acquired) and Head of AI at WanderOn. AI consultant at Shifu Ventures, building prior-art patent search over ~26M patent families.",
   keywords: [
     "Aakash Kumar", "AI Product Engineer", "Full Stack Developer", "Startup CTO",
     "Web3 Builder", "AI Engineer", "Blockchain Developer", "Solana", "Hedera",

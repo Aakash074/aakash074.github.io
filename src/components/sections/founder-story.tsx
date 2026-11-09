@@ -32,7 +32,7 @@ const STORY_BEATS = [
   {
     title: "AI Search at Patent Scale",
     subtitle: "Shifu Ventures · Photon Legal Product Pulse",
-    body: "Now consulting with Shifu Ventures, a product studio and VC firm, making its portfolio startups' products and AI work in production. The flagship build: Photon Legal's prior-art search — nearly 300M Google Patents records embedded with MiniLM, reranked with Cohere, and turned into a score that tells inventors how novel their idea is before they file.",
+    body: "Now consulting with Shifu Ventures, a product studio and VC firm, making its portfolio startups' products and AI work in production. The flagship build: Photon Legal's prior-art search — ~26M Google Patents families embedded with MiniLM, reranked with Cohere, and turned into a score that tells inventors how novel their idea is before they file.",
   },
   {
     title: "Full Stack Architect",

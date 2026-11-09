@@ -40,7 +40,7 @@ const ACHIEVEMENTS = [
   },
   {
     icon: Search,
-    title: "Patent Search over ~300M Records",
+    title: "Patent Search over ~26M Families",
     description: "Built Photon Legal's prior-art search: MiniLM embeddings + Cohere reranking to score inventors' ideas before filing.",
   },
   {

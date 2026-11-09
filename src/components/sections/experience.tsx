@@ -26,9 +26,9 @@ const EXPERIENCES: ExperienceEntry[] = [
     period: "Aug 2026 — Present",
     location: "India · Consulting",
     description:
-      "Working with Shifu Ventures' portfolio startups to make their products and core AI work in production. Lead build: the prior-art search engine behind Photon Legal's Product Pulse — semantic search over nearly 300M Google Patents records, embedded with MiniLM and reranked with Cohere, used to score inventors' ideas and help companies decide what to file.",
+      "Working with Shifu Ventures' portfolio startups to make their products and core AI work in production. Lead build: the prior-art search engine behind Photon Legal's Product Pulse — semantic search over ~26M deduplicated Google Patents families, embedded with MiniLM and reranked with Cohere, used to score inventors' ideas and help companies decide what to file.",
     highlights: [
-      "Prior-art search over ~300M patent records",
+      "Prior-art search over ~26M patent families",
       "MiniLM embeddings + vector retrieval",
       "Cohere reranking",
       "Invention scoring for patent filing",

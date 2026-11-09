@@ -12,7 +12,7 @@ import {
   FileCheck,
   Users,
   Swords,
-  Coins,
+  Search,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { FadeIn } from "@/components/animations/fade-in";
@@ -36,7 +36,12 @@ const ACHIEVEMENTS = [
   {
     icon: Cpu,
     title: "Head of AI at WanderOn",
-    description: "Joined to strengthen AI capabilities. The company then raised ₹54 Cr Series A, validating the AI-first direction.",
+    description: "Led AI capabilities at WanderOn. The company then raised ₹54 Cr Series A, validating the AI-first direction.",
+  },
+  {
+    icon: Search,
+    title: "Patent Search over ~300M Records",
+    description: "Built Photon Legal's prior-art search: MiniLM embeddings + Cohere reranking to score inventors' ideas before filing.",
   },
   {
     icon: FileCheck,
@@ -67,11 +72,6 @@ const ACHIEVEMENTS = [
     icon: Zap,
     title: "20+ Products Shipped",
     description: "Built and deployed products across AI, fintech, Web3, travel, SaaS, cybersecurity, and consumer tech.",
-  },
-  {
-    icon: Coins,
-    title: "Web3 Native Since 2023",
-    description: "Built crypto wallets, DeFi terminals, BNPL infrastructure, token launchpads, and metaverse platforms.",
   },
   {
     icon: GraduationCap,

@@ -55,7 +55,7 @@ export function Hero() {
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8b5cf6] opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8b5cf6]" />
             </span>
-            Available for consulting & AI engagements
+            Open to remote AI roles & consulting
           </span>
         </motion.div>
 

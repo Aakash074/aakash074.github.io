@@ -22,8 +22,8 @@ export function CTASection() {
             Let&apos;s build something ambitious.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Available for AI consulting, startup engineering leadership, and
-            high-impact product development. If you&apos;re building at the
+            Open to remote AI engineering and leadership roles, plus AI consulting
+            and high-impact product development. If you&apos;re building at the
             intersection of AI, Web3, and product — let&apos;s talk.
           </p>
 

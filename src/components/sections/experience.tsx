@@ -21,12 +21,30 @@ interface ExperienceEntry {
 
 const EXPERIENCES: ExperienceEntry[] = [
   {
+    company: "Shifu Ventures",
+    role: "AI Consultant · Product Studio & VC",
+    period: "Aug 2026 — Present",
+    location: "India · Consulting",
+    description:
+      "Working with Shifu Ventures' portfolio startups to make their products and core AI work in production. Lead build: the prior-art search engine behind Photon Legal's Product Pulse — semantic search over nearly 300M Google Patents records, embedded with MiniLM and reranked with Cohere, used to score inventors' ideas and help companies decide what to file.",
+    highlights: [
+      "Prior-art search over ~300M patent records",
+      "MiniLM embeddings + vector retrieval",
+      "Cohere reranking",
+      "Invention scoring for patent filing",
+      "Portfolio product & AI engineering",
+    ],
+    icon: Rocket,
+    tag: "Current",
+    tagColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+  },
+  {
     company: "WanderOn",
     role: "Head of Artificial Intelligence",
-    period: "Oct 2025 — Present",
+    period: "Oct 2025 — Jul 2026",
     location: "Gurugram, India · On-site",
     description:
-      "Joined to strengthen and lead AI capabilities across the organization. The company subsequently raised ₹54 Cr Series A, validating the AI-first direction. Building AI-first systems for operational automation, product intelligence, and scalable infrastructure across the travel tech platform.",
+      "Joined to strengthen and lead AI capabilities across the organization. The company subsequently raised ₹54 Cr Series A, validating the AI-first direction. Built AI-first systems for operational automation, product intelligence, and scalable infrastructure across the travel tech platform.",
     highlights: [
       "AI product strategy & roadmap",
       "Operational automation systems",
@@ -36,8 +54,8 @@ const EXPERIENCES: ExperienceEntry[] = [
     ],
     icon: Cpu,
     logo: "/logos/wanderon.png",
-    tag: "Current",
-    tagColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+    tag: "Series A",
+    tagColor: "bg-blue-500/10 text-blue-600 border-blue-500/20",
   },
   {
     company: "CloneMyTrips",

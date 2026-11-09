@@ -27,7 +27,12 @@ const STORY_BEATS = [
   {
     title: "AI at Scale",
     subtitle: "Head of AI at WanderOn · Strengthened AI → ₹54 Cr Series A",
-    body: "Joined WanderOn to strengthen and lead their AI capabilities. The company subsequently raised ₹54 Cr Series A, validating the AI-first direction. Building systems that automate operations, power product intelligence, and reshape customer workflows. LLM applications, AI agents, RAG systems, multi-agent orchestration — all in production, not demos.",
+    body: "Joined WanderOn to strengthen and lead their AI capabilities. The company subsequently raised ₹54 Cr Series A, validating the AI-first direction. Built systems that automate operations, power product intelligence, and reshape customer workflows. LLM applications, AI agents, RAG systems, multi-agent orchestration — all in production, not demos.",
+  },
+  {
+    title: "AI Search at Patent Scale",
+    subtitle: "Shifu Ventures · Photon Legal Product Pulse",
+    body: "Now consulting with Shifu Ventures, a product studio and VC firm, making its portfolio startups' products and AI work in production. The flagship build: Photon Legal's prior-art search — nearly 300M Google Patents records embedded with MiniLM, reranked with Cohere, and turned into a score that tells inventors how novel their idea is before they file.",
   },
   {
     title: "Full Stack Architect",

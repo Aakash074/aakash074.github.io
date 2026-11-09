@@ -19,6 +19,17 @@ interface Venture {
 
 const VENTURES: Venture[] = [
   {
+    name: "Photon Legal — Product Pulse",
+    url: "https://photonlegal.com",
+    description:
+      "IP law and patent consulting firm. Product Pulse helps inventors at client companies check how novel an idea is against existing patents before they file.",
+    contribution:
+      "Designed and built the core AI: a prior-art search pipeline over nearly 300M Google Patents records. Patents are embedded with MiniLM for fast semantic retrieval, candidates are reranked with Cohere, and the closest matches are shown and used to score each inventor's idea for patentability. Built via Shifu Ventures.",
+    tech: ["Semantic Search", "MiniLM Embeddings", "Cohere Rerank", "Google Patents Data", "Vector Retrieval", "Idea Scoring"],
+    industry: "Legal Tech / AI Search",
+    initials: "PL",
+  },
+  {
     name: "Frontline",
     url: "https://getfrontline.xyz",
     description:
@@ -103,7 +114,7 @@ const VENTURES: Venture[] = [
     name: "Seerum AI",
     url: "https://github.com/seerum-org",
     description:
-      "AI consulting and development venture. Building AI-native products and providing technical advisory for startups. Backed by Shifu Ventures, the VC arm of Almabase's founding team.",
+      "AI consulting and development venture. Building AI-native products and providing technical advisory for startups. Backed by Shifu Ventures, the product studio and VC firm from Almabase's founding team.",
     contribution:
       "AI consulting and product development across LLM applications, agent systems, and automation. Working with the Shifu Ventures ecosystem — founded by Kalyan Varma and Sri Maneru (NIT Warangal alumni who built Almabase, the leading alumni engagement SaaS platform serving 250+ institutions).",
     tech: ["AI Consulting", "LLM Applications", "Agent Systems", "Product Strategy", "Technical Advisory"],

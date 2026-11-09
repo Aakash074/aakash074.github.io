@@ -15,7 +15,7 @@ const FOOTER_LINKS: FooterGroup[] = [
   {
     label: "Connect",
     links: [
-      { href: "https://calendly.com/aakashkumaar074/30min", label: "Book a Call", external: true },
+      { href: "https://calendly.com/aakash074/30min", label: "Book a Call", external: true },
       { href: "mailto:aakashkumaar074@gmail.com", label: "Email", external: true },
       { href: "https://t.me/aakash074", label: "Telegram", external: true },
     ],

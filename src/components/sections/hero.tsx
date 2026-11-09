@@ -113,7 +113,7 @@ export function Hero() {
             <Briefcase className="h-4 w-4" /> View Work
           </a>
           <a
-            href="https://calendly.com/aakashkumaar074/30min" target="_blank" rel="noopener noreferrer"
+            href="https://calendly.com/aakash074/30min" target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-[#8b5cf6]/20 bg-white/5 px-6 py-3 text-sm font-medium text-foreground/80 backdrop-blur-sm transition-all hover:border-[#8b5cf6]/40 hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98]"
           >
             Book a Call <ArrowUpRight className="h-4 w-4" />

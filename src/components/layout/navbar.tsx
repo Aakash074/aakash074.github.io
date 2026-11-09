@@ -60,7 +60,7 @@ export function Navbar() {
               </a>
             ))}
             <a
-              href="https://calendly.com/aakashkumaar074/30min"
+              href="https://calendly.com/aakash074/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-[#8b5cf6] px-4 py-2 text-sm font-medium text-white transition-all hover:bg-[#7c3aed] hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] active:scale-[0.98]"
@@ -99,7 +99,7 @@ export function Navbar() {
                 </motion.a>
               ))}
               <motion.a
-                href="https://calendly.com/aakashkumaar074/30min" target="_blank"
+                href="https://calendly.com/aakash074/30min" target="_blank"
                 rel="noopener noreferrer" onClick={closeMobile}
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}

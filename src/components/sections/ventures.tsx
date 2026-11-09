@@ -203,7 +203,7 @@ export function Ventures() {
           <p className="text-sm text-muted-foreground">
             Interested in working together?{" "}
             <a
-              href="https://calendly.com/aakashkumaar074/30min"
+              href="https://calendly.com/aakash074/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-foreground underline underline-offset-4 transition-opacity hover:opacity-70"

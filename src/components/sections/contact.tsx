@@ -15,7 +15,7 @@ const SOCIALS = [
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="relative">
-      <div className="mx-auto max-w-6xl px-4 pt-20 pb-24 sm:px-6 sm:pt-28 sm:pb-32 lg:px-8 lg:pt-32">
+      <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 sm:pb-28 lg:px-8 lg:pt-28">
         <div className="border-t border-foreground/80 pt-5" data-reveal>
           <p className="label flex items-center gap-3 text-subtle">
             <span className="num text-accent">05</span>
@@ -28,7 +28,7 @@ export function Contact() {
           id="contact-heading"
           data-reveal
           style={delay(1)}
-          className="mt-10 max-w-4xl font-serif text-[2.6rem] leading-[1.02] tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.25rem]"
+          className="mt-10 max-w-4xl font-serif text-[2.6rem] leading-[1.02] tracking-[-0.02em] text-balance sm:text-6xl lg:text-[5.25rem]"
         >
           Hiring for a senior AI role? <em className="text-accent">Let&apos;s talk.</em>
         </h2>

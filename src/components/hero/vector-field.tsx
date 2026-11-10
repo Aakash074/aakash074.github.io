@@ -49,6 +49,21 @@ function labelBox(cl: Cluster) {
   return { x: cl.x, y: cl.y - cl.s - 0.05, hw: 0.03 + cl.label.length * 0.0095, hh: 0.035 };
 }
 
+/** Moves a query point out of any topic-label box (with padding), so the marker never covers a label. */
+function keepOffLabels(q: { x: number; y: number }) {
+  for (const cl of CLUSTERS) {
+    if (!cl.label) continue;
+    const b = labelBox(cl);
+    const hw = b.hw + 0.03;
+    const hh = b.hh + 0.06;
+    if (Math.abs(q.x - b.x) < hw && Math.abs(q.y - b.y) < hh) {
+      // Leave by the nearest vertical edge: labels are wide and short.
+      q.y = q.y < b.y ? b.y - hh : b.y + hh;
+    }
+  }
+  return q;
+}
+
 function makePoints(): Pt[] {
   let seed = 11;
   const rand = () => {
@@ -136,13 +151,17 @@ export function VectorField() {
     };
 
     const updateList = () => {
-      const key = `${nearIdx[0]},${nearIdx[1]},${nearIdx[2]}`;
+      const key = `${nearIdx[0]},${nearIdx[1]},${nearIdx[2]},${Math.round(Math.sqrt(nearD[0]) / 4)}`;
       if (key === shownKey) return;
       shownKey = key;
-      const far = Math.hypot(w, h) * 0.5;
+      // Steep falloff: about 0.9 inside a topic, about 0.6 out in empty space.
+      const far = Math.min(w, h) * 0.35;
+      let prev = 1;
       for (let r = 0; r < TOP; r++) {
         const p = points[nearIdx[r]];
-        const sim = Math.max(0.5, 0.99 - (Math.sqrt(nearD[r]) / far) * 0.6);
+        let sim = Math.max(0.42, 0.98 - (Math.sqrt(nearD[r]) / far) * 0.55);
+        sim = Math.min(sim, prev - 0.01); // ranked results never tie
+        prev = sim;
         const row = rows[r];
         row.querySelector("[data-title]")!.textContent = p.title;
         row.querySelector("[data-score]")!.textContent = sim.toFixed(2);
@@ -162,9 +181,11 @@ export function VectorField() {
         tx = 0.5 + Math.sin(t * 0.23) * 0.3;
         ty = 0.56 + Math.sin(t * 0.31 + 1.2) * 0.26;
       }
+      const target = keepOffLabels({ x: tx, y: ty });
       const ease = reduce ? 1 : pointer ? 0.2 : 0.05;
-      query.x += (tx - query.x) * ease;
-      query.y += (ty - query.y) * ease;
+      query.x += (target.x - query.x) * ease;
+      query.y += (target.y - query.y) * ease;
+      keepOffLabels(query);
       const qx = query.x * w;
       const qy = query.y * h;
 
@@ -324,10 +345,10 @@ export function VectorField() {
 
     const toLocal = (e: PointerEvent) => {
       const rect = wrap.getBoundingClientRect();
-      return {
+      return keepOffLabels({
         x: Math.min(0.97, Math.max(0.03, (e.clientX - rect.left) / rect.width)),
         y: Math.min(0.97, Math.max(0.12, (e.clientY - rect.top) / rect.height)),
-      };
+      });
     };
     const onMove = (e: PointerEvent) => {
       pointer = toLocal(e);

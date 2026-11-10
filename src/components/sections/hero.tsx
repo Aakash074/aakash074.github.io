@@ -22,9 +22,9 @@ function Letters({ word, offset = 0 }: { word: string; offset?: number }) {
 const PROOF = [
   {
     stat: <CountUp to={26} suffix="M" />,
-    text: "patents searched by the AI search I built for Photon Legal.",
+    text: "patent families searched by the AI I built for Photon Legal.",
   },
-  { stat: "2.4 to 3x", text: "more real matches found once the patent search was tested the right way." },
+  { stat: "2.4 to 3x", text: "more real matches than first measured, once I changed how the patent search was scored." },
   { stat: "Head of AI", text: "at WanderOn, where I led the WhatsApp agent that turns customer chats into sales leads." },
   { stat: "Top 5", text: "on HackTheBox worldwide. Security is where I started." },
 ];
@@ -32,7 +32,7 @@ const PROOF = [
 export function Hero() {
   return (
     <section id="intro" aria-labelledby="hero-heading" className="relative">
-      <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8 lg:pt-12">
+      <div className="mx-auto max-w-6xl px-4 pt-7 sm:px-6 sm:pt-10 lg:px-8 lg:pt-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
             <div className="intro flex items-center gap-3" style={delay(0)}>
@@ -53,7 +53,7 @@ export function Hero() {
 
             <h1
               id="hero-heading"
-              className="mt-5 font-serif text-[clamp(4.25rem,19vw,6.5rem)] leading-[0.92] font-normal tracking-[-0.035em] sm:mt-10"
+              className="mt-4 font-serif text-[clamp(4.25rem,19vw,6.5rem)] leading-[0.92] font-normal tracking-[-0.035em] sm:mt-10"
             >
               <span className="sr-only">Aakash Kumar, AI Engineer</span>
               <Letters word="Aakash" />
@@ -129,13 +129,17 @@ export function Hero() {
             <figcaption className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               Move your cursor, or tap. Each dot is a document placed by meaning, and the search returns the closest
               ones. Same idea as the patent search below, with made-up data.
+              <span className="sr-only">
+                {" "}For example, an idea about an insulin pump returns similar medical device patents first, with the
+                closest ones scoring highest.
+              </span>
             </figcaption>
           </figure>
         </div>
 
         <ul
           aria-label="Proof at a glance"
-          className="mt-14 grid grid-cols-1 border-t border-foreground/80 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4"
+          className="mt-12 grid grid-cols-2 border-t border-foreground/80 lg:mt-8 lg:grid-cols-4"
         >
           {PROOF.map((p, i) => (
             <li
@@ -143,15 +147,16 @@ export function Hero() {
               data-reveal
               style={delay(i)}
               className={cn(
-                "border-b border-border py-6 sm:px-6 lg:border-b-0 lg:py-8",
-                i % 2 === 1 && "sm:border-l",
-                i === 0 && "sm:pl-0",
-                i === 2 && "sm:pl-0 lg:pl-6",
-                i > 0 && "lg:border-l"
+                "py-5 pr-3 sm:py-6 sm:pr-6 lg:py-7",
+                i % 2 === 1 && "border-l border-border pl-4 sm:pl-6",
+                i < 2 && "border-b border-border lg:border-b-0",
+                i === 2 && "lg:border-l lg:pl-6"
               )}
             >
-              <p className="font-serif text-[2.6rem] leading-none tracking-[-0.03em] whitespace-nowrap text-foreground xl:text-5xl">{p.stat}</p>
-              <p className="mt-3 max-w-[17rem] text-[15px] leading-snug text-muted">{p.text}</p>
+              <p className="font-serif text-[2rem] leading-none tracking-[-0.03em] whitespace-nowrap text-foreground sm:text-[2.6rem] xl:text-5xl">
+                {p.stat}
+              </p>
+              <p className="mt-3 max-w-[17rem] text-sm leading-snug text-muted sm:text-[15px]">{p.text}</p>
             </li>
           ))}
         </ul>

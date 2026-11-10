@@ -68,19 +68,22 @@ function CaseBody({
   tools: string[];
 }) {
   return (
-    <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-10">
-      <div className="space-y-5 text-lg leading-relaxed text-muted lg:col-span-6 lg:col-start-3" data-reveal>
-        {children}
+    <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-10">
+      <div className="lg:col-span-6 lg:col-start-3" data-reveal>
+        <div className="space-y-5 text-lg leading-relaxed text-muted">{children}</div>
+        {/* The outcome reads as a pull-quote; the slot can take a big number later */}
+        <figure className="mt-8 border-l-2 border-accent pl-5 sm:pl-6">
+          <p className="label text-accent">Outcome</p>
+          <p className="mt-2 font-serif text-2xl leading-snug tracking-[-0.01em] text-foreground text-balance sm:text-[1.75rem]">
+            {outcome}
+          </p>
+        </figure>
       </div>
       <aside className="lg:col-span-3 lg:col-start-10" data-reveal style={delay(1)}>
         <dl className="space-y-6 border-t border-border-strong pt-5 lg:sticky lg:top-24">
           <div>
             <dt className="label text-subtle">Role</dt>
             <dd className="mt-1.5 text-[15px] leading-snug text-foreground">{role}</dd>
-          </div>
-          <div>
-            <dt className="label text-subtle">Outcome</dt>
-            <dd className="mt-1.5 font-serif text-[1.35rem] leading-snug text-foreground">{outcome}</dd>
           </div>
           <div>
             <dt className="label text-subtle">Stack</dt>
@@ -229,7 +232,7 @@ function RecallChart() {
 const CHAT: { from: "user" | "agent"; text: string }[] = [
   { from: "user", text: "Hi! Planning Ladakh in June for 4 of us." },
   { from: "agent", text: "Lovely. Which dates, and will you start from Delhi?" },
-  { from: "user", text: "15 to 22 June, from Delhi. Around 30k each." },
+  { from: "user", text: "15 to 22 June, from Delhi. Around ₹30k each." },
   { from: "agent", text: "Got it. A trip expert will call you today with options." },
 ];
 
@@ -237,7 +240,7 @@ const LEAD = [
   ["Trip", "Ladakh, 7 nights"],
   ["Dates", "15 to 22 June"],
   ["Group", "4 people, from Delhi"],
-  ["Budget", "About 30k each"],
+  ["Budget", "About ₹30k each"],
 ];
 
 function ChatToLead() {
@@ -322,9 +325,9 @@ function ChatToLead() {
 /* ---------- CloneMyTrips: a short timeline, horizontal on wide screens ---------- */
 
 const MILESTONES = [
-  { when: "Mar 2024", what: "Designs the platform from scratch.", dot: "bg-subtle" },
-  { when: "2024", what: "Dora goes live on LLMs with real users.", dot: "bg-accent" },
-  { when: "Sep 2025", what: "The company is acquired.", dot: "bg-green" },
+  { when: "Mar 2024", what: "Designed the platform from scratch.", dot: "bg-subtle" },
+  { when: "2024", what: "Dora went live on LLMs with real users.", dot: "bg-accent" },
+  { when: "Sep 2025", what: "Handed over after 18 months as CTO.", dot: "bg-green" },
 ];
 
 function Timeline() {
@@ -365,7 +368,7 @@ export function SelectedWork() {
           AI I built that <em className="text-accent">real people</em> use.
         </>
       }
-      intro="Search that has to find the right answer among millions of documents, an agent that talks to customers, and a startup where I was CTO until it was acquired."
+      intro="Search that has to find the right answer among millions of documents, an agent that talks to customers, and a travel app I built from scratch as CTO."
     >
       <div className="space-y-28 sm:space-y-32">
         {/* 01. Photon Legal */}
@@ -421,10 +424,10 @@ export function SelectedWork() {
                 starts missing them, the change can&apos;t ship.
               </p>
               <p>
-                Early tests said a 1M-patent slice beat the full 26M, which made no sense, so I checked the test
+                Early tests said a 1M-family slice beat the full 26M, which made no sense, so I checked the test
                 itself. Examiners often cite a different filing of the same invention, so matching by exact patent
-                number missed most real hits. I changed the test to match by invention, which showed the search was
-                finding 2.4 to 3 times more than first reported, and the team kept the full search.
+                number missed most real hits. I changed the test to match by invention, which showed the full search
+                was finding far more than first reported, so the team kept it.
               </p>
             </div>
             <div className="rounded-2xl bg-background p-5 text-foreground lg:col-span-12">
@@ -445,14 +448,14 @@ export function SelectedWork() {
             badge="Shipped to customers"
           />
           <CaseBody
-            role="Led AI across the company and led the build of the agent."
+            role="Led AI across the company, including the build of this agent."
             outcome="Sales gets ready-to-call leads instead of raw chats."
             tools={["WhatsApp", "LLMs", "CRM integration"]}
           >
             <p>
               WanderOn gets a steady stream of travel enquiries on WhatsApp, and the sales team only wants the
               serious ones. I led the build of an AI agent that chats with each customer, collects their trip details
-              and creates a ready-to-call lead in the CRM, handing off to a person when needed.
+              and creates a ready-to-call lead in the CRM.
             </p>
             <p>
               As Head of AI I also built internal AI tools for the operations team, and WanderOn raised an INR 54
@@ -479,21 +482,21 @@ export function SelectedWork() {
             role="CTO"
             dates="Mar 2024 to Sep 2025"
             title="Built the product as CTO, from first line of code to acquisition"
-            badge="Company acquired"
+            badge="Shipped to real users"
           />
           <CaseBody
             role="Ran engineering and product."
-            outcome="Acquired in Sep 2025."
-            tools={["React Native", "LLM APIs", "Mobile app"]}
+            outcome="Dora put AI trip plans in front of real users, and the company was bought in Sep 2025."
+            tools={["React Native", "LLM APIs"]}
           >
             <p>
-              CloneMyTrips is a travel app. I designed the platform from scratch and worked directly with the
+              CloneMyTrips is a travel app that connects travel creators with their followers. I designed the platform from scratch and worked directly with the
               founders on what to build and when.
             </p>
             <p>I also built Dora, the app&apos;s AI trip planner, which ran on LLMs with real users from 2024 onward.</p>
           </CaseBody>
 
-          <FigureFrame className="mt-12" number={3} title="What I owned" caption="From the first architecture to the acquisition.">
+          <FigureFrame className="mt-12" number={3} title="Timeline" caption="Eighteen months, from the first architecture to the handover.">
             <div className="py-2">
               <Timeline />
             </div>
@@ -512,7 +515,7 @@ export function SelectedWork() {
           rel="noopener noreferrer"
           className={cn(buttonStyles.base, buttonStyles.primary)}
         >
-          Book 30 minutes
+          Book a 30 min call
           <ArrowUpRight className="nudge h-4 w-4" aria-hidden="true" />
           <span className="sr-only">(opens in a new tab)</span>
         </a>

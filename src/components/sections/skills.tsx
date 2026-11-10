@@ -17,7 +17,7 @@ const RECOGNITION = [
   { big: "Top 5", title: "on HackTheBox", detail: "Worldwide, among 400,000+ hackers (Omniscient rank)." },
   { big: "2x", title: "ETHGlobal winner", detail: "ETHGlobal Singapore and Bangkok." },
   { big: "Patent", title: "Australian patent 2021105619", detail: "An ML method to find duplicate security vulnerabilities." },
-  { big: "2 lakh+", title: "rupees in bug bounties", detail: "From Dell, Samsung and others." },
+  { big: "INR 2L+", title: "in bug bounties", detail: "About USD 2,400, from Dell, Samsung and others." },
 ];
 
 export function Skills() {

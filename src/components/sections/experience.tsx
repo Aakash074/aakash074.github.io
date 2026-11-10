@@ -15,7 +15,7 @@ const ROLES: Role[] = [
   {
     company: "Shifu Ventures",
     role: "AI Consultant",
-    dates: "Aug 2026 to now",
+    dates: "Aug 2026 to present",
     place: "Product studio and VC, India",
     summary:
       "I build AI features for startups in the Shifu portfolio and take them to production. The main one is Photon Legal's patent search.",
@@ -35,7 +35,7 @@ const ROLES: Role[] = [
     dates: "Mar 2024 to Sep 2025",
     place: "Bengaluru, India (hybrid)",
     summary:
-      "Built the platform from scratch, ran engineering and product through the acquisition, and launched Dora, the AI trip planner.",
+      "Built the platform from scratch, ran engineering and product, and launched Dora, the AI trip planner.",
     tag: "Acquired",
   },
   {
@@ -98,17 +98,26 @@ export function Experience() {
       label="Experience"
       title="4+ years shipping products. Since 2024, leading AI and engineering."
     >
-      <ol className="border-t border-border">
+      <ol data-timeline className="relative border-t border-border pl-7 sm:pl-9">
+        <span
+          aria-hidden="true"
+          className="timeline-line absolute top-0 bottom-0 left-[5px] w-px bg-border-strong"
+        />
         {ROLES.map((r, i) => (
           <li
             key={r.company}
             data-reveal
             style={{ "--d": Math.min(i, 3) } as React.CSSProperties}
-            className="group relative grid gap-2 border-b border-border py-7 transition-colors hover:bg-surface/60 sm:grid-cols-12 sm:gap-6 sm:py-8"
+            className="group relative grid gap-2 border-b border-border py-7 transition-colors sm:grid-cols-12 sm:gap-6 sm:py-8"
           >
             <span
               aria-hidden="true"
-              className="absolute top-7 bottom-7 -left-3 w-[2px] origin-top scale-y-0 rounded-full bg-accent transition-transform duration-500 ease-out group-hover:scale-y-100 sm:-left-4"
+              className={cn(
+                "absolute top-[2.2rem] -left-7 h-[11px] w-[11px] rounded-full border-2 transition-colors duration-300 sm:top-[2.45rem] sm:-left-9",
+                i === 0
+                  ? "border-accent bg-accent shadow-[0_0_0_4px_var(--accent-soft)]"
+                  : "border-border-strong bg-background group-hover:border-accent group-hover:bg-accent"
+              )}
             />
             <p className="label num pt-1.5 text-subtle sm:col-span-3">{r.dates}</p>
             <div className="transition-transform duration-500 ease-out group-hover:translate-x-1 sm:col-span-9 lg:col-span-8">

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { Section } from "@/components/ui/section";
 
@@ -8,8 +7,6 @@ interface Client {
   built: string;
   /** Only set when the site is reachable. */
   url?: string;
-  /** Only set when we have the company's real mark. */
-  logo?: string;
 }
 
 const FEATURED: Client[] = [
@@ -24,14 +21,12 @@ const FEATURED: Client[] = [
     domain: "Payroll",
     built: "Stablecoin batch payroll for global freelancers, with audit-ready receipts.",
     url: "https://payoutrails.xyz",
-    logo: "/logos/payoutrails.png",
   },
   {
     name: "Nihaan Energy",
     domain: "EV charging",
     built: "The NEO mobile app and a web platform to manage chargers, with live monitoring and OCPP.",
     url: "https://www.nihaanenergy.com",
-    logo: "/logos/nihaanenergy.png",
   },
 ];
 
@@ -40,7 +35,6 @@ const MORE: Client[] = [
     name: "HashFast",
     domain: "Payments",
     built: "Payment links that take many tokens and confirm in real time.",
-    logo: "/logos/hashfast.png",
   },
   {
     name: "NanoBond",
@@ -58,7 +52,6 @@ const MORE: Client[] = [
     domain: "Consumer fintech",
     built: "Bill splitting for groups, with instant settlement and expense tracking.",
     url: "https://useletspay.com",
-    logo: "/logos/letspay.png",
   },
 ];
 
@@ -69,11 +62,7 @@ function ClientCard({ c }: { c: Client }) {
         aria-hidden="true"
         className="grid h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-background"
       >
-        {c.logo ? (
-          <Image src={c.logo} alt="" width={24} height={24} className="h-6 w-6 object-contain" />
-        ) : (
-          <span className="font-mono text-xs font-semibold text-muted">{c.name.slice(0, 2).toUpperCase()}</span>
-        )}
+        <span className="font-mono text-xs font-semibold text-muted">{c.name.slice(0, 2).toUpperCase()}</span>
       </span>
       <span className="min-w-0 flex-1">
         <span className="flex items-center justify-between gap-2">

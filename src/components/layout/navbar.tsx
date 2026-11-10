@@ -56,17 +56,17 @@ export function Navbar() {
           >
             AK
           </span>
-          Aakash Kumar
+          <span className="md:sr-only lg:not-sr-only">Aakash Kumar</span>
         </a>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center md:flex lg:gap-1">
           {NAV_LINKS.map((link) => (
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
                 aria-current={active === link.id ? "location" : undefined}
                 className={cn(
-                  "flex min-h-11 items-center rounded-md px-3 text-sm transition-colors",
+                  "flex min-h-11 items-center rounded-md px-2.5 text-sm transition-colors lg:px-3",
                   active === link.id ? "text-foreground" : "text-muted hover:text-foreground"
                 )}
               >
@@ -88,14 +88,14 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="grid h-11 w-11 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-lg border border-border text-muted transition-colors hover:text-foreground md:hidden"
           >
             {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </nav>
 
-      <div id="mobile-menu" hidden={!open} className="border-t border-border bg-background lg:hidden">
+      <div id="mobile-menu" hidden={!open} className="border-t border-border bg-background md:hidden">
         <ul className="mx-auto max-w-6xl px-4 py-2 sm:px-6">
           {NAV_LINKS.map((link) => (
             <li key={link.id} className="border-b border-border last:border-b-0">

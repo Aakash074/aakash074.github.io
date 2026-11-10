@@ -9,7 +9,6 @@ export const LINKS = {
   github: "https://github.com/aakash074",
   telegram: "https://t.me/aakash074",
   x: "https://x.com/Kumaaraakash074",
-  productHunt: "https://www.producthunt.com/@aakash074",
 } as const;
 
 export const NAV_LINKS = [

@@ -31,7 +31,7 @@ function NodeBox({ node, className }: { node: Node; className?: string }) {
         className
       )}
     >
-      <p className={cn("w-12 font-mono text-[10px] font-medium uppercase tracking-[0.14em] md:w-auto", k.tag)}>
+      <p className={cn("w-12 font-mono text-[11px] font-medium uppercase tracking-[0.14em] md:w-auto", k.tag)}>
         {k.label}
       </p>
       <p className="text-sm font-semibold text-foreground md:mt-0.5">{node.label}</p>
@@ -76,7 +76,7 @@ function Figure({
             {kinds.map((kind) => (
               <li
                 key={kind}
-                className={cn("flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em]", KIND_STYLE[kind].tag)}
+                className={cn("flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em]", KIND_STYLE[kind].tag)}
               >
                 <span aria-hidden="true" className="h-2 w-2 rounded-sm bg-current" />
                 {KIND_STYLE[kind].label}
@@ -282,7 +282,7 @@ export function SelectedWork() {
             title="WhatsApp sales agent, from first message to qualified lead"
             badges={[
               { text: "v1 live with customers", live: true },
-              { text: "v2 designed, led the build" },
+              { text: "v2 built, not live when I left" },
             ]}
           />
 
@@ -293,8 +293,9 @@ export function SelectedWork() {
                 v1. It went live and took each enquiry to a qualified lead in the CRM, with hand-off to a human.
               </p>
               <p>
-                For v2, built in TypeScript on LangGraph, a fast model pulls out trip details and intent on each
-                turn. The graph, not the model, picks the next step.
+                I then designed v2 and led the build, in TypeScript on LangGraph. A fast model pulls out trip
+                details and intent on each turn, and the graph, not the model, picks the next step. v2 was built
+                but had not gone live when I left in July 2026.
               </p>
             </div>
 
@@ -342,7 +343,7 @@ export function SelectedWork() {
                     { label: "Human", detail: "Hand-off to sales" },
                   ].map((n) => (
                     <li key={n.label} className="rounded-lg border border-success/50 bg-surface-2 px-3 py-2 md:py-2.5">
-                      <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-success">Output</p>
+                      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-success">Output</p>
                       <p className="mt-0.5 text-sm font-semibold text-foreground">{n.label}</p>
                       <p className="mt-0.5 hidden text-xs leading-snug text-muted md:block">{n.detail}</p>
                     </li>
@@ -378,7 +379,7 @@ export function SelectedWork() {
               </p>
             </div>
 
-            <Figure number={4} title="What I owned" caption="One owner, from the first architecture doc to the acquisition.">
+            <Figure className="hidden md:block" number={4} title="What I owned" caption="One owner, from the first architecture doc to the acquisition.">
               <ol className="space-y-3 border-l border-border-strong pl-5">
                 {[
                   { when: "Mar 2024", what: "Joined as CTO. Designed the architecture from scratch.", dot: "bg-subtle" },

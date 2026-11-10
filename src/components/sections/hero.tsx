@@ -5,27 +5,12 @@ import { LINKS } from "@/lib/site";
 import { buttonStyles } from "@/components/ui/section";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 
+/** Short, concrete proof. `short` is the label used in the compact mobile grid. */
 const PROOF = [
-  {
-    stat: "~26M",
-    title: "patent families searched",
-    body: "Prior-art search I built for Photon Legal, with a recall eval that runs in CI.",
-  },
-  {
-    stat: "Acquired",
-    title: "CloneMyTrips",
-    body: "I was CTO. Built the platform from scratch and led it to acquisition.",
-  },
-  {
-    stat: "Head of AI",
-    title: "WanderOn",
-    body: "Led and built a WhatsApp sales agent that ran in production with customers.",
-  },
-  {
-    stat: "Top 5",
-    title: "HackTheBox, global",
-    body: "Plus 2x ETHGlobal winner and an Australian patent in ML for security.",
-  },
+  { stat: "~26M", short: "patent families searched", label: "Patent families in the prior-art search I built for Photon Legal." },
+  { stat: "Acquired", short: "CloneMyTrips, as CTO", label: "CloneMyTrips, where I was CTO from the first architecture to the acquisition." },
+  { stat: "Shipped", short: "WhatsApp agent, WanderOn", label: "Production WhatsApp sales agent (v1) I led as Head of AI at WanderOn." },
+  { stat: "Top 5", short: "HackTheBox, global", label: "HackTheBox, globally. Also a 2x ETHGlobal winner." },
 ];
 
 export function Hero() {
@@ -37,7 +22,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-x-0 -top-40 h-[480px] bg-[radial-gradient(ellipse_at_top,rgba(180,156,255,0.14),transparent_65%)]"
       />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14 lg:pt-20 lg:pb-24">
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-6 pb-12 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14 lg:pt-20 lg:pb-24">
         <div>
           <div className="rise rise-1 flex items-center gap-4">
             <Image
@@ -47,7 +32,7 @@ export function Hero() {
               height={72}
               loading="eager"
               fetchPriority="high"
-              className="h-16 w-16 rounded-full object-cover ring-1 ring-border-strong sm:h-[72px] sm:w-[72px]"
+              className="h-12 w-12 rounded-full object-cover ring-1 ring-border-strong sm:h-[72px] sm:w-[72px]"
             />
             <p className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-sm font-medium text-foreground">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-success" />
@@ -55,14 +40,14 @@ export function Hero() {
             </p>
           </div>
 
-          <h1 id="hero-heading" className="rise rise-2 mt-7 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+          <h1 id="hero-heading" className="rise rise-2 mt-5 text-4xl font-semibold sm:mt-7 tracking-tight sm:text-5xl lg:text-6xl">
             Aakash Kumar
             <span className="mt-2 block text-2xl font-medium text-muted sm:text-3xl lg:text-4xl">
               AI Product Engineer
             </span>
           </h1>
 
-          <p className="rise rise-3 mt-6 max-w-xl text-lg leading-relaxed text-foreground/90 text-pretty">
+          <p className="rise rise-3 mt-4 max-w-xl text-lg sm:mt-6 leading-relaxed text-foreground/90 text-pretty">
             I build AI search and AI agents that run in production, and the evals that tell you if they
             work.
           </p>
@@ -71,7 +56,16 @@ export function Hero() {
             Ventures.
           </p>
 
-          <div className="rise rise-4 mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+          <ul aria-label="Proof at a glance" className="rise rise-3 mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:hidden">
+            {PROOF.map((item) => (
+              <li key={item.stat} className="rounded-lg border border-border bg-surface px-3 py-2.5">
+                <p className="text-lg font-semibold leading-tight tracking-tight text-accent">{item.stat}</p>
+                <p className="mt-0.5 text-xs leading-snug text-muted">{item.short}</p>
+              </li>
+            ))}
+          </ul>
+
+          <div className="rise rise-4 mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-wrap">
             <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.primary, "col-span-2 px-5")}>
               <Download className="h-4 w-4" aria-hidden="true" />
               Download resume
@@ -118,20 +112,15 @@ export function Hero() {
           </div>
         </div>
 
-        <aside aria-label="Proof at a glance" className="rise rise-3 lg:pt-4">
+        <aside aria-label="Proof at a glance" className="rise rise-3 hidden lg:block lg:pt-4">
           <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-subtle">
             Proof at a glance
           </p>
           <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
             {PROOF.map((item) => (
-              <li key={item.title} className="flex gap-4 p-4 sm:p-5">
-                <p className="w-28 shrink-0 text-lg font-semibold leading-tight tracking-tight text-accent sm:w-32 sm:text-2xl">
-                  {item.stat}
-                </p>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
-                </div>
+              <li key={item.stat} className="flex items-baseline gap-4 p-5">
+                <p className="w-28 shrink-0 text-2xl font-semibold tracking-tight text-accent">{item.stat}</p>
+                <p className="text-sm leading-relaxed text-muted">{item.label}</p>
               </li>
             ))}
           </ul>

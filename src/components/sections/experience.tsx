@@ -68,7 +68,6 @@ const EARLY = [
   { title: "Co-founder, BugClaim", detail: "Crowdsourced security SaaS. 2021 to 2022." },
   { title: "Co-founder, CybSec NITW", detail: "The campus security club. 2019 to 2022. Organised PhantomCTF, the first CTF at NIT Warangal." },
   { title: "Chapter Lead, OWASP Warangal", detail: "Student chapter, 2021." },
-  { title: "B.Tech, Computer Science and Engineering", detail: "NIT Warangal, 2018 to 2022." },
 ];
 
 export function Experience() {
@@ -84,16 +83,16 @@ export function Experience() {
             <p className="text-sm text-subtle sm:pt-1">{r.dates}</p>
             <div className="flex gap-4">
               <div className="min-w-0">
-                <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base font-semibold text-foreground">
-                  <span>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <h3 className="text-base font-semibold text-foreground">
                     {r.role}, {r.company}
-                  </span>
+                  </h3>
                   {r.tag && (
-                    <span className="rounded-full border border-accent/40 bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
+                    <p className="rounded-full border border-accent/40 bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
                       {r.tag}
-                    </span>
+                    </p>
                   )}
-                </h3>
+                </div>
                 <p className="mt-0.5 text-sm text-subtle">{r.place}</p>
                 <p className="mt-2 max-w-3xl text-base leading-relaxed text-muted">{r.summary}</p>
               </div>
@@ -102,9 +101,14 @@ export function Experience() {
         ))}
       </ol>
 
-      <details className="group mt-6 rounded-xl border border-border bg-surface">
+      <p className="mt-6 text-sm text-muted">
+        <span className="font-semibold text-foreground">Education:</span> B.Tech, Computer Science and
+        Engineering, NIT Warangal (2018 to 2022)
+      </p>
+
+      <details className="group mt-4 rounded-xl border border-border bg-surface">
         <summary className="flex min-h-12 items-center justify-between gap-4 rounded-xl px-5 text-sm font-medium text-foreground hover:bg-surface-2">
-          Before 2022: university, founding roles and security
+          Before 2022: founding roles and security work
           <ChevronDown className="chevron h-4 w-4 text-muted transition-transform" aria-hidden="true" />
         </summary>
         <ul className="grid gap-x-8 gap-y-4 border-t border-border px-5 py-5 sm:grid-cols-2">

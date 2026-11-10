@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { Section } from "@/components/ui/section";
 
@@ -9,7 +8,6 @@ interface Role {
   place: string;
   summary: string;
   tag?: string;
-  logo?: string;
 }
 
 const ROLES: Role[] = [
@@ -19,7 +17,7 @@ const ROLES: Role[] = [
     dates: "Aug 2026 to present",
     place: "Product studio and VC, India",
     summary:
-      "I build AI for portfolio startups and get their products working in production. Lead build: Photon Legal's prior-art search over ~26M patent families.",
+      "I build AI for portfolio startups and get their products working in production. My main build so far is Photon Legal's prior-art search over ~26M patent families.",
     tag: "Current",
   },
   {
@@ -29,7 +27,6 @@ const ROLES: Role[] = [
     place: "Gurugram, India",
     summary:
       "Led AI across the company. Built internal AI tools for operations and the WhatsApp sales agent for customers. WanderOn raised an INR 54 Cr Series A in this period.",
-    logo: "/logos/wanderon.png",
   },
   {
     company: "CloneMyTrips",
@@ -46,7 +43,6 @@ const ROLES: Role[] = [
     dates: "Feb 2023 to Mar 2024",
     place: "Abu Dhabi, UAE (remote)",
     summary: "Built a crypto wallet that works without an internet connection.",
-    logo: "/logos/safle.png",
   },
   {
     company: "Calmverse",
@@ -61,7 +57,6 @@ const ROLES: Role[] = [
     dates: "Jun 2022 to Nov 2022",
     place: "Mumbai, India",
     summary: "Promoted from junior to senior. Built React apps for a conversational commerce platform.",
-    logo: "/logos/quicksell.png",
   },
 ];
 
@@ -85,19 +80,9 @@ export function Experience() {
     >
       <ol className="divide-y divide-border border-y border-border">
         {ROLES.map((r) => (
-          <li key={r.company} className="grid gap-2 py-6 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
+          <li key={r.company} className="grid gap-1 py-5 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-6">
             <p className="text-sm text-subtle sm:pt-1">{r.dates}</p>
             <div className="flex gap-4">
-              <div
-                aria-hidden="true"
-                className="hidden h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-surface-2 sm:grid"
-              >
-                {r.logo ? (
-                  <Image src={r.logo} alt="" width={28} height={28} className="h-7 w-7 object-contain" />
-                ) : (
-                  <span className="font-mono text-xs font-semibold text-muted">{r.company.slice(0, 2)}</span>
-                )}
-              </div>
               <div className="min-w-0">
                 <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base font-semibold text-foreground">
                   <span>

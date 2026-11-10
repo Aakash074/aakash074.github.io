@@ -35,9 +35,9 @@ export function Skills() {
 
         <div>
           <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-subtle">Recognition</h3>
-          <ul className="mt-4 space-y-4">
+          <ul className="mt-4 divide-y divide-border border-y border-border lg:space-y-4 lg:divide-y-0 lg:border-y-0">
             {RECOGNITION.map((r) => (
-              <li key={r.title} className="rounded-xl border border-border bg-surface p-4">
+              <li key={r.title} className="py-3 lg:rounded-xl lg:border lg:border-border lg:bg-surface lg:p-4">
                 <p className="text-sm font-semibold text-foreground">{r.title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-muted">{r.detail}</p>
               </li>

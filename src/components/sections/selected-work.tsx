@@ -1,38 +1,111 @@
-import { ArrowRight, CheckCircle2, FlaskConical } from "lucide-react";
+import { ArrowRight, Calendar, CheckCircle2, FlaskConical } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { LINKS, PHOTON_EVAL_LINE } from "@/lib/site";
 import { Chip, Section } from "@/components/ui/section";
 
-interface Step {
+/* ---------- Diagram primitives ---------- */
+
+type Kind = "input" | "model" | "data" | "logic" | "output";
+
+const KIND_STYLE: Record<Kind, { label: string; box: string; tag: string }> = {
+  input: { label: "Input", box: "border-border-strong", tag: "text-subtle" },
+  model: { label: "Model", box: "border-accent/60", tag: "text-accent" },
+  data: { label: "Data", box: "border-sky-400/50", tag: "text-sky-300" },
+  logic: { label: "Code", box: "border-amber-300/50", tag: "text-amber-200" },
+  output: { label: "Output", box: "border-success/50", tag: "text-success" },
+};
+
+interface Node {
   label: string;
   detail: string;
+  kind: Kind;
 }
 
-function Pipeline({ steps, caption }: { steps: Step[]; caption: string }) {
+function NodeBox({ node, className }: { node: Node; className?: string }) {
+  const k = KIND_STYLE[node.kind];
   return (
-    <figure className="rounded-xl border border-border bg-background/60 p-4 sm:p-5">
-      <figcaption className="mb-3 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-subtle">
-        {caption}
-      </figcaption>
-      <ol className="flex flex-col gap-1.5 md:flex-row md:items-stretch md:gap-0">
-        {steps.map((step, i) => (
-          <li key={step.label} className="flex items-stretch md:flex-1 md:items-center">
-            <div className="flex flex-1 items-baseline gap-3 rounded-lg border border-border bg-surface-2 px-3 py-2 md:block md:py-2.5">
-              <span aria-hidden="true" className="font-mono text-xs text-subtle md:hidden">
-                {i + 1}
-              </span>
-              <p className="text-sm font-semibold text-foreground">{step.label}</p>
-              <p className="text-xs leading-snug text-muted md:mt-0.5">{step.detail}</p>
-            </div>
-            {i < steps.length - 1 && (
-              <span aria-hidden="true" className="hidden px-1.5 text-subtle md:block">
-                <ArrowRight className="h-4 w-4" />
-              </span>
-            )}
-          </li>
-        ))}
-      </ol>
+    <div
+      className={cn(
+        "flex flex-wrap items-baseline gap-x-2 rounded-lg border bg-surface-2 px-3 py-2 md:block md:py-2.5",
+        k.box,
+        className
+      )}
+    >
+      <p className={cn("w-12 font-mono text-[10px] font-medium uppercase tracking-[0.14em] md:w-auto", k.tag)}>
+        {k.label}
+      </p>
+      <p className="text-sm font-semibold text-foreground md:mt-0.5">{node.label}</p>
+      <p className="basis-full pl-14 text-xs leading-snug text-muted md:mt-0.5 md:basis-auto md:pl-0">{node.detail}</p>
+    </div>
+  );
+}
+
+/** Arrows only on md and up. On mobile the stacked, typed rows read top to bottom. */
+function Arrow() {
+  return (
+    <span aria-hidden="true" className="hidden px-1.5 text-subtle md:block">
+      <ArrowRight className="h-4 w-4" />
+    </span>
+  );
+}
+
+/** A labelled diagram that reads like a figure from a design doc. */
+function Figure({
+  number,
+  title,
+  caption,
+  kinds = [],
+  className,
+  children,
+}: {
+  number: number;
+  title: string;
+  caption: string;
+  kinds?: Kind[];
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <figure className={cn("overflow-hidden rounded-xl border border-border bg-background/70", className)}>
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border px-4 py-2.5">
+        <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-foreground">
+          Fig. {number} <span className="text-subtle">/ {title}</span>
+        </p>
+        {kinds.length > 0 && (
+          <ul aria-label="Legend" className="hidden flex-wrap gap-x-3 gap-y-1 md:flex">
+            {kinds.map((kind) => (
+              <li
+                key={kind}
+                className={cn("flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em]", KIND_STYLE[kind].tag)}
+              >
+                <span aria-hidden="true" className="h-2 w-2 rounded-sm bg-current" />
+                {KIND_STYLE[kind].label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className="p-4">{children}</div>
+      <figcaption className="border-t border-border px-4 py-2.5 text-xs leading-relaxed text-muted">{caption}</figcaption>
     </figure>
   );
 }
+
+/** Linear flow: stacks on mobile, one row on md and up. */
+function Flow({ nodes }: { nodes: Node[] }) {
+  return (
+    <ol className="flex flex-col gap-1.5 md:flex-row md:items-stretch md:gap-0">
+      {nodes.map((n, i) => (
+        <li key={n.label} className="flex flex-col md:flex-1 md:flex-row md:items-center">
+          <NodeBox node={n} className="md:h-full md:flex-1" />
+          {i < nodes.length - 1 && <Arrow />}
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/* ---------- Card chrome ---------- */
 
 interface Badge {
   text: string;
@@ -86,15 +159,32 @@ function CaseHeader({
   );
 }
 
-function Tools({ items }: { items: string[] }) {
+function CardFooter({ tools, topic }: { tools: string[]; topic: string }) {
   return (
-    <ul aria-label="Tools used" className="mt-6 flex flex-wrap gap-2">
-      {items.map((t) => (
-        <Chip key={t}>{t}</Chip>
-      ))}
-    </ul>
+    <footer className="mt-6 flex flex-col gap-4 border-t border-border pt-5 lg:flex-row lg:items-center lg:justify-between">
+      <ul aria-label="Tools used" className="flex flex-wrap gap-2">
+        {tools.map((t) => (
+          <Chip key={t}>{t}</Chip>
+        ))}
+      </ul>
+      <p className="flex shrink-0 flex-wrap items-center gap-x-2 text-sm text-muted">
+        Want the architecture walk-through?
+        <a
+          href={LINKS.calendly}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-md font-medium text-accent underline-offset-4 hover:underline"
+        >
+          <Calendar className="h-4 w-4" aria-hidden="true" />
+          Book 30 min
+          <span className="sr-only">to talk about {topic} (opens in a new tab)</span>
+        </a>
+      </p>
+    </footer>
   );
 }
+
+/* ---------- Section ---------- */
 
 export function SelectedWork() {
   return (
@@ -123,8 +213,8 @@ export function SelectedWork() {
               </p>
               <p>
                 It searches ~26M deduplicated Google Patents families, reranks the best candidates, shows the
-                closest prior art, and scores how patentable the idea is. Client companies use it to decide
-                what to file.
+                closest prior art, and scores how patentable the idea is. It helps client companies decide which
+                inventions to file.
               </p>
             </div>
 
@@ -137,27 +227,50 @@ export function SelectedWork() {
                 A recall eval runs in CI and gates merges. It scores results against the prior art that patent
                 examiners actually cited.
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                When it said a 1M-family subset beat the full corpus, I dug in and found a family-level scoring
-                flaw that was understating recall. Fixing it reversed a planned switch to the smaller subset.
-              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">{PHOTON_EVAL_LINE}</p>
             </div>
           </div>
 
-          <div className="mt-6">
-            <Pipeline
-              caption="How a search runs"
-              steps={[
-                { label: "Idea text", detail: "From the inventor" },
-                { label: "MiniLM", detail: "Sentence embeddings" },
-                { label: "Vector search", detail: "~26M patent families" },
-                { label: "Cohere Rerank", detail: "Best matches first" },
-                { label: "Idea score", detail: "With closest prior art" },
-              ]}
-            />
+          <div className="mt-6 grid gap-4">
+            <Figure
+              number={1}
+              title="Search pipeline"
+              kinds={["input", "model", "data", "output"]}
+              caption="One search, left to right. Retrieval is fast and wide. The reranker is slower and only sees the top candidates."
+            >
+              <Flow
+                nodes={[
+                  { label: "Idea text", detail: "Written by the inventor", kind: "input" },
+                  { label: "MiniLM", detail: "Turns the idea into an embedding", kind: "model" },
+                  { label: "Vector search", detail: "Over ~26M patent families", kind: "data" },
+                  { label: "Cohere Rerank", detail: "Puts the closest matches first", kind: "model" },
+                  { label: "Idea score", detail: "Plus the closest prior art", kind: "output" },
+                ]}
+              />
+            </Figure>
+            {/* The eval loop repeats the text box above, so it is shown from md up to keep mobile short. */}
+            <Figure
+              className="hidden md:block"
+              number={2}
+              title="Eval loop, on every change"
+              kinds={["input", "logic", "output"]}
+              caption="The answer key is real: prior art that patent examiners cited. Recall is scored per patent family, the level where the scoring flaw was hiding."
+            >
+              <Flow
+                nodes={[
+                  { label: "Code change", detail: "Any pull request", kind: "input" },
+                  { label: "Run test queries", detail: "With examiner-cited prior art", kind: "logic" },
+                  { label: "Score recall", detail: "By patent family", kind: "logic" },
+                  { label: "Gate the merge", detail: "In CI", kind: "output" },
+                ]}
+              />
+            </Figure>
           </div>
 
-          <Tools items={["Semantic search", "MiniLM embeddings", "Vector retrieval", "Cohere Rerank", "Recall eval in CI", "Google Patents data"]} />
+          <CardFooter
+            topic="the patent search"
+            tools={["Semantic search", "MiniLM embeddings", "Vector retrieval", "Cohere Rerank", "Recall eval in CI"]}
+          />
         </article>
 
         {/* 2. WanderOn WhatsApp agent */}
@@ -185,25 +298,61 @@ export function SelectedWork() {
               </p>
             </div>
 
-            <div className="space-y-4">
-              <Pipeline
-                caption="v2, on each message"
-                steps={[
-                  { label: "Message", detail: "From WhatsApp" },
-                  { label: "Extract", detail: "Trip details, intent" },
-                  { label: "Route", detail: "Search, RAG, CRM or human" },
-                ]}
-              />
-              <p className="border-l-2 border-accent/60 pl-4 text-sm leading-relaxed text-muted">
-                <span className="font-semibold text-foreground">Lesson from production:</span>{" "}
-                a fuzzy-match safety net once turned a customer&apos;s pickup city, Mumbai, into Dubai. I fixed the
-                matching, repaired the stored profiles and added a regression suite built from the failing
-                messages.
+            <div className="rounded-xl border border-accent/30 bg-accent-soft p-4 sm:p-5">
+              <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                <FlaskConical className="h-4 w-4 text-accent" aria-hidden="true" />
+                A lesson from v1 in production
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                A fuzzy-match safety net once turned a customer&apos;s pickup city, Mumbai, into Dubai. The model
+                was fine. The code around it was not.
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
+                I fixed the matching, repaired the stored profiles and added a regression suite built from the
+                failing messages.
               </p>
             </div>
           </div>
 
-          <Tools items={["TypeScript", "LangGraph", "RAG", "Vector search", "Redis", "BullMQ", "CRM integration"]} />
+          <div className="mt-6">
+            <Figure
+              number={3}
+              title="v2 graph, on each message"
+              kinds={["input", "model", "logic", "output"]}
+              caption="The model only extracts. Routing is plain code, so every path can be tested."
+            >
+              <div className="flex flex-col md:flex-row md:items-center">
+                <ol className="flex flex-col gap-1.5 md:flex-[3] md:flex-row md:items-center md:gap-0">
+                  {[
+                    { label: "Message", detail: "From WhatsApp", kind: "input" as const },
+                    { label: "Extract", detail: "Fast model: trip details and intent", kind: "model" as const },
+                    { label: "Router", detail: "The graph picks the next step", kind: "logic" as const },
+                  ].map((n) => (
+                    <li key={n.label} className="flex flex-col md:flex-1 md:flex-row md:items-center">
+                      <NodeBox node={n} className="md:h-full md:flex-1" />
+                      <Arrow />
+                    </li>
+                  ))}
+                </ol>
+                <ul aria-label="Possible next steps" className="mt-1.5 grid grid-cols-2 gap-1.5 md:mt-0 md:flex-[2] md:gap-2">
+                  {[
+                    { label: "Package search", detail: "Vector search" },
+                    { label: "Answer", detail: "From a RAG knowledge base" },
+                    { label: "CRM action", detail: "Create the lead" },
+                    { label: "Human", detail: "Hand-off to sales" },
+                  ].map((n) => (
+                    <li key={n.label} className="rounded-lg border border-success/50 bg-surface-2 px-3 py-2 md:py-2.5">
+                      <p className="font-mono text-[10px] font-medium uppercase tracking-[0.14em] text-success">Output</p>
+                      <p className="mt-0.5 text-sm font-semibold text-foreground">{n.label}</p>
+                      <p className="mt-0.5 hidden text-xs leading-snug text-muted md:block">{n.detail}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Figure>
+          </div>
+
+          <CardFooter topic="the WhatsApp agent" tools={["TypeScript", "LangGraph", "RAG", "Vector search", "Redis", "BullMQ"]} />
         </article>
 
         {/* 3. CloneMyTrips */}
@@ -212,7 +361,7 @@ export function SelectedWork() {
             company="CloneMyTrips"
             role="CTO"
             dates="Mar 2024 to Sep 2025"
-            title="CTO from the first line of code to acquisition"
+            title="Built the platform from scratch, through to acquisition"
             badges={[{ text: "Company acquired", live: true }]}
           />
 
@@ -220,7 +369,8 @@ export function SelectedWork() {
             <div className="space-y-4 text-base leading-relaxed text-muted">
               <p>
                 I designed the platform architecture from scratch, then led engineering and product until the
-                company was acquired.
+                company was acquired. I worked directly with the founders on technical strategy, the roadmap and
+                scaling.
               </p>
               <p>
                 I launched the Dora AI Engine in the mobile app. It builds travel itineraries with AI and links
@@ -228,25 +378,30 @@ export function SelectedWork() {
               </p>
             </div>
 
-            <dl className="grid content-start gap-3 sm:grid-cols-2">
-              <div className="rounded-xl border border-border bg-background/60 p-4">
-                <dt className="text-xs text-subtle">What I owned</dt>
-                <dd className="mt-1 text-sm font-semibold text-foreground">Architecture, engineering, product</dd>
-              </div>
-              <div className="rounded-xl border border-border bg-background/60 p-4">
-                <dt className="text-xs text-subtle">AI in the product</dt>
-                <dd className="mt-1 text-sm font-semibold text-foreground">Dora AI itineraries, mobile app</dd>
-              </div>
-              <div className="rounded-xl border border-border bg-background/60 p-4 sm:col-span-2">
-                <dt className="text-xs text-subtle">Worked with</dt>
-                <dd className="mt-1 text-sm font-semibold text-foreground">
-                  The founders, on technical strategy, the roadmap and scaling
-                </dd>
-              </div>
-            </dl>
+            <Figure number={4} title="What I owned" caption="One owner, from the first architecture doc to the acquisition.">
+              <ol className="space-y-3 border-l border-border-strong pl-5">
+                {[
+                  { when: "Mar 2024", what: "Joined as CTO. Designed the architecture from scratch.", dot: "bg-subtle" },
+                  { when: "In the app", what: "Launched the Dora AI Engine for AI travel itineraries.", dot: "bg-accent" },
+                  { when: "Sep 2025", what: "CloneMyTrips was acquired.", dot: "bg-success" },
+                ].map((m) => (
+                  <li key={m.when} className="relative">
+                    <span
+                      aria-hidden="true"
+                      className={cn("absolute top-1 -left-[25px] h-2.5 w-2.5 rounded-full ring-4 ring-background", m.dot)}
+                    />
+                    <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-subtle">{m.when}</p>
+                    <p className="mt-0.5 text-sm text-foreground">{m.what}</p>
+                  </li>
+                ))}
+              </ol>
+            </Figure>
           </div>
 
-          <Tools items={["System design", "Full-stack", "Mobile app", "LLM features", "Engineering leadership"]} />
+          <CardFooter
+            topic="CloneMyTrips"
+            tools={["System design", "Full-stack", "Mobile app", "LLM features", "Engineering leadership"]}
+          />
         </article>
       </div>
     </Section>

@@ -40,7 +40,7 @@ const EARLIER = [
   {
     title: "Cynux Security OS",
     detail: "An Arch Linux-based distro for security testing, with its own installer and tool packages.",
-    href: "https://cynuxsecurity.org",
+    href: "https://github.com/cynuxsecurity",
   },
   { title: "WeaponHEX", detail: "An all-in-one toolkit for jeopardy-style CTF contests." },
   { title: "Grievance portal, NIT Warangal", detail: "Django complaint tracker that sorts each complaint to the right department with ML." },
@@ -50,7 +50,7 @@ const EARLIER = [
 export function Projects() {
   return (
     <Section id="projects" label="Projects" title="Things I built on my own time.">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {PROJECTS.map((p) => (
           <article key={p.title} className="flex flex-col rounded-2xl border border-border bg-surface p-5 sm:p-6">
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-accent">{p.kind}</p>

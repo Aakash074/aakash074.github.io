@@ -17,9 +17,9 @@ const PROOF = [
     body: "I was CTO. Built the platform from scratch and led it to acquisition.",
   },
   {
-    stat: "Live",
-    title: "WhatsApp sales agent",
-    body: "At WanderOn, it took travel enquiries from first message to a qualified CRM lead.",
+    stat: "Head of AI",
+    title: "WanderOn",
+    body: "Led and built a WhatsApp sales agent that ran in production with customers.",
   },
   {
     stat: "Top 5",
@@ -30,7 +30,7 @@ const PROOF = [
 
 export function Hero() {
   return (
-    <section aria-labelledby="hero-heading" className="relative overflow-hidden">
+    <section id="intro" aria-labelledby="hero-heading" className="relative overflow-hidden">
       {/* Static, cheap background glow. No canvas, no animation loop. */}
       <div
         aria-hidden="true"
@@ -100,6 +100,7 @@ export function Hero() {
               className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 -ml-2 hover:text-foreground"
             >
               <LinkedInIcon /> LinkedIn
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <a
               href={LINKS.github}
@@ -108,6 +109,7 @@ export function Hero() {
               className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 hover:text-foreground"
             >
               <GitHubIcon /> GitHub
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <span className="inline-flex min-h-11 items-center gap-2 px-2">
               <MapPin className="h-4 w-4" aria-hidden="true" />
@@ -123,7 +125,7 @@ export function Hero() {
           <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
             {PROOF.map((item) => (
               <li key={item.title} className="flex gap-4 p-4 sm:p-5">
-                <p className="w-24 shrink-0 text-xl font-semibold tracking-tight text-accent sm:w-28 sm:text-2xl">
+                <p className="w-28 shrink-0 text-lg font-semibold leading-tight tracking-tight text-accent sm:w-32 sm:text-2xl">
                   {item.stat}
                 </p>
                 <div>

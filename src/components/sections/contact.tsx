@@ -14,7 +14,7 @@ const SOCIALS = [
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:py-24">
         <div className="rounded-2xl border border-border bg-surface p-6 sm:p-10 lg:p-12">
           <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-end lg:gap-12">
             <div>

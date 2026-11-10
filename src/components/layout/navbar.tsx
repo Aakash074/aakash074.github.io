@@ -13,13 +13,14 @@ export function Navbar() {
 
   // Highlight the section currently in view.
   useEffect(() => {
-    const sections = NAV_LINKS.map((l) => document.getElementById(l.id)).filter(
-      (el): el is HTMLElement => el !== null
-    );
+    // The hero ("intro") is observed too, so scrolling back to the top clears the highlight.
+    const sections = ["intro", ...NAV_LINKS.map((l) => l.id)]
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) setActive(entry.target.id);
+          if (entry.isIntersecting) setActive(entry.target.id === "intro" ? "" : entry.target.id);
         }
       },
       { rootMargin: "-45% 0px -50% 0px" }
@@ -63,7 +64,7 @@ export function Navbar() {
             <li key={link.id}>
               <a
                 href={`#${link.id}`}
-                aria-current={active === link.id ? "true" : undefined}
+                aria-current={active === link.id ? "location" : undefined}
                 className={cn(
                   "flex min-h-11 items-center rounded-md px-3 text-sm transition-colors",
                   active === link.id ? "text-foreground" : "text-muted hover:text-foreground"
@@ -101,7 +102,7 @@ export function Navbar() {
               <a
                 href={`#${link.id}`}
                 onClick={() => setOpen(false)}
-                aria-current={active === link.id ? "true" : undefined}
+                aria-current={active === link.id ? "location" : undefined}
                 className={cn(
                   "flex min-h-12 items-center text-base",
                   active === link.id ? "text-foreground" : "text-muted"

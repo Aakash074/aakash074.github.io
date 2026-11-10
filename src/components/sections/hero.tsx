@@ -1,130 +1,162 @@
 import Image from "next/image";
-import { Calendar, Download, Mail, MapPin } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LINKS } from "@/lib/site";
-import { buttonStyles } from "@/components/ui/section";
-import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
+import { buttonStyles, delay } from "@/components/ui/section";
+import { CountUp } from "@/components/motion/count-up";
+import { VectorField } from "@/components/hero/vector-field";
 
-/** Short, concrete proof. `short` is the label used in the compact mobile grid. */
+/** Splits a word into letters that rise in one after another on load. */
+function Letters({ word, offset = 0 }: { word: string; offset?: number }) {
+  return (
+    <span aria-hidden="true" className="block">
+      {word.split("").map((ch, i) => (
+        <span key={i} className="name-letter" style={{ "--i": i + offset } as React.CSSProperties}>
+          {ch}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 const PROOF = [
-  { stat: "~26M", short: "patent families searched", label: "Patent families in the prior-art search I built for Photon Legal, tested against real examiner citations on every change." },
-  { stat: "Acquired", short: "CloneMyTrips, as CTO", label: "CloneMyTrips, where I was CTO from the first architecture to the acquisition." },
-  { stat: "Shipped", short: "WhatsApp agent, WanderOn", label: "Production WhatsApp sales agent (v1) I led as Head of AI at WanderOn." },
-  { stat: "Top 5", short: "HackTheBox, global", label: "HackTheBox, globally. Also a 2x ETHGlobal winner." },
+  {
+    stat: <CountUp to={26} suffix="M" />,
+    text: "patents searched by the AI search I built for Photon Legal.",
+  },
+  { stat: "CTO", text: "of CloneMyTrips from day one to its acquisition." },
+  { stat: "Live", text: "WhatsApp sales agent I led at WanderOn. It turns customer chats into sales leads." },
+  { stat: "Top 5", text: "on HackTheBox worldwide. Security is where I started." },
 ];
 
 export function Hero() {
   return (
-    <section id="intro" aria-labelledby="hero-heading" className="relative overflow-hidden">
-      {/* Static, cheap background glow. No canvas, no animation loop. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 -top-40 h-[480px] bg-[radial-gradient(ellipse_at_top,rgba(180,156,255,0.14),transparent_65%)]"
-      />
+    <section id="intro" aria-labelledby="hero-heading" className="relative">
+      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <div className="intro flex flex-wrap items-center gap-3" style={delay(0)}>
+              <Image
+                src="/avatar.jpg"
+                alt="Portrait of Aakash Kumar"
+                width={96}
+                height={96}
+                priority
+                className="h-12 w-12 rounded-full object-cover ring-1 ring-border-strong"
+              />
+              <p className="inline-flex items-center gap-2.5 rounded-full border border-border-strong bg-surface/70 px-3.5 py-1.5 text-sm text-foreground">
+                <span aria-hidden="true" className="status-dot relative h-2 w-2 rounded-full bg-green text-green" />
+                Open to remote AI roles, full-time or contract. Can start now.
+              </p>
+            </div>
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-6 pb-12 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14 lg:pt-20 lg:pb-24">
-        <div>
-          <div className="rise rise-1 flex items-center gap-4">
-            <Image
-              src="/avatar.jpg"
-              alt="Portrait of Aakash Kumar"
-              width={72}
-              height={72}
-              loading="eager"
-              fetchPriority="high"
-              className="h-12 w-12 rounded-full object-cover ring-1 ring-border-strong sm:h-[72px] sm:w-[72px]"
-            />
-            <p className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-sm font-medium text-foreground">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-success" />
-              Open to remote AI roles
+            <h1
+              id="hero-heading"
+              className="mt-7 font-serif text-[clamp(4.25rem,19vw,7.5rem)] leading-[0.92] font-normal tracking-[-0.035em] sm:mt-10"
+            >
+              <span className="sr-only">Aakash Kumar, AI Engineer</span>
+              <Letters word="Aakash" />
+              <span className="block pl-[0.6em]">
+                <Letters word="Kumar" offset={6} />
+              </span>
+              <span aria-hidden="true" className="intro mt-4 block w-fit text-[0.36em] tracking-[-0.02em] italic" style={delay(1)}>
+                <span className="relative inline-block text-accent">
+                  AI Engineer
+                  <svg
+                    className="swash absolute -bottom-[0.28em] left-0 h-[0.4em] w-full overflow-visible text-accent"
+                    viewBox="0 0 200 20"
+                    preserveAspectRatio="none"
+                    fill="none"
+                  >
+                    <path d="M2 14 C 50 4, 120 4, 198 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" pathLength={1} />
+                  </svg>
+                </span>
+              </span>
+            </h1>
+
+            <p className="intro mt-8 max-w-xl font-serif text-[1.45rem] leading-[1.35] text-foreground text-pretty sm:text-[1.7rem]" style={delay(2)}>
+              I build AI search and AI agents that real customers use, and the tests that prove they give the right
+              answers.
             </p>
-          </div>
+            <p className="intro mt-5 max-w-xl text-lg leading-relaxed text-muted text-pretty" style={delay(3)}>
+              4+ years building products. I was CTO of CloneMyTrips through its acquisition and Head of AI at
+              WanderOn, and I now build AI for startups at Shifu Ventures.
+            </p>
 
-          <h1 id="hero-heading" className="rise rise-2 mt-5 text-4xl font-semibold sm:mt-7 tracking-tight sm:text-5xl lg:text-6xl">
-            Aakash Kumar{" "}
-            <span className="mt-2 block text-2xl font-medium text-muted sm:text-3xl lg:text-4xl">
-              AI Product Engineer
-            </span>
-          </h1>
+            <div className="intro mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={delay(4)}>
+              <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.primary)}>
+                Download resume
+                <ArrowDown className="nudge nudge-down h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">(PDF)</span>
+              </a>
+              <a
+                href={LINKS.calendly}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(buttonStyles.base, buttonStyles.secondary)}
+              >
+                Book a 30 min call
+                <ArrowUpRight className="nudge h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </div>
 
-          <p className="rise rise-3 mt-4 max-w-xl text-lg sm:mt-6 leading-relaxed text-foreground/90 text-pretty">
-            I build AI search and AI agents that run in production, and the evals that tell you if they
-            work.
-          </p>
-          <p className="rise rise-3 mt-3 max-w-xl text-base leading-relaxed text-muted text-pretty">
-            Ex-CTO of CloneMyTrips (acquired). Former Head of AI at WanderOn. Now AI Consultant at Shifu
-            Ventures.
-          </p>
-
-          <ul aria-label="Proof at a glance" className="rise rise-3 mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:hidden">
-            {PROOF.map((item) => (
-              <li key={item.stat} className="rounded-lg border border-border bg-surface px-3 py-2.5">
-                <p className="text-lg font-semibold leading-tight tracking-tight text-accent">{item.stat}</p>
-                <p className="mt-0.5 text-xs leading-snug text-muted">{item.short}</p>
+            <ul className="intro mt-6 flex flex-wrap items-center gap-x-6 text-[15px] text-muted" style={delay(5)}>
+              <li>
+                <a href={LINKS.mailto} className="inline-flex min-h-11 items-center hover:text-foreground">
+                  <span className="link-u">Email</span>
+                </a>
               </li>
-            ))}
-          </ul>
-
-          <div className="rise rise-4 mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-wrap">
-            <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.primary, "col-span-2 px-5")}>
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Download resume
-            </a>
-            <a
-              href={LINKS.calendly}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={cn(buttonStyles.base, buttonStyles.secondary, "px-5")}
-            >
-              <Calendar className="h-4 w-4" aria-hidden="true" />
-              Book a call
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-            <a href={LINKS.mailto} className={cn(buttonStyles.base, buttonStyles.secondary, "px-5")}>
-              <Mail className="h-4 w-4" aria-hidden="true" />
-              Email me
-            </a>
+              <li>
+                <a href={LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-foreground">
+                  <span className="link-u">LinkedIn</span>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+              <li>
+                <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center hover:text-foreground">
+                  <span className="link-u">GitHub</span>
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+              </li>
+              <li className="inline-flex min-h-11 items-center text-subtle">New Delhi, IST. Happy to work US hours.</li>
+            </ul>
           </div>
 
-          <div className="rise rise-4 mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
-            <a
-              href={LINKS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 -ml-2 hover:text-foreground"
-            >
-              <LinkedInIcon /> LinkedIn
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-            <a
-              href={LINKS.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 hover:text-foreground"
-            >
-              <GitHubIcon /> GitHub
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-            <span className="inline-flex min-h-11 items-center gap-2 px-2">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-              New Delhi (IST). Can overlap US hours.
-            </span>
-          </div>
+          <figure className="intro lg:col-span-5 lg:pt-6" style={delay(3)}>
+            <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] border border-border-strong bg-surface sm:aspect-[16/10] lg:aspect-[4/5]">
+              <VectorField />
+              <p className="label pointer-events-none absolute top-4 left-5 text-subtle">Fig. 0 / Vector search</p>
+            </div>
+            <figcaption className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
+              Each dot is a document, placed by meaning. Move your cursor, or tap, and the search picks the closest
+              ones. The same idea powers the patent search below.
+            </figcaption>
+          </figure>
         </div>
 
-        <aside aria-label="Proof at a glance" className="rise rise-3 hidden lg:block lg:pt-4">
-          <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-subtle">
-            Proof at a glance
-          </p>
-          <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
-            {PROOF.map((item) => (
-              <li key={item.stat} className="flex items-baseline gap-4 p-5">
-                <p className="w-28 shrink-0 text-2xl font-semibold tracking-tight text-accent">{item.stat}</p>
-                <p className="text-sm leading-relaxed text-muted">{item.label}</p>
-              </li>
-            ))}
-          </ul>
-        </aside>
+        <ul
+          aria-label="Proof at a glance"
+          className="mt-16 grid grid-cols-1 border-t border-foreground/80 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4"
+        >
+          {PROOF.map((p, i) => (
+            <li
+              key={i}
+              data-reveal
+              style={delay(i)}
+              className={cn(
+                "border-b border-border py-6 sm:px-6 lg:border-b-0 lg:py-8",
+                i % 2 === 1 && "sm:border-l",
+                i === 0 && "sm:pl-0",
+                i === 2 && "sm:pl-0 lg:pl-6",
+                i > 0 && "lg:border-l"
+              )}
+            >
+              <p className="font-serif text-5xl leading-none tracking-[-0.03em] text-foreground">{p.stat}</p>
+              <p className="mt-3 max-w-[16rem] text-[15px] leading-snug text-muted">{p.text}</p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

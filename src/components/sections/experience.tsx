@@ -1,5 +1,6 @@
-import { ChevronDown } from "lucide-react";
+import { Plus } from "lucide-react";
 import { Section } from "@/components/ui/section";
+import { cn } from "@/lib/utils";
 
 interface Role {
   company: string;
@@ -14,10 +15,10 @@ const ROLES: Role[] = [
   {
     company: "Shifu Ventures",
     role: "AI Consultant",
-    dates: "Aug 2026 to present",
+    dates: "Aug 2026 to now",
     place: "Product studio and VC, India",
     summary:
-      "I build AI for portfolio startups and get their products working in production. My main build so far is Photon Legal's prior-art search over ~26M patent families.",
+      "I build AI features for startups in the Shifu portfolio and take them to production. The main one is Photon Legal's patent search.",
     tag: "Current",
   },
   {
@@ -26,15 +27,15 @@ const ROLES: Role[] = [
     dates: "Oct 2025 to Jul 2026",
     place: "Gurugram, India",
     summary:
-      "Led AI across the company. Built internal AI tools for operations and the WhatsApp sales agent for customers. WanderOn raised an INR 54 Cr Series A in this period.",
+      "Led AI across the company, from internal tools for the operations team to the WhatsApp sales agent that customers talk to.",
   },
   {
     company: "CloneMyTrips",
-    role: "Chief Technology Officer",
+    role: "CTO",
     dates: "Mar 2024 to Sep 2025",
     place: "Bengaluru, India (hybrid)",
     summary:
-      "Built the platform from scratch and led engineering and product to acquisition. Launched the Dora AI Engine for AI travel itineraries.",
+      "Built the platform from scratch, ran engineering and product through the acquisition, and launched Dora, the AI trip planner.",
     tag: "Acquired",
   },
   {
@@ -49,77 +50,125 @@ const ROLES: Role[] = [
     role: "Co-founder",
     dates: "Aug 2022 to Feb 2023",
     place: "Remote",
-    summary: "Co-founded a Web3 metaverse for mental health. Owned the product concept and the architecture.",
+    summary: "Co-founded a mental health startup and owned the product and its architecture.",
   },
   {
     company: "QuickSell",
     role: "Senior Frontend Developer",
     dates: "Jun 2022 to Nov 2022",
     place: "Mumbai, India",
-    summary: "Promoted from junior to senior. Built React apps for a conversational commerce platform.",
+    summary: "Promoted from junior to senior while building the web apps for a conversational commerce platform.",
   },
 ];
 
+const CLIENTS = [
+  { name: "Frontline", what: "Buy now, pay later gateway with tokenized credit lines." },
+  { name: "PayoutRails", what: "Stablecoin batch payroll for global freelancers." },
+  { name: "Nihaan Energy", what: "EV charging app and a web platform to manage chargers." },
+  { name: "HashFast", what: "Payment links that take many tokens and confirm in real time." },
+  { name: "NanoBond", what: "A launchpad for token bonds." },
+  { name: "Strawbee", what: "Browser extension that pays crypto cashback at checkout." },
+  { name: "LetsPay", what: "Bill splitting for groups, with instant settlement." },
+];
+
 const EARLY = [
-  {
-    title: "Lead Developer, Megham Cloud",
-    detail: "Centre of Innovation and Incubation, NIT Warangal. Aug 2020 to Apr 2022. Led the institute's cloud platform.",
-  },
+  { title: "Lead Developer, Megham Cloud", detail: "Lead developer on NIT Warangal's in-house cloud platform. Aug 2020 to Apr 2022." },
   { title: "Co-founder, BugClaim", detail: "Crowdsourced security SaaS. 2021 to 2022." },
-  { title: "Co-founder, CybSec NITW", detail: "The campus security club. 2019 to 2022. Organised PhantomCTF, the first CTF at NIT Warangal." },
+  { title: "Co-founder, CybSec NITW", detail: "The campus security club. Ran PhantomCTF, the first CTF at NIT Warangal." },
   { title: "Chapter Lead, OWASP Warangal", detail: "Student chapter, 2021." },
 ];
+
+function Disclosure({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <details className="group border-b border-border">
+      <summary className="flex min-h-16 items-center justify-between gap-4 text-[17px] text-foreground transition-colors hover:text-accent">
+        {title}
+        <Plus className="chevron h-5 w-5 shrink-0 text-subtle" aria-hidden="true" />
+      </summary>
+      <div className="pb-8">{children}</div>
+    </details>
+  );
+}
 
 export function Experience() {
   return (
     <Section
       id="experience"
+      index="02"
       label="Experience"
-      title="4+ years shipping products. Since 2024, leading AI and engineering."
+      title={
+        <>
+          4+ years shipping products. <em className="text-accent">Since 2024,</em> leading AI and engineering.
+        </>
+      }
     >
-      <ol className="divide-y divide-border border-y border-border">
-        {ROLES.map((r) => (
-          <li key={r.company} className="grid gap-1 py-5 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-6">
-            <p className="text-sm text-subtle sm:pt-1">{r.dates}</p>
-            <div className="flex gap-4">
-              <div className="min-w-0">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <h3 className="text-base font-semibold text-foreground">
-                    {r.role}, {r.company}
-                  </h3>
-                  {r.tag && (
-                    <p className="rounded-full border border-accent/40 bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
-                      {r.tag}
-                    </p>
-                  )}
-                </div>
-                <p className="mt-0.5 text-sm text-subtle">{r.place}</p>
-                <p className="mt-2 max-w-3xl text-base leading-relaxed text-muted">{r.summary}</p>
+      <ol className="border-t border-border">
+        {ROLES.map((r, i) => (
+          <li
+            key={r.company}
+            data-reveal
+            style={{ "--d": Math.min(i, 3) } as React.CSSProperties}
+            className="group grid gap-2 border-b border-border py-7 transition-colors sm:grid-cols-12 sm:gap-6 sm:py-8"
+          >
+            <p className="label num pt-1.5 text-subtle sm:col-span-3">{r.dates}</p>
+            <div className="sm:col-span-9 lg:col-span-8">
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <h3 className="font-serif text-2xl leading-tight tracking-[-0.01em] text-foreground">
+                  {r.role}, <span className="transition-colors group-hover:text-accent">{r.company}</span>
+                </h3>
+                {r.tag && (
+                  <p
+                    className={cn(
+                      "rounded-full px-2.5 py-0.5 text-xs font-medium",
+                      r.tag === "Current" ? "bg-green/10 text-green" : "bg-accent-soft text-accent"
+                    )}
+                  >
+                    {r.tag}
+                  </p>
+                )}
               </div>
+              <p className="mt-1 text-sm text-subtle">{r.place}</p>
+              <p className="mt-3 max-w-2xl text-[17px] leading-relaxed text-muted">{r.summary}</p>
             </div>
           </li>
         ))}
       </ol>
 
-      <p className="mt-6 text-sm text-muted">
-        <span className="font-semibold text-foreground">Education:</span> B.Tech, Computer Science and
-        Engineering, NIT Warangal (2018 to 2022)
-      </p>
+      <div className="mt-10 grid gap-x-6 sm:grid-cols-12" data-reveal>
+        <p className="label pt-1.5 text-subtle sm:col-span-3">Education</p>
+        <p className="mt-2 text-[17px] text-foreground sm:col-span-9 sm:mt-0">
+          B.Tech, Computer Science and Engineering, NIT Warangal{" "}
+          <span className="text-muted">(2018 to 2022)</span>
+        </p>
+      </div>
 
-      <details className="group mt-4 rounded-xl border border-border bg-surface">
-        <summary className="flex min-h-12 items-center justify-between gap-4 rounded-xl px-5 text-sm font-medium text-foreground hover:bg-surface-2">
-          Before 2022: founding roles and security work
-          <ChevronDown className="chevron h-4 w-4 text-muted transition-transform" aria-hidden="true" />
-        </summary>
-        <ul className="grid gap-x-8 gap-y-4 border-t border-border px-5 py-5 sm:grid-cols-2">
-          {EARLY.map((e) => (
-            <li key={e.title}>
-              <p className="text-sm font-semibold text-foreground">{e.title}</p>
-              <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <div className="mt-12 sm:grid sm:grid-cols-12 sm:gap-6" data-reveal>
+        <div className="border-t border-border sm:col-span-9 sm:col-start-4">
+        <Disclosure title="Client work for fintech startups">
+          <p className="mb-5 max-w-2xl text-muted">
+            Payments and fintech products, where a mistake costs someone real money.
+          </p>
+          <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            {CLIENTS.map((c) => (
+              <li key={c.name} className="text-[15px] leading-relaxed">
+                <span className="font-medium text-foreground">{c.name}.</span>{" "}
+                <span className="text-muted">{c.what}</span>
+              </li>
+            ))}
+          </ul>
+        </Disclosure>
+        <Disclosure title="Before 2022: founding roles and security work">
+          <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            {EARLY.map((e) => (
+              <li key={e.title}>
+                <p className="text-[15px] font-medium text-foreground">{e.title}</p>
+                <p className="mt-1 text-[15px] leading-relaxed text-muted">{e.detail}</p>
+              </li>
+            ))}
+          </ul>
+        </Disclosure>
+        </div>
+      </div>
     </Section>
   );
 }

@@ -15,15 +15,9 @@ export const NAV_LINKS = [
   { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
-  { id: "clients", label: "Clients" },
   { id: "contact", label: "Contact" },
 ] as const;
 
-/**
- * Result line for the Photon Legal eval story (hero proof row and case study).
- * Kept as one constant so a version with numbers can be swapped in later,
- * once public use of the eval figures is approved.
- */
-export const PHOTON_EVAL_LINE =
-  "I built the test that scores search results against the prior art patent examiners actually cited, and it runs on every code change. Measuring at the right level showed true recall was 2.4 to 3 times higher than first reported, so the team kept the full 26M search.";
+export const TITLE = "Aakash Kumar | AI Engineer, ex-CTO";
+export const DESCRIPTION =
+  "AI engineer who builds search and AI agents that real customers use, and tests them so they keep working. Ex-CTO of CloneMyTrips (acquired), ex-Head of AI at WanderOn. Open to remote roles.";

@@ -1,29 +1,39 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { LINKS, SITE_URL } from "@/lib/site";
+import { MotionRoot } from "@/components/motion/motion-root";
+import { DESCRIPTION, LINKS, SITE_URL, TITLE } from "@/lib/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const display = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
+  axes: ["opsz", "SOFT"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const body = Instrument_Sans({
+  variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const TITLE = "Aakash Kumar | AI Product Engineer";
-const DESCRIPTION =
-  "AI Product Engineer. Ex-CTO of CloneMyTrips (acquired) and former Head of AI at WanderOn. I build AI search, production AI agents and the evals behind them. Open to remote AI roles.";
+const code = JetBrains_Mono({
+  variable: "--font-code",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
+});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0b0c10",
-  colorScheme: "dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f0e6" },
+    { media: "(prefers-color-scheme: dark)", color: "#14110d" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -35,9 +45,10 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: [
     "Aakash Kumar",
-    "AI Product Engineer",
     "AI Engineer",
+    "Senior AI Engineer",
     "Founding AI Engineer",
+    "Applied AI Engineer",
     "Head of AI",
     "Semantic search",
     "RAG",
@@ -74,7 +85,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Aakash Kumar",
-  jobTitle: "AI Product Engineer",
+  jobTitle: "AI Engineer",
   url: SITE_URL,
   email: `mailto:${LINKS.email}`,
   address: { "@type": "PostalAddress", addressLocality: "New Delhi", addressCountry: "IN" },
@@ -82,21 +93,35 @@ const personJsonLd = {
   sameAs: [LINKS.linkedin, LINKS.github, LINKS.x],
 };
 
+/**
+ * Runs while the HTML is parsed, before first paint: picks the saved theme or
+ * the system one, and marks that JS is on so scroll reveals may hide content.
+ */
+const themeScript = `(function(){var d=document.documentElement;d.classList.add("js");try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t)}catch(e){}})()`;
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body id="top" className="min-h-screen bg-background text-foreground">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${display.variable} ${body.variable} ${code.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body id="top" className="min-h-screen">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-foreground focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-background"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-full focus:bg-foreground focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-background"
         >
           Skip to content
         </a>
         <Navbar />
-        <main id="main" tabIndex={-1} className="outline-none">
+        <main id="main" tabIndex={-1} className="relative outline-none">
           {children}
         </main>
         <Footer />
+        <MotionRoot />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}

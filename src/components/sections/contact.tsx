@@ -1,8 +1,9 @@
-import { Calendar, Download, Mail } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LINKS } from "@/lib/site";
-import { buttonStyles } from "@/components/ui/section";
+import { buttonStyles, delay } from "@/components/ui/section";
 import { GitHubIcon, LinkedInIcon, TelegramIcon, XIcon } from "@/components/ui/brand-icons";
+import { CopyEmail } from "@/components/sections/copy-email";
 
 const SOCIALS = [
   { label: "LinkedIn", href: LINKS.linkedin, Icon: LinkedInIcon },
@@ -13,63 +14,73 @@ const SOCIALS = [
 
 export function Contact() {
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-20 lg:py-24">
-        <div className="rounded-2xl border border-border bg-surface p-6 sm:p-10 lg:p-12">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:items-end lg:gap-12">
-            <div>
-              <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent">Contact</p>
-              <h2 id="contact-heading" className="mt-3 text-2xl font-semibold tracking-tight text-balance sm:text-4xl">
-                Hiring for a senior AI role? Let&apos;s talk.
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted">
-                I&apos;m open to remote AI engineering roles: founding, senior, applied AI or AI lead. I&apos;m
-                based in New Delhi (IST), can overlap with US hours, and can start right away.
-              </p>
-              <p className="mt-6 text-sm text-subtle">Email</p>
+    <section id="contact" aria-labelledby="contact-heading" className="relative">
+      <div className="mx-auto max-w-6xl px-4 pt-8 pb-24 sm:px-6 sm:pb-32 lg:px-8">
+        <div className="border-t border-foreground/80 pt-5" data-reveal>
+          <p className="label flex items-center gap-3 text-subtle">
+            <span className="num text-accent">05</span>
+            <span aria-hidden="true" className="h-px w-8 bg-border-strong" />
+            Contact
+          </p>
+        </div>
+
+        <h2
+          id="contact-heading"
+          data-reveal
+          style={delay(1)}
+          className="mt-10 max-w-4xl font-serif text-[2.6rem] leading-[1.02] tracking-[-0.03em] text-balance sm:text-6xl lg:text-[5.25rem]"
+        >
+          Hiring for a senior AI role? <em className="text-accent">Let&apos;s talk.</em>
+        </h2>
+
+        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7" data-reveal style={delay(2)}>
+            <p className="max-w-xl text-lg leading-relaxed text-muted">
+              I&apos;m open to remote AI engineering roles, full-time or contract: founding, senior, applied AI or AI
+              lead. I&apos;m in New Delhi (IST), happy to work US hours, and can start right away.
+            </p>
+            <p className="label mt-10 text-subtle">Email</p>
+            <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-3">
               <a
                 href={LINKS.mailto}
-                className="mt-1 inline-flex min-h-11 items-center break-all text-lg font-medium text-foreground underline decoration-border-strong underline-offset-4 hover:decoration-accent sm:text-xl"
+                className="link-u inline-flex min-h-11 items-center font-serif text-2xl break-all text-foreground sm:text-[2rem]"
               >
                 {LINKS.email}
               </a>
+              <CopyEmail email={LINKS.email} />
             </div>
+          </div>
 
-            <div className="flex flex-col gap-3">
-              <a href={LINKS.mailto} className={cn(buttonStyles.base, buttonStyles.primary, "w-full")}>
-                <Mail className="h-4 w-4" aria-hidden="true" />
-                Email me
-              </a>
-              <a
-                href={LINKS.calendly}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(buttonStyles.base, buttonStyles.secondary, "w-full")}
-              >
-                <Calendar className="h-4 w-4" aria-hidden="true" />
-                Book a 30 min call
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.secondary, "w-full")}>
-                <Download className="h-4 w-4" aria-hidden="true" />
-                Download resume (PDF)
-              </a>
-              <ul className="mt-1 flex flex-wrap justify-center gap-1 lg:justify-start" aria-label="Profiles">
-                {SOCIALS.map(({ label, href, Icon }) => (
-                  <li key={label}>
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${label} (opens in a new tab)`}
-                      className="grid h-11 w-11 place-items-center rounded-lg text-muted transition-colors hover:bg-surface-2 hover:text-foreground"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="flex flex-col gap-3 sm:max-w-md lg:col-span-5 lg:max-w-none lg:pt-2" data-reveal style={delay(3)}>
+            <a
+              href={LINKS.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonStyles.base, buttonStyles.primary, "w-full justify-between")}
+            >
+              Book a 30 min call
+              <ArrowUpRight className="nudge h-4 w-4" aria-hidden="true" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+            <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.secondary, "w-full justify-between")}>
+              Download resume (PDF)
+              <ArrowDown className="nudge nudge-down h-4 w-4" aria-hidden="true" />
+            </a>
+            <ul className="mt-3 flex flex-wrap gap-2" aria-label="Profiles">
+              {SOCIALS.map(({ label, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} (opens in a new tab)`}
+                    className="grid h-12 w-12 place-items-center rounded-full border border-border-strong text-muted transition-[color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                  >
+                    <Icon className="h-[18px] w-[18px]" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

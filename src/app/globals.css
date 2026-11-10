@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /*
-  Warm editorial design tokens. Light is the default; dark is applied by
-  [data-theme="dark"] (set before paint by the inline script in layout.tsx),
-  or by the system setting when no script ran.
+  Warm editorial design tokens. Light is the default for everyone; dark only
+  applies when the visitor chose it ([data-theme="dark"], set before paint by
+  the inline script in layout.tsx).
 
   Text contrast (WCAG), measured on --background / --surface / --surface-2:
-    light  ink 15.2  muted 7.5  subtle 5.3  accent 5.6  green 5.6  blue 6.5  ochre 5.5
+    light  ink 15.2  muted 7.5  subtle 5.3  accent 5.6  green 6.6  blue 6.5  ochre 5.5
     dark   ink 16.1  muted 9.8  subtle 6.5  accent 8.1  green 9.7  blue 9.6  ochre 9.9
   Every text pair stays above 4.5:1 on all three surfaces.
 */
@@ -22,7 +22,7 @@
   --accent: #a3401b;
   --accent-soft: rgba(163, 64, 27, 0.07);
   --accent-ink: #fffaf3;
-  --green: #2e6a4c;
+  --green: #275c41;
   --blue: #2a5a78;
   --ochre: #86560a;
   --block: #1f1a14;
@@ -30,30 +30,6 @@
   --grain-opacity: 0.4;
   --shadow: 0 1px 0 rgba(31, 26, 20, 0.04), 0 18px 40px -22px rgba(31, 26, 20, 0.28);
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --background: #14110d;
-    --surface: #1c1813;
-    --surface-2: #26211a;
-    --foreground: #f3ede2;
-    --muted: #c4baa9;
-    --subtle: #a29784;
-    --border: #2f2920;
-    --border-strong: #4a4135;
-    --accent: #ee9467;
-    --accent-soft: rgba(238, 148, 103, 0.09);
-    --accent-ink: #1a120c;
-    --green: #86c8a2;
-    --blue: #8fc0de;
-    --ochre: #e2b55e;
-    --block: #2b251d;
-    --block-fg: #f3ede2;
-    --grain-opacity: 0.2;
-    --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 18px 44px -20px rgba(0, 0, 0, 0.75);
-    color-scheme: dark;
-  }
 }
 
 :root[data-theme="dark"] {
@@ -71,7 +47,7 @@
   --green: #86c8a2;
   --blue: #8fc0de;
   --ochre: #e2b55e;
-  --block: #2b251d;
+  --block: #342c22;
   --block-fg: #f3ede2;
   --grain-opacity: 0.2;
   --shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 18px 44px -20px rgba(0, 0, 0, 0.75);
@@ -159,6 +135,10 @@ section[id] {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+/* Outlines follow border-radius, so round buttons get round rings. Plain links get a soft corner. */
+a:not([class*="rounded"]):focus-visible,
+summary:focus-visible {
   border-radius: 4px;
 }
 
@@ -243,8 +223,30 @@ details[open] > summary .chevron {
   transform-origin: top;
 }
 
-.pulse {
+/* Typing dots in the chat figure: hidden unless motion is on and playing */
+.typing {
   opacity: 0;
+  pointer-events: none;
+}
+
+.hop {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 9999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft);
+  opacity: 0;
+  pointer-events: none;
+}
+.hop-x {
+  top: 50%;
+  left: 0;
+}
+.hop-y {
+  left: 50%;
+  top: 0;
 }
 
 /* ------------------------------------------------------------------ */
@@ -309,10 +311,20 @@ details[open] > summary .chevron {
     transition: transform 0.5s var(--ease-out-expo);
     transition-delay: calc(var(--i, 0) * 240ms + 260ms);
   }
-  .js [data-steps][data-shown] .pulse {
-    animation: pulse-run 2.4s var(--ease-out-expo) both;
-    animation-delay: calc(var(--n, 5) * 240ms + 300ms);
+  /* A query hops along each connector and lights up the card it reaches */
+  .js [data-steps][data-run] .hl-card {
+    animation: card-hl 0.9s ease both;
+    animation-delay: calc(var(--t0, calc(var(--n, 5) * 240ms + 500ms)) + var(--i, 0) * 420ms);
   }
+  .js [data-steps][data-run] .hop-x {
+    animation: hop-x 0.42s ease-in-out both;
+    animation-delay: calc(var(--t0, calc(var(--n, 5) * 240ms + 500ms)) + var(--i, 0) * 420ms + 260ms);
+  }
+  .js [data-steps][data-run] .hop-y {
+    animation: hop-y 0.42s ease-in-out both;
+    animation-delay: calc(var(--t0, calc(var(--n, 5) * 240ms + 500ms)) + var(--i, 0) * 420ms + 260ms);
+  }
+
   .js [data-steps]:not([data-shown]) .bar {
     transform: scaleX(0);
   }
@@ -334,12 +346,33 @@ details[open] > summary .chevron {
       transform 0.7s var(--ease-out-expo);
     transition-delay: calc(var(--i, 0) * 700ms + 200ms);
   }
+  .js [data-chat][data-shown] .typing {
+    animation: typing-window 0.7s both;
+    animation-delay: calc(var(--i, 0) * 700ms - 520ms);
+  }
+  .typing > span {
+    animation: typing-dot 0.9s infinite ease-in-out;
+  }
+  .typing > span:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .typing > span:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
   /* Timeline line draws down, dots pop in */
   .js [data-timeline]:not([data-shown]) .timeline-line {
     transform: scaleY(0);
   }
   .js [data-timeline] .timeline-line {
     transform-origin: top;
+    transition: transform 1.6s var(--ease-out-expo) 0.1s;
+  }
+  .js [data-timeline]:not([data-shown]) .timeline-line-x {
+    transform: scaleX(0);
+  }
+  .js [data-timeline] .timeline-line-x {
+    transform-origin: left;
     transition: transform 1.6s var(--ease-out-expo) 0.1s;
   }
   .js [data-timeline]:not([data-shown]) .timeline-item {
@@ -359,6 +392,15 @@ details[open] > summary .chevron {
   .js:not(.mo) .bubble,
   .js:not(.mo) .timeline-item {
     animation: force-show 0s 2.5s forwards;
+  }
+
+  /* Mobile menu: sheet fades in, links follow one by one */
+  .menu-sheet:not([hidden]) {
+    animation: sheet-in 0.35s var(--ease-out-expo) both;
+  }
+  .menu-sheet:not([hidden]) .menu-item {
+    animation: rise 0.5s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 45ms + 60ms);
   }
 
   /* Hover micro-interactions */
@@ -429,6 +471,16 @@ details[open] > summary .chevron {
     transform: none;
   }
 }
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 @keyframes letter-in {
   from {
     opacity: 0;
@@ -450,19 +502,63 @@ details[open] > summary .chevron {
     transform: none;
   }
 }
-@keyframes pulse-run {
+@keyframes typing-window {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+}
+@keyframes typing-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+@keyframes card-hl {
+  0%,
+  100% {
+    border-color: var(--border);
+    box-shadow: 0 0 0 0 transparent;
+  }
+  30%,
+  60% {
+    border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+}
+@keyframes hop-x {
   0% {
     left: 0%;
     opacity: 0;
   }
-  8% {
-    opacity: 1;
-  }
-  92% {
+  20%,
+  80% {
     opacity: 1;
   }
   100% {
     left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes hop-y {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
     opacity: 0;
   }
 }

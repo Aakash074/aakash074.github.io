@@ -24,35 +24,36 @@ const PROOF = [
     stat: <CountUp to={26} suffix="M" />,
     text: "patents searched by the AI search I built for Photon Legal.",
   },
-  { stat: "CTO", text: "of CloneMyTrips from day one to its acquisition." },
-  { stat: "Live", text: "WhatsApp sales agent I led at WanderOn. It turns customer chats into sales leads." },
+  { stat: "2.4 to 3x", text: "more real matches found once the patent search was tested the right way." },
+  { stat: "Head of AI", text: "at WanderOn, where I led the WhatsApp agent that turns customer chats into sales leads." },
   { stat: "Top 5", text: "on HackTheBox worldwide. Security is where I started." },
 ];
 
 export function Hero() {
   return (
     <section id="intro" aria-labelledby="hero-heading" className="relative">
-      <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-6 sm:pt-16 lg:px-8 lg:pt-20">
+      <div className="mx-auto max-w-6xl px-4 pt-8 sm:px-6 sm:pt-12 lg:px-8 lg:pt-12">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
-            <div className="intro flex flex-wrap items-center gap-3" style={delay(0)}>
+            <div className="intro flex items-center gap-3" style={delay(0)}>
               <Image
                 src="/avatar.jpg"
                 alt="Portrait of Aakash Kumar"
                 width={96}
                 height={96}
                 priority
-                className="h-12 w-12 rounded-full object-cover ring-1 ring-border-strong"
+                className="h-11 w-11 shrink-0 rounded-full object-cover ring-1 ring-border-strong sm:h-12 sm:w-12"
               />
               <p className="inline-flex items-center gap-2.5 rounded-full border border-border-strong bg-surface/70 px-3.5 py-1.5 text-sm text-foreground">
-                <span aria-hidden="true" className="status-dot relative h-2 w-2 rounded-full bg-green text-green" />
-                Open to remote AI roles, full-time or contract. Can start now.
+                <span aria-hidden="true" className="status-dot relative h-2 w-2 shrink-0 rounded-full bg-green text-green" />
+                <span className="sm:hidden">Open to remote AI roles</span>
+                <span className="hidden sm:inline">Open to remote AI roles, full-time or contract. Can start now.</span>
               </p>
             </div>
 
             <h1
               id="hero-heading"
-              className="mt-7 font-serif text-[clamp(4.25rem,19vw,7.5rem)] leading-[0.92] font-normal tracking-[-0.035em] sm:mt-10"
+              className="mt-5 font-serif text-[clamp(4.25rem,19vw,6.5rem)] leading-[0.92] font-normal tracking-[-0.035em] sm:mt-10"
             >
               <span className="sr-only">Aakash Kumar, AI Engineer</span>
               <Letters word="Aakash" />
@@ -74,16 +75,16 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="intro mt-8 max-w-xl font-serif text-[1.45rem] leading-[1.35] text-foreground text-pretty sm:text-[1.7rem]" style={delay(2)}>
-              I build AI search and AI agents that real customers use, and the tests that prove they give the right
+            <p className="intro mt-5 max-w-xl font-serif text-[1.45rem] leading-[1.35] text-foreground text-pretty sm:text-[1.7rem]" style={delay(2)}>
+              I build AI search and agents that real customers use, and the tests that check they give the right
               answers.
             </p>
-            <p className="intro mt-5 max-w-xl text-lg leading-relaxed text-muted text-pretty" style={delay(3)}>
+            <p className="intro mt-4 max-w-xl text-lg leading-relaxed text-muted text-pretty" style={delay(3)}>
               4+ years building products. I was CTO of CloneMyTrips through its acquisition and Head of AI at
               WanderOn, and I now build AI for startups at Shifu Ventures.
             </p>
 
-            <div className="intro mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={delay(4)}>
+            <div className="intro mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={delay(4)}>
               <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.primary)}>
                 Download resume
                 <ArrowDown className="nudge nudge-down h-4 w-4" aria-hidden="true" />
@@ -101,7 +102,7 @@ export function Hero() {
               </a>
             </div>
 
-            <ul className="intro mt-6 flex flex-wrap items-center gap-x-6 text-[15px] text-muted" style={delay(5)}>
+            <ul className="intro mt-4 flex flex-wrap items-center gap-x-6 text-[15px] text-muted" style={delay(5)}>
               <li>
                 <a href={LINKS.mailto} className="inline-flex min-h-11 items-center hover:text-foreground">
                   <span className="link-u">Email</span>
@@ -123,21 +124,18 @@ export function Hero() {
             </ul>
           </div>
 
-          <figure className="intro lg:col-span-5 lg:pt-6" style={delay(3)}>
-            <div className="relative aspect-[5/4] overflow-hidden rounded-[1.75rem] border border-border-strong bg-surface sm:aspect-[16/10] lg:aspect-[4/5]">
-              <VectorField />
-              <p className="label pointer-events-none absolute top-4 left-5 text-subtle">Fig. 0 / Vector search</p>
-            </div>
+          <figure className="intro lg:col-span-5 lg:pt-2" style={delay(3)}>
+            <VectorField />
             <figcaption className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-              Each dot is a document, placed by meaning. Move your cursor, or tap, and the search picks the closest
-              ones. The same idea powers the patent search below.
+              Move your cursor, or tap. Each dot is a document placed by meaning, and the search returns the closest
+              ones. Same idea as the patent search below, with made-up data.
             </figcaption>
           </figure>
         </div>
 
         <ul
           aria-label="Proof at a glance"
-          className="mt-16 grid grid-cols-1 border-t border-foreground/80 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4"
+          className="mt-14 grid grid-cols-1 border-t border-foreground/80 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4"
         >
           {PROOF.map((p, i) => (
             <li
@@ -152,8 +150,8 @@ export function Hero() {
                 i > 0 && "lg:border-l"
               )}
             >
-              <p className="font-serif text-5xl leading-none tracking-[-0.03em] text-foreground">{p.stat}</p>
-              <p className="mt-3 max-w-[16rem] text-[15px] leading-snug text-muted">{p.text}</p>
+              <p className="font-serif text-[2.6rem] leading-none tracking-[-0.03em] whitespace-nowrap text-foreground xl:text-5xl">{p.stat}</p>
+              <p className="mt-3 max-w-[17rem] text-[15px] leading-snug text-muted">{p.text}</p>
             </li>
           ))}
         </ul>

@@ -27,9 +27,11 @@ export function Navbar() {
     return () => observer.disconnect();
   }, []);
 
-  // Close the mobile menu on Escape and return focus to the toggle.
+  // While the mobile menu is open: lock page scroll, close on Escape and return focus.
   useEffect(() => {
     if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
@@ -37,7 +39,10 @@ export function Navbar() {
       }
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [open]);
 
   return (
@@ -107,10 +112,10 @@ export function Navbar() {
         </div>
       </nav>
 
-      <div id="mobile-menu" hidden={!open} className="border-t border-border bg-background md:hidden">
+      <div id="mobile-menu" hidden={!open} className="menu-sheet h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background md:hidden">
         <ul className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           {NAV_LINKS.map((link) => (
-            <li key={link.id} className="border-b border-border">
+            <li key={link.id} className="menu-item border-b border-border" style={{ "--i": NAV_LINKS.indexOf(link) } as React.CSSProperties}>
               <a
                 href={`#${link.id}`}
                 onClick={() => setOpen(false)}
@@ -121,7 +126,7 @@ export function Navbar() {
               </a>
             </li>
           ))}
-          <li>
+          <li className="menu-item" style={{ "--i": NAV_LINKS.length } as React.CSSProperties}>
             <a
               href={LINKS.resume}
               onClick={() => setOpen(false)}

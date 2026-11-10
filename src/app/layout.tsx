@@ -9,7 +9,7 @@ import "./globals.css";
 const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -25,15 +25,13 @@ const code = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   display: "swap",
+  preload: false,
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f0e6" },
-    { media: "(prefers-color-scheme: dark)", color: "#14110d" },
-  ],
+  themeColor: "#f5f0e6",
 };
 
 export const metadata: Metadata = {
@@ -94,10 +92,10 @@ const personJsonLd = {
 };
 
 /**
- * Runs while the HTML is parsed, before first paint: picks the saved theme or
- * the system one, and marks that JS is on so scroll reveals may hide content.
+ * Runs while the HTML is parsed, before first paint. Light for everyone unless
+ * the visitor saved dark; also marks that JS is on so scroll reveals may hide content.
  */
-const themeScript = `(function(){var d=document.documentElement;d.classList.add("js");try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.setAttribute("data-theme",t)}catch(e){}})()`;
+const themeScript = `(function(){var d=document.documentElement;d.classList.add("js");try{if(localStorage.getItem("theme")==="dark"){d.setAttribute("data-theme","dark");var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content","#14110d")}}catch(e){}})()`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (

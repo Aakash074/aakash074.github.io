@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
 import { Moon, Sun } from "lucide-react";
 
 type Theme = "light" | "dark";
@@ -15,33 +15,16 @@ function subscribe(onChange: () => void) {
   return () => mo.disconnect();
 }
 
-function savedTheme(): Theme | null {
-  try {
-    const t = localStorage.getItem("theme");
-    return t === "light" || t === "dark" ? t : null;
-  } catch {
-    return null;
-  }
-}
-
 export function ThemeToggle() {
+  // Light is the default for everyone; dark only when the visitor picked it (saved in localStorage).
   // Server snapshot is null: the icons are switched by CSS, so the first paint is right anyway.
   const theme = useSyncExternalStore<Theme | null>(subscribe, getTheme, () => null);
-
-  // Follow the system setting until the visitor makes their own choice.
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      if (!savedTheme()) document.documentElement.setAttribute("data-theme", mq.matches ? "dark" : "light");
-    };
-    mq.addEventListener("change", onChange);
-    return () => mq.removeEventListener("change", onChange);
-  }, []);
 
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const next: Theme = getTheme() === "dark" ? "light" : "dark";
     const apply = () => {
       document.documentElement.setAttribute("data-theme", next);
+      document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next === "dark" ? "#14110d" : "#f5f0e6");
       try {
         localStorage.setItem("theme", next);
       } catch {

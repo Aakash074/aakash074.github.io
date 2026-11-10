@@ -20,4 +20,4 @@ export const NAV_LINKS = [
 
 export const TITLE = "Aakash Kumar | AI Engineer, ex-CTO";
 export const DESCRIPTION =
-  "AI engineer who builds search and AI agents that real customers use, and tests them so they keep working. Ex-CTO of CloneMyTrips (acquired), ex-Head of AI at WanderOn. Open to remote roles.";
+  "AI engineer. Builds AI search and agents that real customers use. Ex-CTO of CloneMyTrips (acquired), ex-Head of AI at WanderOn. Open to remote roles.";

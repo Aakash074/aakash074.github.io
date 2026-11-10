@@ -72,7 +72,7 @@ const CLIENTS = [
 ];
 
 const EARLY = [
-  { title: "Lead Developer, Megham Cloud", detail: "Lead developer on NIT Warangal's in-house cloud platform. Aug 2020 to Apr 2022." },
+  { title: "Lead Developer, Megham Cloud", detail: "NIT Warangal's in-house cloud platform, built at the campus incubator. Aug 2020 to Apr 2022." },
   { title: "Co-founder, BugClaim", detail: "Crowdsourced security SaaS. 2021 to 2022." },
   { title: "Co-founder, CybSec NITW", detail: "The campus security club. Ran PhantomCTF, the first CTF at NIT Warangal." },
   { title: "Chapter Lead, OWASP Warangal", detail: "Student chapter, 2021." },
@@ -96,11 +96,7 @@ export function Experience() {
       id="experience"
       index="02"
       label="Experience"
-      title={
-        <>
-          4+ years shipping products. <em className="text-accent">Since 2024,</em> leading AI and engineering.
-        </>
-      }
+      title="4+ years shipping products. Since 2024, leading AI and engineering."
     >
       <ol className="border-t border-border">
         {ROLES.map((r, i) => (
@@ -108,10 +104,14 @@ export function Experience() {
             key={r.company}
             data-reveal
             style={{ "--d": Math.min(i, 3) } as React.CSSProperties}
-            className="group grid gap-2 border-b border-border py-7 transition-colors sm:grid-cols-12 sm:gap-6 sm:py-8"
+            className="group relative grid gap-2 border-b border-border py-7 transition-colors hover:bg-surface/60 sm:grid-cols-12 sm:gap-6 sm:py-8"
           >
+            <span
+              aria-hidden="true"
+              className="absolute top-7 bottom-7 -left-3 w-[2px] origin-top scale-y-0 rounded-full bg-accent transition-transform duration-500 ease-out group-hover:scale-y-100 sm:-left-4"
+            />
             <p className="label num pt-1.5 text-subtle sm:col-span-3">{r.dates}</p>
-            <div className="sm:col-span-9 lg:col-span-8">
+            <div className="transition-transform duration-500 ease-out group-hover:translate-x-1 sm:col-span-9 lg:col-span-8">
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                 <h3 className="font-serif text-2xl leading-tight tracking-[-0.01em] text-foreground">
                   {r.role}, <span className="transition-colors group-hover:text-accent">{r.company}</span>
@@ -144,9 +144,9 @@ export function Experience() {
 
       <div className="mt-12 sm:grid sm:grid-cols-12 sm:gap-6" data-reveal>
         <div className="border-t border-border sm:col-span-9 sm:col-start-4">
-        <Disclosure title="Client work for fintech startups">
+        <Disclosure title="Client work for startups: payments, fintech and EV charging">
           <p className="mb-5 max-w-2xl text-muted">
-            Payments and fintech products, where a mistake costs someone real money.
+            Mostly payments and fintech, where a mistake costs someone real money, plus an EV charging platform.
           </p>
           <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {CLIENTS.map((c) => (
@@ -157,7 +157,7 @@ export function Experience() {
             ))}
           </ul>
         </Disclosure>
-        <Disclosure title="Before 2022: founding roles and security work">
+        <Disclosure title="Before 2022: college startups, cloud and security work">
           <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
             {EARLY.map((e) => (
               <li key={e.title}>

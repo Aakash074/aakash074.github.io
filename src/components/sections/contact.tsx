@@ -15,7 +15,7 @@ const SOCIALS = [
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-heading" className="relative">
-      <div className="mx-auto max-w-6xl px-4 pt-8 pb-24 sm:px-6 sm:pb-32 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 pt-20 pb-24 sm:px-6 sm:pt-28 sm:pb-32 lg:px-8 lg:pt-32">
         <div className="border-t border-foreground/80 pt-5" data-reveal>
           <p className="label flex items-center gap-3 text-subtle">
             <span className="num text-accent">05</span>

@@ -14,10 +14,10 @@ const SKILLS = [
 ];
 
 const RECOGNITION = [
-  { big: "HTB", title: "Omniscient rank", detail: "HackTheBox, among 400,000+ hackers." },
+  { big: "Top 5", title: "on HackTheBox", detail: "Worldwide, among 400,000+ hackers (Omniscient rank)." },
   { big: "2x", title: "ETHGlobal winner", detail: "ETHGlobal Singapore and Bangkok." },
-  { big: "AU", title: "patent 2021105619", detail: "An ML method to find duplicate security vulnerabilities." },
-  { big: "Paid", title: "bug bounties", detail: "From Dell, Samsung and others." },
+  { big: "Patent", title: "Australian patent 2021105619", detail: "An ML method to find duplicate security vulnerabilities." },
+  { big: "2 lakh+", title: "rupees in bug bounties", detail: "From Dell, Samsung and others." },
 ];
 
 export function Skills() {
@@ -26,16 +26,12 @@ export function Skills() {
       id="skills"
       index="04"
       label="Skills and recognition"
-      title={
-        <>
-          What I work with, <em className="text-accent">and a few wins.</em>
-        </>
-      }
+      title="What I work with, and a few wins."
     >
       <ul data-reveal className="grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-border-strong bg-border-strong lg:grid-cols-4">
         {RECOGNITION.map((r) => (
           <li key={r.title} className="bg-surface p-5 sm:p-7">
-            <p className="font-serif text-4xl leading-none tracking-[-0.02em] text-accent sm:text-5xl">{r.big}</p>
+            <p className="font-serif text-[2rem] leading-none tracking-[-0.02em] whitespace-nowrap text-accent sm:text-5xl">{r.big}</p>
             <p className="mt-3 font-medium text-foreground">{r.title}</p>
             <p className="mt-1 text-[15px] leading-snug text-muted">{r.detail}</p>
           </li>

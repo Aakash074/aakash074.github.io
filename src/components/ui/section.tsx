@@ -18,7 +18,7 @@ export function Section({ id, index, label, title, intro, children, className }:
   const headingId = `${id}-heading`;
   return (
     <section id={id} aria-labelledby={headingId} className={cn("relative", className)}>
-      <div className="mx-auto max-w-6xl px-4 pt-16 pb-10 sm:px-6 sm:pt-24 sm:pb-12 lg:px-8 lg:pt-28">
+      <div className="mx-auto max-w-6xl px-4 pt-20 pb-4 sm:px-6 sm:pt-28 lg:px-8 lg:pt-32">
         <div className="border-t border-foreground/80 pt-5" data-reveal>
           <p className="label flex items-center gap-3 text-subtle">
             <span className="num text-accent">{index}</span>

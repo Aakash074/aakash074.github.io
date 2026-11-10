@@ -51,11 +51,7 @@ export function Projects() {
       id="projects"
       index="03"
       label="Side projects"
-      title={
-        <>
-          Things I built <em className="text-accent">on my own time.</em>
-        </>
-      }
+      title="Things I built on my own time."
     >
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-12">
         {PROJECTS.map((p, i) => (

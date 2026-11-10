@@ -41,7 +41,7 @@ export function Hero() {
           </div>
 
           <h1 id="hero-heading" className="rise rise-2 mt-5 text-4xl font-semibold sm:mt-7 tracking-tight sm:text-5xl lg:text-6xl">
-            Aakash Kumar
+            Aakash Kumar{" "}
             <span className="mt-2 block text-2xl font-medium text-muted sm:text-3xl lg:text-4xl">
               AI Product Engineer
             </span>

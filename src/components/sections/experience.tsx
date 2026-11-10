@@ -155,7 +155,7 @@ export function Experience() {
         <div className="border-t border-border sm:col-span-9 sm:col-start-4">
         <Disclosure title="Client work for startups: payments, fintech and EV charging">
           <p className="mb-5 max-w-2xl text-muted">
-            Mostly payments and fintech, where a mistake costs someone real money, plus an EV charging platform.
+            Mostly payments and fintech, where a mistake costs someone money, plus an EV charging platform.
           </p>
           <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {CLIENTS.map((c) => (

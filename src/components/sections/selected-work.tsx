@@ -141,7 +141,7 @@ const KIND: Record<Kind, { label: string; text: string; dot: string }> = {
 const PIPELINE: { title: string; detail: string; kind: Kind }[] = [
   { title: "Idea", detail: "Written by the inventor in plain words", kind: "input" },
   { title: "MiniLM", detail: "Turns the idea into numbers a computer can compare", kind: "model" },
-  { title: "Vector search", detail: "Finds similar patents among 26M", kind: "data" },
+  { title: "Vector search", detail: "Finds similar inventions among 26M patent families", kind: "data" },
   { title: "Cohere Rerank", detail: "Puts the closest matches first", kind: "model" },
   { title: "Result", detail: "Patentability score and the closest patents", kind: "output" },
 ];
@@ -325,8 +325,8 @@ function ChatToLead() {
 /* ---------- CloneMyTrips: a short timeline, horizontal on wide screens ---------- */
 
 const MILESTONES = [
-  { when: "Mar 2024", what: "Designed the platform from scratch.", dot: "bg-subtle" },
-  { when: "2024", what: "Dora went live on LLMs with real users.", dot: "bg-accent" },
+  { when: "Mar 2024", what: "Joined and designed the platform.", dot: "bg-subtle" },
+  { when: "2024", what: "Dora, the AI trip planner, went live.", dot: "bg-accent" },
   { when: "Sep 2025", what: "Handed over after 18 months as CTO.", dot: "bg-green" },
 ];
 
@@ -365,10 +365,10 @@ export function SelectedWork() {
       label="Selected work"
       title={
         <>
-          AI I built that <em className="text-accent">real people</em> use.
+          AI I built that <em className="text-accent">people</em> use every day.
         </>
       }
-      intro="Search that has to find the right answer among millions of documents, an agent that talks to customers, and a travel app I built from scratch as CTO."
+      intro="Search that has to find the right answer among millions of documents, an agent that talks to customers, and a travel app I took from first build to acquisition."
     >
       <div className="space-y-28 sm:space-y-32">
         {/* 01. Photon Legal */}
@@ -426,7 +426,7 @@ export function SelectedWork() {
               <p>
                 Early tests said a 1M-family slice beat the full 26M, which made no sense, so I checked the test
                 itself. Examiners often cite a different filing of the same invention, so matching by exact patent
-                number missed most real hits. I changed the test to match by invention, which showed the full search
+                number missed most of the true matches. I changed the test to match by invention, which showed the full search
                 was finding far more than first reported, so the team kept it.
               </p>
             </div>
@@ -458,8 +458,8 @@ export function SelectedWork() {
               and creates a ready-to-call lead in the CRM.
             </p>
             <p>
-              As Head of AI I also built internal AI tools for the operations team, and WanderOn raised an INR 54
-              crore Series A while I was there.
+              As Head of AI I also built internal AI tools for the operations team.
+              WanderOn raised an INR 54 crore (about USD 6M) Series A while I was there.
             </p>
           </CaseBody>
 
@@ -482,18 +482,18 @@ export function SelectedWork() {
             role="CTO"
             dates="Mar 2024 to Sep 2025"
             title="Built the product as CTO, from first line of code to acquisition"
-            badge="Shipped to real users"
+            badge="Shipped to users"
           />
           <CaseBody
             role="Ran engineering and product."
-            outcome="Dora put AI trip plans in front of real users, and the company was bought in Sep 2025."
+            outcome="The company was acquired in Sep 2025, with Dora live in the app."
             tools={["React Native", "LLM APIs"]}
           >
             <p>
-              CloneMyTrips is a travel app that connects travel creators with their followers. I designed the platform from scratch and worked directly with the
+              CloneMyTrips is a travel app that connects travel creators with their followers. I designed the platform and worked directly with the
               founders on what to build and when.
             </p>
-            <p>I also built Dora, the app&apos;s AI trip planner, which ran on LLMs with real users from 2024 onward.</p>
+            <p>I also built Dora, the app&apos;s AI trip planner, which used LLMs to write trip plans for travellers from 2024.</p>
           </CaseBody>
 
           <FigureFrame className="mt-12" number={3} title="Timeline" caption="Eighteen months, from the first architecture to the handover.">

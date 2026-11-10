@@ -24,7 +24,7 @@ const PROOF = [
     stat: <CountUp to={26} suffix="M" />,
     text: "patent families searched by the AI I built for Photon Legal.",
   },
-  { stat: "2.4 to 3x", text: "more real matches than first measured, once I changed how the patent search was scored." },
+  { stat: "2.4 to 3x", text: "more true matches than first measured, once I fixed how the search was tested." },
   { stat: "Head of AI", text: "at WanderOn, where I led the WhatsApp agent that turns customer chats into sales leads." },
   { stat: "Top 5", text: "on HackTheBox worldwide. Security is where I started." },
 ];

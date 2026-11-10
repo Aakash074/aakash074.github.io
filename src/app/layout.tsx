@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { ParticleBackground } from "@/components/animations/particle-background";
+import { LINKS, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,55 +15,92 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const TITLE = "Aakash Kumar | AI Product Engineer";
+const DESCRIPTION =
+  "AI Product Engineer. Ex-CTO of CloneMyTrips (acquired) and former Head of AI at WanderOn. I build AI search, production AI agents and the evals behind them. Open to remote AI roles.";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#06080d",
+  themeColor: "#0b0c10",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Aakash Kumar — AI Product Engineer & Startup Operator",
+    default: TITLE,
     template: "%s | Aakash Kumar",
   },
-  description:
-    "AI Product Engineer, Startup Operator, and Full Stack Architect. Building AI systems, fintech infrastructure, and Web3 products. Former CTO of CloneMyTrips (acquired) and Head of AI at WanderOn. AI consultant at Shifu Ventures, building prior-art patent search over ~26M patent families.",
+  description: DESCRIPTION,
   keywords: [
-    "Aakash Kumar", "AI Product Engineer", "Full Stack Developer", "Startup CTO",
-    "Web3 Builder", "AI Engineer", "Blockchain Developer", "Solana", "Hedera",
-    "React", "Next.js", "TypeScript", "NIT Warangal",
+    "Aakash Kumar",
+    "AI Product Engineer",
+    "AI Engineer",
+    "Founding AI Engineer",
+    "Head of AI",
+    "Semantic search",
+    "RAG",
+    "AI agents",
+    "LLM evals",
+    "Startup CTO",
+    "NIT Warangal",
   ],
-  authors: [{ name: "Aakash Kumar" }],
+  authors: [{ name: "Aakash Kumar", url: SITE_URL }],
   creator: "Aakash Kumar",
-  metadataBase: new URL("https://aakashkumar.dev"),
+  alternates: { canonical: "/" },
   openGraph: {
-    type: "website", locale: "en_US", url: "https://aakashkumar.dev",
-    title: "Aakash Kumar — AI Product Engineer & Startup Operator",
-    description: "Building AI systems, fintech infrastructure, and internet products.",
+    type: "profile",
+    locale: "en_US",
+    url: SITE_URL,
     siteName: "Aakash Kumar",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Aakash Kumar" }],
+    title: TITLE,
+    description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aakash Kumar — AI Product Engineer & Startup Operator",
-    description: "Building AI systems, fintech infrastructure, and internet products.",
-    images: ["/og-image.png"], creator: "@aakash074",
+    title: TITLE,
+    description: DESCRIPTION,
+    creator: "@Kumaaraakash074",
   },
-  icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   robots: {
-    index: true, follow: true,
-    googleBot: { index: true, follow: true, "max-video-preview": -1, "max-image-preview": "large", "max-snippet": -1 },
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Aakash Kumar",
+  jobTitle: "AI Product Engineer",
+  url: SITE_URL,
+  email: `mailto:${LINKS.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "New Delhi", addressCountry: "IN" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "National Institute of Technology, Warangal" },
+  sameAs: [LINKS.linkedin, LINKS.github, LINKS.x],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-      <body className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
-        <ParticleBackground />
+      <body id="top" className="min-h-screen bg-background text-foreground">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-foreground focus:px-4 focus:py-3 focus:text-sm focus:font-medium focus:text-background"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main className="relative z-10 flex-1">{children}</main>
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c") }}
+        />
       </body>
     </html>
   );

@@ -26,4 +26,4 @@ export const NAV_LINKS = [
  * once public use of the eval figures is approved.
  */
 export const PHOTON_EVAL_LINE =
-  "The eval said a 1M-family subset beat the full corpus. That looked wrong, so I checked the metric. Examiners often cite a sibling publication, so only about 38% of cited documents matched by exact number. Recall was understated 2.4 to 3x. Scoring by patent family fixed it and reversed the planned switch to the smaller subset.";
+  "I built the test that scores search results against the prior art patent examiners actually cited, and it runs on every code change. Measuring at the right level showed true recall was 2.4 to 3 times higher than first reported, so the team kept the full 26M search.";

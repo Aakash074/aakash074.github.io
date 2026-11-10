@@ -254,7 +254,7 @@ export function SelectedWork() {
               number={2}
               title="Eval loop, on every change"
               kinds={["input", "logic", "output"]}
-              caption="The answer key is real: prior art that patent examiners cited. Recall is scored per patent family, the level where the scoring flaw was hiding."
+              caption="The answer key is real: prior art that patent examiners cited. A drop in recall blocks the change before it ships."
             >
               <Flow
                 nodes={[
@@ -280,80 +280,22 @@ export function SelectedWork() {
             role="Head of AI"
             dates="Oct 2025 to Jul 2026"
             title="WhatsApp sales agent, from first message to qualified lead"
-            badges={[
-              { text: "v1 live with customers", live: true },
-              { text: "v2 built, not live when I left" },
-            ]}
+            badges={[{ text: "Live with customers", live: true }]}
           />
 
-          <div className="mt-5 grid gap-6 lg:grid-cols-2 lg:gap-10">
-            <div className="space-y-4 text-base leading-relaxed text-muted">
-              <p>
-                Travel enquiries come in on WhatsApp and need qualifying before sales can act. I led and built
-                v1. It went live and took each enquiry to a qualified lead in the CRM, with hand-off to a human.
-              </p>
-              <p>
-                I then designed v2 and led the build, in TypeScript on LangGraph. A fast model pulls out trip
-                details and intent on each turn, and the graph, not the model, picks the next step. v2 was built
-                but had not gone live when I left in July 2026.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-accent/30 bg-accent-soft p-4 sm:p-5">
-              <p className="flex items-center gap-2 text-sm font-semibold text-foreground">
-                <FlaskConical className="h-4 w-4 text-accent" aria-hidden="true" />
-                A lesson from v1 in production
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
-                A fuzzy-match safety net once turned a customer&apos;s pickup city, Mumbai, into Dubai. The model
-                was fine. The code around it was not.
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/90">
-                I fixed the matching, repaired the stored profiles and added a regression suite built from the
-                failing messages.
-              </p>
-            </div>
+          <div className="mt-5 max-w-3xl space-y-4 text-base leading-relaxed text-muted">
+            <p>
+              Travel enquiries arrive on WhatsApp and need qualifying before the sales team can act. As Head of AI
+              I led and built the agent that handled them in production, chatting with travellers and turning each
+              enquiry into a qualified lead in our CRM.
+            </p>
+            <p>
+              I also built internal AI tools for the operations team, and WanderOn raised an INR 54 Cr Series A
+              during my time there.
+            </p>
           </div>
 
-          <div className="mt-6">
-            <Figure
-              number={3}
-              title="v2 graph, on each message"
-              kinds={["input", "model", "logic", "output"]}
-              caption="The model only extracts. Routing is plain code, so every path can be tested."
-            >
-              <div className="flex flex-col md:flex-row md:items-center">
-                <ol className="flex flex-col gap-1.5 md:flex-[3] md:flex-row md:items-center md:gap-0">
-                  {[
-                    { label: "Message", detail: "From WhatsApp", kind: "input" as const },
-                    { label: "Extract", detail: "Fast model: trip details and intent", kind: "model" as const },
-                    { label: "Router", detail: "The graph picks the next step", kind: "logic" as const },
-                  ].map((n) => (
-                    <li key={n.label} className="flex flex-col md:flex-1 md:flex-row md:items-center">
-                      <NodeBox node={n} className="md:h-full md:flex-1" />
-                      <Arrow />
-                    </li>
-                  ))}
-                </ol>
-                <ul aria-label="Possible next steps" className="mt-1.5 grid grid-cols-2 gap-1.5 md:mt-0 md:flex-[2] md:gap-2">
-                  {[
-                    { label: "Package search", detail: "Vector search" },
-                    { label: "Answer", detail: "From a RAG knowledge base" },
-                    { label: "CRM action", detail: "Create the lead" },
-                    { label: "Human", detail: "Hand-off to sales" },
-                  ].map((n) => (
-                    <li key={n.label} className="rounded-lg border border-success/50 bg-surface-2 px-3 py-2 md:py-2.5">
-                      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-success">Output</p>
-                      <p className="mt-0.5 text-sm font-semibold text-foreground">{n.label}</p>
-                      <p className="mt-0.5 hidden text-xs leading-snug text-muted md:block">{n.detail}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Figure>
-          </div>
-
-          <CardFooter topic="the WhatsApp agent" tools={["TypeScript", "LangGraph", "RAG", "Vector search", "Redis", "BullMQ"]} />
+          <CardFooter topic="the WhatsApp agent" tools={["WhatsApp", "LLMs", "Node.js", "CRM integration"]} />
         </article>
 
         {/* 3. CloneMyTrips */}

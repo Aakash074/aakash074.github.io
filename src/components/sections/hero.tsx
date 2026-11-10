@@ -7,7 +7,7 @@ import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 
 /** Short, concrete proof. `short` is the label used in the compact mobile grid. */
 const PROOF = [
-  { stat: "~26M", short: "patent families searched", label: "Patent families in the prior-art search I built for Photon Legal. I found its eval was understating recall 2.4 to 3x, and fixed it." },
+  { stat: "~26M", short: "patent families searched", label: "Patent families in the prior-art search I built for Photon Legal, tested against real examiner citations on every change." },
   { stat: "Acquired", short: "CloneMyTrips, as CTO", label: "CloneMyTrips, where I was CTO from the first architecture to the acquisition." },
   { stat: "Shipped", short: "WhatsApp agent, WanderOn", label: "Production WhatsApp sales agent (v1) I led as Head of AI at WanderOn." },
   { stat: "Top 5", short: "HackTheBox, global", label: "HackTheBox, globally. Also a 2x ETHGlobal winner." },

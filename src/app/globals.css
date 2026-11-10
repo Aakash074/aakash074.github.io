@@ -1,55 +1,51 @@
 @import "tailwindcss";
 
+/*
+  Design tokens. One dark theme, one accent (violet), one status color (green).
+  Approximate contrast on --background (#0b0c10):
+    --foreground  #ededf0  ~17:1
+    --muted       #a6a7b2  ~8:1
+    --subtle      #8a8c99  ~5.6:1  (smallest text allowed to use this)
+    --accent      #b49cff  ~8:1
+*/
+:root {
+  --background: #0b0c10;
+  --surface: #12141a;
+  --surface-2: #181a22;
+  --foreground: #ededf0;
+  --muted: #a6a7b2;
+  --subtle: #8a8c99;
+  --border: #23262f;
+  --border-strong: #3d4150;
+  --accent: #b49cff;
+  --accent-soft: rgba(180, 156, 255, 0.12);
+  --success: #4ade80;
+}
+
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
+  --color-subtle: var(--subtle);
   --color-border: var(--border);
-  --color-ring: var(--ring);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-success: var(--success);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --glow-purple: var(--accent-glow);
-  --glow-purple-soft: var(--accent-glow-soft);
 }
 
-:root {
-  --background: #06080d;
-  --foreground: #e8e6f0;
-  --primary: #e8e6f0;
-  --primary-foreground: #06080d;
-  --secondary: #0d0f17;
-  --secondary-foreground: #e8e6f0;
-  --muted: #0f111a;
-  --muted-foreground: #8b87a0;
-  --accent: #131524;
-  --accent-foreground: #e8e6f0;
-  --border: #1a1c2e;
-  --ring: #8b5cf6;
-  --card: #0c0e18;
-  --card-foreground: #e8e6f0;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #e8e6f0;
-  --radius: 0.75rem;
-  --accent-glow: #8b5cf6;
-  --accent-glow-soft: rgba(139, 92, 246, 0.15);
+* {
+  border-color: var(--border);
 }
 
-* { border-color: var(--border); }
+html {
+  color-scheme: dark;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
   background: var(--background);
@@ -57,40 +53,59 @@ body {
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: rgba(139, 92, 246, 0.4);
+  background: rgba(180, 156, 255, 0.35);
   color: #ffffff;
 }
 
-html { scroll-behavior: smooth; }
-
-/* Glass card utility */
-.glass {
-  background: rgba(15, 17, 26, 0.7);
-  backdrop-filter: blur(16px);
-  border: 1px solid rgba(139, 92, 246, 0.1);
+/* Anchored sections land below the sticky header */
+section[id] {
+  scroll-margin-top: 4.5rem;
 }
 
-.glass:hover {
-  border-color: rgba(139, 92, 246, 0.25);
+/* One clear, consistent focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
 }
 
-/* Glow utilities */
-.glow-text {
-  color: var(--foreground);
+/* Native disclosure: hide default marker, we draw our own chevron */
+summary {
+  list-style: none;
+  cursor: pointer;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+details[open] > summary .chevron {
+  transform: rotate(180deg);
 }
 
-.glow-border {
-  box-shadow: 0 0 20px var(--glow-purple-soft), inset 0 0 20px var(--glow-purple-soft);
-}
+/* Motion only when the user has not asked for less */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 
-.glow-sm {
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.08);
-}
+  .rise {
+    animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .rise-1 { animation-delay: 0.04s; }
+  .rise-2 { animation-delay: 0.1s; }
+  .rise-3 { animation-delay: 0.16s; }
+  .rise-4 { animation-delay: 0.22s; }
 
-.glow-md {
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.12);
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }

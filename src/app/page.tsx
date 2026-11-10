@@ -1,25 +1,21 @@
 import { Hero } from "@/components/sections/hero";
-import { FounderStory } from "@/components/sections/founder-story";
-import { Achievements } from "@/components/sections/achievements";
-import { Ventures } from "@/components/sections/ventures";
+import { SelectedWork } from "@/components/sections/selected-work";
 import { Experience } from "@/components/sections/experience";
-import { FeaturedProjects } from "@/components/sections/projects";
+import { Projects } from "@/components/sections/projects";
+import { Clients } from "@/components/sections/clients";
 import { Skills } from "@/components/sections/skills";
-import { GitHubIntelligence } from "@/components/sections/github-intelligence";
-import { CTASection } from "@/components/sections/cta-section";
+import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <FounderStory />
-      <Achievements />
-      <Ventures />
+      <SelectedWork />
       <Experience />
-      <FeaturedProjects />
+      <Projects />
+      <Clients />
       <Skills />
-      <GitHubIntelligence />
-      <CTASection />
+      <Contact />
     </>
   );
 }

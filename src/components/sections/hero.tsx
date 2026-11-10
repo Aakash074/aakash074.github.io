@@ -1,160 +1,140 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Download, Briefcase, ChevronDown, User } from "lucide-react";
 import Image from "next/image";
+import { Calendar, Download, Mail, MapPin } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { LINKS } from "@/lib/site";
+import { buttonStyles } from "@/components/ui/section";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 
-const HERO_STATS = [
-  { label: "Years Building", value: "4+" },
-  { label: "Products Shipped", value: "20+" },
-  { label: "Industries", value: "6" },
+const PROOF = [
+  {
+    stat: "~26M",
+    title: "patent families searched",
+    body: "Prior-art search I built for Photon Legal, with a recall eval that runs in CI.",
+  },
+  {
+    stat: "Acquired",
+    title: "CloneMyTrips",
+    body: "I was CTO. Built the platform from scratch and led it to acquisition.",
+  },
+  {
+    stat: "Live",
+    title: "WhatsApp sales agent",
+    body: "At WanderOn, it took travel enquiries from first message to a qualified CRM lead.",
+  },
+  {
+    stat: "Top 5",
+    title: "HackTheBox, global",
+    body: "Plus 2x ETHGlobal winner and an Australian patent in ML for security.",
+  },
 ];
 
 export function Hero() {
-  const [imgError, setImgError] = useState(false);
-
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-20">
-      {/* Purple glow orbs */}
-      <div className="pointer-events-none absolute top-1/4 left-1/4 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b5cf6]/[0.03] blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-1/4 right-1/4 h-72 w-72 translate-x-1/2 translate-y-1/2 rounded-full bg-[#7c3aed]/[0.04] blur-[100px]" />
+    <section aria-labelledby="hero-heading" className="relative overflow-hidden">
+      {/* Static, cheap background glow. No canvas, no animation loop. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 -top-40 h-[480px] bg-[radial-gradient(ellipse_at_top,rgba(180,156,255,0.14),transparent_65%)]"
+      />
 
-      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-        {/* Avatar with glow ring */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mb-8"
-        >
-          <div className="relative h-28 w-28 overflow-hidden rounded-full ring-2 ring-[#8b5cf6]/20 ring-offset-4 ring-offset-[#06080d]">
-            {imgError ? (
-              <div className="flex h-full w-full items-center justify-center bg-white/5">
-                <User className="h-12 w-12 text-foreground/30" />
-              </div>
-            ) : (
-              <Image
-                src="/profile.png" alt="Aakash Kumar" fill
-                className="object-cover" priority sizes="112px"
-                onError={() => setImgError(true)}
-              />
-            )}
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 pt-10 pb-16 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-14 lg:pt-20 lg:pb-24">
+        <div>
+          <div className="rise rise-1 flex items-center gap-4">
+            <Image
+              src="/avatar.jpg"
+              alt="Portrait of Aakash Kumar"
+              width={72}
+              height={72}
+              loading="eager"
+              fetchPriority="high"
+              className="h-16 w-16 rounded-full object-cover ring-1 ring-border-strong sm:h-[72px] sm:w-[72px]"
+            />
+            <p className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1.5 text-sm font-medium text-foreground">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-success" />
+              Open to remote AI roles
+            </p>
           </div>
-        </motion.div>
 
-        {/* Status badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mb-6"
-        >
-          <span className="inline-flex items-center gap-2 rounded-full border border-[#8b5cf6]/20 bg-[#8b5cf6]/5 px-4 py-1.5 text-sm text-foreground/80">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#8b5cf6] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#8b5cf6]" />
-            </span>
-            Open to remote AI roles & consulting
-          </span>
-        </motion.div>
-
-        {/* Name with gradient */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl"
-        >
-          <span className="bg-gradient-to-b from-white to-white/70 bg-clip-text text-transparent">
+          <h1 id="hero-heading" className="rise rise-2 mt-7 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
             Aakash Kumar
-          </span>
-        </motion.h1>
+            <span className="mt-2 block text-2xl font-medium text-muted sm:text-3xl lg:text-4xl">
+              AI Product Engineer
+            </span>
+          </h1>
 
-        {/* Positioning */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/60 sm:text-xl"
-        >
-          AI Product Engineer, Startup Operator, and Full Stack Architect.{" "}
-          <span className="text-foreground/80">
-            Building AI systems, fintech infrastructure, and internet products — from zero to scale.
-          </span>
-        </motion.p>
+          <p className="rise rise-3 mt-6 max-w-xl text-lg leading-relaxed text-foreground/90 text-pretty">
+            I build AI search and AI agents that run in production, and the evals that tell you if they
+            work.
+          </p>
+          <p className="rise rise-3 mt-3 max-w-xl text-base leading-relaxed text-muted text-pretty">
+            Ex-CTO of CloneMyTrips (acquired). Former Head of AI at WanderOn. Now AI Consultant at Shifu
+            Ventures.
+          </p>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-10 flex items-center gap-8 sm:gap-12"
-        >
-          {HERO_STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-2xl font-semibold tracking-tight text-[#a78bfa]">{stat.value}</p>
-              <p className="mt-1 text-xs text-foreground/40">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
+          <div className="rise rise-4 mt-8 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+            <a href={LINKS.resume} className={cn(buttonStyles.base, buttonStyles.primary, "col-span-2 px-5")}>
+              <Download className="h-4 w-4" aria-hidden="true" />
+              Download resume
+            </a>
+            <a
+              href={LINKS.calendly}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonStyles.base, buttonStyles.secondary, "px-5")}
+            >
+              <Calendar className="h-4 w-4" aria-hidden="true" />
+              Book a call
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+            <a href={LINKS.mailto} className={cn(buttonStyles.base, buttonStyles.secondary, "px-5")}>
+              <Mail className="h-4 w-4" aria-hidden="true" />
+              Email me
+            </a>
+          </div>
 
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-3"
-        >
-          <a
-            href="#work"
-            className="inline-flex items-center gap-2 rounded-full bg-[#8b5cf6] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-[#7c3aed] hover:scale-[1.02] hover:shadow-[0_0_25px_rgba(139,92,246,0.35)] active:scale-[0.98]"
-          >
-            <Briefcase className="h-4 w-4" /> View Work
-          </a>
-          <a
-            href="https://calendly.com/aakash074/30min" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[#8b5cf6]/20 bg-white/5 px-6 py-3 text-sm font-medium text-foreground/80 backdrop-blur-sm transition-all hover:border-[#8b5cf6]/40 hover:bg-white/10 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Book a Call <ArrowUpRight className="h-4 w-4" />
-          </a>
-          <a
-            href="/resume.pdf"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground/50 transition-all hover:text-foreground/80 hover:bg-white/5"
-          >
-            <Download className="h-4 w-4" /> Resume
-          </a>
-          <a
-            href="https://www.linkedin.com/in/aakash074/" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground/50 transition-all hover:text-foreground/80 hover:bg-white/5"
-          >
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-          <a
-            href="https://t.me/aakash074" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-foreground/50 transition-all hover:text-foreground/80 hover:bg-white/5"
-          >
-            Connect <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </motion.div>
+          <div className="rise rise-4 mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+            <a
+              href={LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 -ml-2 hover:text-foreground"
+            >
+              <LinkedInIcon /> LinkedIn
+            </a>
+            <a
+              href={LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-2 rounded-md px-2 hover:text-foreground"
+            >
+              <GitHubIcon /> GitHub
+            </a>
+            <span className="inline-flex min-h-11 items-center gap-2 px-2">
+              <MapPin className="h-4 w-4" aria-hidden="true" />
+              New Delhi (IST). Can overlap US hours.
+            </span>
+          </div>
+        </div>
+
+        <aside aria-label="Proof at a glance" className="rise rise-3 lg:pt-4">
+          <p className="mb-3 font-mono text-xs font-medium uppercase tracking-[0.18em] text-subtle">
+            Proof at a glance
+          </p>
+          <ul className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-surface">
+            {PROOF.map((item) => (
+              <li key={item.title} className="flex gap-4 p-4 sm:p-5">
+                <p className="w-24 shrink-0 text-xl font-semibold tracking-tight text-accent sm:w-28 sm:text-2xl">
+                  {item.stat}
+                </p>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">{item.title}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-muted">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </aside>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.a
-          href="#work"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 text-xs text-foreground/20 transition-colors hover:text-foreground/40"
-        >
-          <span>Scroll</span>
-          <ChevronDown className="h-4 w-4" />
-        </motion.a>
-      </motion.div>
     </section>
   );
 }

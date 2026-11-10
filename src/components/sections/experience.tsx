@@ -1,245 +1,136 @@
-"use client";
-
 import Image from "next/image";
-import { Cpu, Wallet, Brain, Rocket, Globe } from "lucide-react";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { ChevronDown } from "lucide-react";
+import { Section } from "@/components/ui/section";
 
-interface ExperienceEntry {
+interface Role {
   company: string;
   role: string;
-  period: string;
-  location: string;
-  description: string;
-  highlights: string[];
-  icon: React.ElementType;
+  dates: string;
+  place: string;
+  summary: string;
+  tag?: string;
   logo?: string;
-  tag: string;
-  tagColor: string;
 }
 
-const EXPERIENCES: ExperienceEntry[] = [
+const ROLES: Role[] = [
   {
     company: "Shifu Ventures",
-    role: "AI Consultant · Product Studio & VC",
-    period: "Aug 2026 — Present",
-    location: "India · Consulting",
-    description:
-      "Working with Shifu Ventures' portfolio startups to make their products and core AI work in production. Lead build: the prior-art search engine behind Photon Legal's Product Pulse — semantic search over ~26M deduplicated Google Patents families, embedded with MiniLM and reranked with Cohere, used to score inventors' ideas and help companies decide what to file.",
-    highlights: [
-      "Prior-art search over ~26M patent families",
-      "MiniLM embeddings + vector retrieval",
-      "Cohere reranking",
-      "Invention scoring for patent filing",
-      "Portfolio product & AI engineering",
-    ],
-    icon: Rocket,
+    role: "AI Consultant",
+    dates: "Aug 2026 to present",
+    place: "Product studio and VC, India",
+    summary:
+      "I build AI for portfolio startups and get their products working in production. Lead build: Photon Legal's prior-art search over ~26M patent families.",
     tag: "Current",
-    tagColor: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
   },
   {
     company: "WanderOn",
-    role: "Head of Artificial Intelligence",
-    period: "Oct 2025 — Jul 2026",
-    location: "Gurugram, India · On-site",
-    description:
-      "Joined to strengthen and lead AI capabilities across the organization. The company subsequently raised ₹54 Cr Series A, validating the AI-first direction. Built AI-first systems for operational automation, product intelligence, and scalable infrastructure across the travel tech platform.",
-    highlights: [
-      "AI product strategy & roadmap",
-      "Operational automation systems",
-      "AI-powered customer workflows",
-      "Internal tooling & optimization",
-      "Scalable AI infrastructure",
-    ],
-    icon: Cpu,
+    role: "Head of AI",
+    dates: "Oct 2025 to Jul 2026",
+    place: "Gurugram, India",
+    summary:
+      "Led AI across the company. Built internal AI tools for operations and the WhatsApp sales agent for customers. WanderOn raised an INR 54 Cr Series A in this period.",
     logo: "/logos/wanderon.png",
-    tag: "Series A",
-    tagColor: "bg-blue-500/10 text-blue-600 border-blue-500/20",
   },
   {
     company: "CloneMyTrips",
     role: "Chief Technology Officer",
-    period: "Mar 2024 — Sep 2025",
-    location: "Bengaluru, India · Hybrid",
-    description:
-      "Led engineering and product development from concept to successful acquisition. Built the platform architecture from scratch, drove technical strategy, and managed product scaling. Worked directly with founders to execute the product vision.",
-    highlights: [
-      "Platform architecture from zero",
-      "Full-stack product development",
-      "Technical strategy & execution",
-      "Product scaling & infrastructure",
-      "Successfully acquired",
-    ],
-    icon: Rocket,
+    dates: "Mar 2024 to Sep 2025",
+    place: "Bengaluru, India (hybrid)",
+    summary:
+      "Built the platform from scratch and led engineering and product to acquisition. Launched the Dora AI Engine for AI travel itineraries.",
     tag: "Acquired",
-    tagColor: "bg-blue-500/10 text-blue-600 border-blue-500/20",
   },
   {
     company: "Safle",
-    role: "Senior Frontend Developer",
-    period: "Feb 2023 — Mar 2024",
-    location: "Abu Dhabi, UAE · Remote",
-    description:
-      "Built core frontend systems for a Web3 crypto wallet serving a global user base. Developed wallet interfaces, transaction flows, and dApp integration layers. Worked remotely with an international team in the UAE.",
-    highlights: [
-      "Web3 crypto wallet development",
-      "dApp integration architecture",
-      "Cross-border remote collaboration",
-      "Blockchain transaction interfaces",
-      "Wallet security patterns",
-    ],
-    icon: Wallet,
-    tag: "Web3",
-    tagColor: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+    role: "Senior Frontend Developer, Web3",
+    dates: "Feb 2023 to Mar 2024",
+    place: "Abu Dhabi, UAE (remote)",
+    summary: "Built a crypto wallet that works without an internet connection.",
+    logo: "/logos/safle.png",
   },
   {
     company: "Calmverse",
-    role: "Co-Founder",
-    period: "Aug 2022 — Feb 2023",
-    location: "Remote",
-    description:
-      "Co-founded a Web3-based metaverse for mental health. Built the platform concept, product strategy, and initial technical architecture. Explored the intersection of blockchain, virtual worlds, and wellness technology.",
-    highlights: [
-      "Web3 metaverse for mental health",
-      "Product concept & strategy",
-      "Technical architecture",
-      "Blockchain + wellness intersection",
-    ],
-    icon: Brain,
-    tag: "Startup",
-    tagColor: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+    role: "Co-founder",
+    dates: "Aug 2022 to Feb 2023",
+    place: "Remote",
+    summary: "Co-founded a Web3 metaverse for mental health. Owned the product concept and the architecture.",
   },
   {
     company: "QuickSell",
     role: "Senior Frontend Developer",
-    period: "Jun 2022 — Nov 2022",
-    location: "Mumbai, India",
-    description:
-      "First professional engineering role. Started as a junior developer and was quickly promoted to senior. Built and shipped React.js applications, establishing patterns for component architecture, state management, and performance optimization.",
-    highlights: [
-      "React.js application development",
-      "Component architecture patterns",
-      "Performance optimization",
-      "First professional engineering role",
-    ],
-    icon: Globe,
+    dates: "Jun 2022 to Nov 2022",
+    place: "Mumbai, India",
+    summary: "Promoted from junior to senior. Built React apps for a conversational commerce platform.",
     logo: "/logos/quicksell.png",
-    tag: "Early Career",
-    tagColor: "bg-muted text-muted-foreground border-border",
   },
 ];
 
-const EARLY_EXPERIENCES = [
+const EARLY = [
   {
-    label: "Innovation Garage, NIT Warangal",
-    detail: "Startup Cell Lead (2021-22) · Technical Team Member, Cloud Development — Megham (2020-21)",
+    title: "Lead Developer, Megham Cloud",
+    detail: "Centre of Innovation and Incubation, NIT Warangal. Aug 2020 to Apr 2022. Led the institute's cloud platform.",
   },
-  {
-    label: "BugClaim",
-    detail: "Co-Founder (2021-22) — Cybersecurity startup. bugclaim.com",
-  },
-  {
-    label: "CybSec NITW",
-    detail: "Co-Founder (2019-22) — Built the cybersecurity culture at NIT Warangal. cybsec.in",
-  },
-  {
-    label: "OWASP Warangal Student Chapter",
-    detail: "Chapter Lead (2021) — Led the local OWASP community and security initiatives.",
-  },
-  {
-    label: "CampusRadio",
-    detail: "Co-Founder (2021) — Student media platform at NIT Warangal.",
-  },
-  {
-    label: "IEEE Student Branch NITW",
-    detail: "Web Developer (2020-21) — Built and maintained web platforms for IEEE NITW.",
-  },
-  {
-    label: "Ronin Racing",
-    detail: "Web Developer (2019-20) — Built the team website for FSEV Design Competition. roninracing.in",
-  },
+  { title: "Co-founder, BugClaim", detail: "Crowdsourced security SaaS. 2021 to 2022." },
+  { title: "Co-founder, CybSec NITW", detail: "The campus security club. 2019 to 2022. Organised PhantomCTF, the first CTF at NIT Warangal." },
+  { title: "Chapter Lead, OWASP Warangal", detail: "Student chapter, 2021." },
+  { title: "B.Tech, Computer Science and Engineering", detail: "NIT Warangal, 2018 to 2022." },
 ];
 
 export function Experience() {
   return (
-    <section id="experience" className="bg-white/[0.02]">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
-        <SectionHeading
-          label="Experience"
-          title="Where leadership meets execution."
-          description="From startup founder to AI leader — a career built on shipping products and scaling teams."
-        />
-
-        {/* Main experience cards */}
-        <div className="mx-auto max-w-4xl space-y-6">
-          {EXPERIENCES.map((exp, i) => (
-            <Card key={exp.company + exp.role} delay={i * 0.12} className="overflow-hidden p-0">
-              <div className="p-6 sm:p-8">
-                <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 overflow-hidden">
-                      {exp.logo ? (
-                        <Image src={exp.logo} alt={exp.company} width={32} height={32} className="object-contain" />
-                      ) : (
-                        <exp.icon className="h-6 w-6 text-foreground/50" />
-                      )}
-                    </div>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <h3 className="text-xl font-semibold tracking-tight">{exp.company}</h3>
-                        <span
-                          className={`inline-flex rounded-full border px-2.5 py-0.5 text-xs font-medium ${exp.tagColor}`}
-                        >
-                          {exp.tag}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-sm font-medium text-muted-foreground">
-                        {exp.role}
-                      </p>
-                      <p className="mt-0.5 text-xs text-muted-foreground/70">
-                        {exp.period} · {exp.location}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-                  {exp.description}
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {exp.highlights.map((h) => (
-                    <Badge key={h} variant="secondary">
-                      {h}
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        {/* Early experience collapsible grid */}
-        <div className="mx-auto mt-12 max-w-4xl">
-          <p className="mb-6 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
-            Early Career & Founding Roles
-          </p>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {EARLY_EXPERIENCES.map((item) => (
+    <Section
+      id="experience"
+      label="Experience"
+      title="4+ years shipping products. Since 2024, leading AI and engineering."
+    >
+      <ol className="divide-y divide-border border-y border-border">
+        {ROLES.map((r) => (
+          <li key={r.company} className="grid gap-2 py-6 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8">
+            <p className="text-sm text-subtle sm:pt-1">{r.dates}</p>
+            <div className="flex gap-4">
               <div
-                key={item.label}
-                className="rounded-xl border border-border/30 bg-card/50 p-4 transition-all hover:border-border hover:bg-card"
+                aria-hidden="true"
+                className="hidden h-10 w-10 shrink-0 place-items-center overflow-hidden rounded-lg border border-border bg-surface-2 sm:grid"
               >
-                <p className="text-sm font-semibold">{item.label}</p>
-                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
-                  {item.detail}
-                </p>
+                {r.logo ? (
+                  <Image src={r.logo} alt="" width={28} height={28} className="h-7 w-7 object-contain" />
+                ) : (
+                  <span className="font-mono text-xs font-semibold text-muted">{r.company.slice(0, 2)}</span>
+                )}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+              <div className="min-w-0">
+                <h3 className="flex flex-wrap items-center gap-x-3 gap-y-1 text-base font-semibold text-foreground">
+                  <span>
+                    {r.role}, {r.company}
+                  </span>
+                  {r.tag && (
+                    <span className="rounded-full border border-accent/40 bg-accent-soft px-2 py-0.5 text-xs font-medium text-accent">
+                      {r.tag}
+                    </span>
+                  )}
+                </h3>
+                <p className="mt-0.5 text-sm text-subtle">{r.place}</p>
+                <p className="mt-2 max-w-3xl text-base leading-relaxed text-muted">{r.summary}</p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <details className="group mt-6 rounded-xl border border-border bg-surface">
+        <summary className="flex min-h-12 items-center justify-between gap-4 rounded-xl px-5 text-sm font-medium text-foreground hover:bg-surface-2">
+          Before 2022: university, founding roles and security
+          <ChevronDown className="chevron h-4 w-4 text-muted transition-transform" aria-hidden="true" />
+        </summary>
+        <ul className="grid gap-x-8 gap-y-4 border-t border-border px-5 py-5 sm:grid-cols-2">
+          {EARLY.map((e) => (
+            <li key={e.title}>
+              <p className="text-sm font-semibold text-foreground">{e.title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </Section>
   );
 }

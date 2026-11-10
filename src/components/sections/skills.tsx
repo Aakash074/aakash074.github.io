@@ -1,181 +1,50 @@
-"use client";
+import { Section } from "@/components/ui/section";
 
-import {
-  Brain,
-  Server,
-  Layout,
-  Cloud,
-  Blocks,
-  GitBranch,
-  Shield,
-} from "lucide-react";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { FadeIn } from "@/components/animations/fade-in";
-
-interface SkillGroup {
-  title: string;
-  icon: React.ElementType;
-  skills: string[];
-  color: string;
-}
-
-const SKILL_GROUPS: SkillGroup[] = [
+const SKILLS = [
   {
-    title: "AI Engineering",
-    icon: Brain,
-    color: "from-purple-500/10 to-violet-500/5",
-    skills: [
-      "LLM Applications",
-      "AI Agents",
-      "RAG Systems",
-      "Multi-Agent Systems",
-      "AI Automation",
-      "Prompt Engineering",
-      "AI Workflow Orchestration",
-      "OpenAI / Claude",
-      "MCP Integrations",
-      "AI Product Strategy",
-    ],
+    group: "AI",
+    items:
+      "LLM apps, RAG, semantic search, embeddings (MiniLM, CLIP), reranking (Cohere), AI agents, multi-agent systems, LangGraph, evals, OpenAI and Claude APIs, MCP",
   },
-  {
-    title: "Backend Engineering",
-    icon: Server,
-    color: "from-blue-500/10 to-cyan-500/5",
-    skills: [
-      "Node.js",
-      "TypeScript",
-      "Python",
-      "REST & GraphQL APIs",
-      "Distributed Systems",
-      "PostgreSQL",
-      "MongoDB",
-      "Redis",
-      "Express.js",
-      "Django",
-      "System Design",
-    ],
-  },
-  {
-    title: "Frontend Engineering",
-    icon: Layout,
-    color: "from-orange-500/10 to-amber-500/5",
-    skills: [
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Responsive Design",
-      "Modern UI Systems",
-      "TypeScript",
-      "Component Architecture",
-      "Design Systems",
-    ],
-  },
-  {
-    title: "Cloud & Infrastructure",
-    icon: Cloud,
-    color: "from-emerald-500/10 to-green-500/5",
-    skills: [
-      "AWS",
-      "Docker",
-      "CI/CD Pipelines",
-      "Vercel",
-      "Netlify",
-      "MongoDB Atlas",
-      "Monitoring & Logging",
-      "Security Best Practices",
-    ],
-  },
-  {
-    title: "Blockchain & Web3",
-    icon: Blocks,
-    color: "from-yellow-500/10 to-amber-500/5",
-    skills: [
-      "Solana",
-      "Hedera (HTS/HCS)",
-      "Smart Contracts (Solidity)",
-      "Wallet Integrations",
-      "DeFi Infrastructure",
-      "Celo",
-      "Web3 Product Development",
-      "Token Economics",
-      "Ethereum",
-      "dApp Architecture",
-    ],
-  },
-  {
-    title: "Cybersecurity",
-    icon: Shield,
-    color: "from-red-500/10 to-rose-500/5",
-    skills: [
-      "Penetration Testing",
-      "Vulnerability Assessment",
-      "CTF Competition",
-      "Security Architecture",
-      "OWASP Top 10",
-      "Malware Analysis",
-      "Cryptography",
-      "Security Tooling",
-      "Threat Modeling",
-    ],
-  },
-  {
-    title: "Engineering Practices",
-    icon: GitBranch,
-    color: "from-rose-500/10 to-pink-500/5",
-    skills: [
-      "Agile/Scrum",
-      "Technical Architecture",
-      "Code Review",
-      "Testing (Unit/E2E)",
-      "Performance Optimization",
-      "Security Auditing",
-      "Technical Writing",
-      "Mentorship",
-    ],
-  },
+  { group: "Languages", items: "Python, TypeScript, JavaScript, SQL, Solidity, Bash" },
+  { group: "Backend and data", items: "Node.js, Express, Django, REST, GraphQL, PostgreSQL, MongoDB, Redis" },
+  { group: "Frontend", items: "React, Next.js, React Native, Tailwind CSS" },
+  { group: "Cloud", items: "AWS, Docker, CI/CD, Vercel, Netlify, Linux" },
+  { group: "Web3 and security", items: "Solana, Ethereum, Hedera, Celo, wallets, smart contracts, pentesting, OWASP Top 10" },
 ];
 
-function SkillBadge({ name }: { name: string }) {
-  return (
-    <span className="inline-flex items-center rounded-lg border border-border/40 bg-background px-3 py-1.5 text-sm font-medium text-muted-foreground transition-all hover:border-border hover:text-foreground hover:bg-accent/50">
-      {name}
-    </span>
-  );
-}
+const RECOGNITION = [
+  { title: "Top 5 globally on HackTheBox", detail: "Omniscient rank, among 400,000+ hackers." },
+  { title: "2x ETHGlobal winner", detail: "ETHGlobal Singapore and Bangkok." },
+  { title: "Australian patent AU 2021105619", detail: "An ML method to find duplicate security vulnerabilities." },
+  { title: "Bug bounties", detail: "INR 2 lakh+ for vulnerabilities reported to Dell, Samsung and others." },
+];
 
 export function Skills() {
   return (
-    <section id="skills" className="bg-white/[0.02]">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
-        <SectionHeading
-          label="Skills & Expertise"
-          title="Full stack across the stack."
-          description="Technologies and domains proven through shipped products, not just familiarity."
-        />
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {SKILL_GROUPS.map((group, i) => (
-            <FadeIn
-              key={group.title}
-              delay={i * 0.08}
-              className={`rounded-2xl border border-border/40 bg-card bg-gradient-to-br ${group.color} p-6 transition-all duration-300 hover:border-border hover:shadow-sm`}
-            >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-foreground/5">
-                  <group.icon className="h-5 w-5 text-foreground/60" />
-                </div>
-                <h3 className="text-base font-semibold tracking-tight">{group.title}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <SkillBadge key={skill} name={skill} />
-                ))}
-              </div>
-            </FadeIn>
+    <Section id="skills" label="Skills and recognition" title="What I work with.">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14">
+        <dl className="divide-y divide-border border-y border-border">
+          {SKILLS.map((s) => (
+            <div key={s.group} className="grid gap-1 py-4 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-6">
+              <dt className="text-sm font-semibold text-foreground">{s.group}</dt>
+              <dd className="text-sm leading-relaxed text-muted">{s.items}</dd>
+            </div>
           ))}
+        </dl>
+
+        <div>
+          <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-subtle">Recognition</h3>
+          <ul className="mt-4 space-y-4">
+            {RECOGNITION.map((r) => (
+              <li key={r.title} className="rounded-xl border border-border bg-surface p-4">
+                <p className="text-sm font-semibold text-foreground">{r.title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted">{r.detail}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

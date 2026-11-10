@@ -1,178 +1,105 @@
-"use client";
-
-import {
-  ExternalLink,
-  GitFork,
-  Shield,
-  Bot,
-  ImageIcon,
-  Vote,
-  Swords,
-  FileText,
-  Monitor,
-} from "lucide-react";
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { Chip, Section } from "@/components/ui/section";
+import { GitHubIcon } from "@/components/ui/brand-icons";
 
 interface Project {
   title: string;
-  description: string;
-  story: string;
+  kind: string;
+  body: string;
   tech: string[];
-  icon: React.ElementType;
-  github?: string;
-  live?: string;
-  category: string;
+  href: string;
+  note?: string;
 }
 
 const PROJECTS: Project[] = [
   {
-    title: "OKX DeFi AI Copilot",
-    description:
-      "AI-powered DeFi portfolio manager on Solana. Natural language trading strategies with one-click execution via OKX DEX.",
-    story:
-      "Built an AI agent that bridges natural language to on-chain execution. Users request strategies in plain English, the AI returns structured trade cards, and swaps execute in one click. Combines Perplexity API reasoning with Solana mainnet transactions.",
-    tech: ["React 19", "TypeScript", "Solana", "OKX DEX API", "Perplexity AI", "Tailwind CSS"],
-    icon: Bot,
-    github: "https://github.com/aakash074/okxcopilot",
-    category: "AI × DeFi",
-  },
-  {
-    title: "SafeLease — ZK Property Leasing",
-    description:
-      "Decentralized property leasing with zero-knowledge identity verification. Privacy-preserving rental management on Celo.",
-    story:
-      "Integrated Self Protocol's ZK identity system with four Solidity smart contracts for rental management, deposit escrow, and identity verification. Supports passport, Aadhaar, and ID card verification without exposing personal data. Includes AI-powered damage assessment and roommate matching.",
-    tech: ["Solidity", "React", "TypeScript", "Celo", "Zero-Knowledge Proofs", "Hardhat"],
-    icon: Shield,
-    github: "https://github.com/aakash074/safelease",
-    category: "Web3 × AI",
-  },
-  {
     title: "Wedding Album AI Shortlister",
-    description:
-      "AI pipeline that curates top photos from thousands using CLIP embeddings, aesthetic scoring, and LLM reasoning.",
-    story:
-      "Designed a multi-stage AI pipeline: CLIP embeddings for semantic understanding, aesthetic scoring for visual quality, duplicate removal via clustering, and LLM-based final curation. Reduces wedding photo selection from days to minutes. Launched on Product Hunt (Mar 2026).",
-    tech: ["Python", "CLIP", "LLMs", "Computer Vision", "Clustering", "AI Pipeline"],
-    icon: ImageIcon,
-    github: "https://github.com/aakash074/Wedding-photos-shortlister",
-    category: "AI / ML",
+    kind: "AI pipeline",
+    body: "Picks the best photos out of thousands. CLIP embeddings find what is in each shot, an aesthetic score ranks quality, clustering drops near duplicates, and an LLM makes the final pick.",
+    tech: ["Python", "CLIP", "Clustering", "LLMs"],
+    href: "https://github.com/aakash074/Wedding-photos-shortlister",
+    note: "Launched on Product Hunt, Mar 2026",
   },
   {
-    title: "e-Voting System on Blockchain",
-    description:
-      "Decentralized electronic voting system using blockchain for transparent, verifiable, and tamper-proof elections.",
-    story:
-      "Designed and built an e-voting system leveraging blockchain's decentralization, irreversibility, and asymmetric encryption. Ensured transparency and verifiability — only eligible voters can vote, all votes are correctly counted, and voters can independently verify their vote.",
-    tech: ["Blockchain", "Solidity", "Ethereum", "Cryptography", "React", "Node.js"],
-    icon: Vote,
-    category: "Blockchain",
+    title: "OKX DeFi AI Copilot",
+    kind: "AI agent",
+    body: "Turns a plain-English trading idea into a structured trade card, then a one-click swap on Solana through the OKX DEX API.",
+    tech: ["React 19", "TypeScript", "Solana", "Perplexity API"],
+    href: "https://github.com/aakash074/okxcopilot",
   },
   {
-    title: "WeaponHEX — CTF Toolkit",
-    description:
-      "All-in-one Capture The Flag tool for jeopardy-style cybersecurity competitions. Built for the global CTF community.",
-    story:
-      "Created a comprehensive CTF toolkit that consolidates essential competition tools into a single interface. Designed for the CybSec NITW community and used in competitions worldwide. Represents the intersection of deep cybersecurity expertise and product thinking.",
-    tech: ["Python", "Shell", "Cryptography", "Reverse Engineering", "Web Exploitation"],
-    icon: Swords,
-    category: "Cybersecurity",
-  },
-  {
-    title: "Grievances Management Portal",
-    description:
-      "Complaint tracking system with intelligent department classification built on Django for NIT Warangal's administration.",
-    story:
-      "Built a full grievance portal with photo/document evidence support, ML-based department classification, role-based views for administrators and departments, and real-time status tracking. Deployed and used across NIT Warangal's administrative departments.",
-    tech: ["Django", "Python", "PostgreSQL", "Machine Learning", "Classification"],
-    icon: FileText,
-    category: "Full Stack",
-  },
-  {
-    title: "Cynux Security OS",
-    description:
-      "Arch Linux-based penetration testing distribution for pentesters, security researchers, and developers. Complete operating system with custom tooling.",
-    story:
-      "Built and maintained a full Arch-based security distribution with custom ISO builds, CLI installer, Calamares GUI installer configs, XFCE desktop customization, Fish shell defaults, package keyring, and curated pentesting tool packages. 12 repositories covering every layer of a Linux distro.",
-    tech: ["Arch Linux", "Shell", "XFCE", "Calamares", "Fish Shell", "Package Management"],
-    icon: Monitor,
-    github: "https://github.com/cynuxsecurity",
-    live: "https://cynuxsecurity.org",
-    category: "Cybersecurity",
+    title: "SafeLease",
+    kind: "Zero-knowledge identity",
+    body: "Property leasing where tenants prove who they are without sharing personal data. Uses Self Protocol ZK identity and four Solidity contracts on Celo.",
+    tech: ["Solidity", "Celo", "ZK proofs", "React"],
+    href: "https://github.com/aakash074/safelease",
   },
 ];
 
-export function FeaturedProjects() {
+const EARLIER = [
+  {
+    title: "Cynux Security OS",
+    detail: "An Arch Linux-based distro for security testing, with its own installer and tool packages.",
+    href: "https://cynuxsecurity.org",
+  },
+  { title: "WeaponHEX", detail: "An all-in-one toolkit for jeopardy-style CTF contests." },
+  { title: "Grievance portal, NIT Warangal", detail: "Django complaint tracker that sorts each complaint to the right department with ML." },
+  { title: "e-Voting on blockchain", detail: "A voting system where each voter can check their own vote was counted." },
+];
+
+export function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-7xl px-6 py-24 sm:py-32">
-      <SectionHeading
-        label="Personal Projects"
-        title="Built from scratch."
-        description="Selected work across AI, Web3, cybersecurity, and full-stack engineering. Each project demonstrates product thinking, technical depth, and real-world impact."
-      />
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {PROJECTS.map((project, i) => (
-          <Card key={project.title} delay={i * 0.08} className="flex flex-col">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-foreground/5">
-                <project.icon className="h-5 w-5 text-foreground/70" />
-              </div>
-              <Badge variant="outline">{project.category}</Badge>
-            </div>
-
-            <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
-              {project.description}
-            </p>
-
-            <p className="mt-3 border-l-2 border-border/50 pl-3 text-sm italic leading-relaxed text-muted-foreground/70">
-              {project.story}
-            </p>
-
-            <div className="mt-4 flex flex-wrap gap-1.5">
-              {project.tech.map((t) => (
-                <span
-                  key={t}
-                  className="rounded-md bg-secondary px-2 py-0.5 text-xs font-medium text-secondary-foreground"
-                >
-                  {t}
-                </span>
+    <Section id="projects" label="Projects" title="Things I built on my own time.">
+      <div className="grid gap-4 md:grid-cols-3">
+        {PROJECTS.map((p) => (
+          <article key={p.title} className="flex flex-col rounded-2xl border border-border bg-surface p-5 sm:p-6">
+            <p className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-accent">{p.kind}</p>
+            <h3 className="mt-2 text-lg font-semibold tracking-tight">{p.title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{p.body}</p>
+            {p.note && <p className="mt-3 text-sm font-medium text-foreground">{p.note}</p>}
+            <ul aria-label="Tools used" className="mt-4 flex flex-wrap gap-2">
+              {p.tech.map((t) => (
+                <Chip key={t}>{t}</Chip>
               ))}
-            </div>
-
-            <div className="mt-5 flex items-center gap-3 border-t border-border/50 pt-4">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <GitFork className="h-3.5 w-3.5" />
-                  Source
-                </a>
-              )}
-              {project.live && (
-                <a
-                  href={project.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <ExternalLink className="h-3.5 w-3.5" />
-                  Live Demo
-                </a>
-              )}
-              {!project.live && !project.github && (
-                <span className="text-xs text-muted-foreground/50">Private</span>
-              )}
-            </div>
-          </Card>
+            </ul>
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-auto inline-flex min-h-11 items-center gap-2 self-start rounded-md pt-4 text-sm font-medium text-foreground hover:text-accent"
+            >
+              <GitHubIcon />
+              Source code
+              <span className="sr-only">for {p.title} (opens in a new tab)</span>
+              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+            </a>
+          </article>
         ))}
       </div>
-    </section>
+
+      <details className="mt-6 rounded-xl border border-border bg-surface">
+        <summary className="flex min-h-12 items-center justify-between gap-4 rounded-xl px-5 text-sm font-medium text-foreground hover:bg-surface-2">
+          Earlier security and systems projects
+          <ChevronDown className="chevron h-4 w-4 text-muted transition-transform" aria-hidden="true" />
+        </summary>
+        <ul className="grid gap-x-8 gap-y-4 border-t border-border px-5 py-5 sm:grid-cols-2">
+          {EARLIER.map((e) => (
+            <li key={e.title}>
+              <p className="flex min-h-6 items-center text-sm font-semibold text-foreground">
+                {e.href ? (
+                  <a href={e.href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center underline decoration-border-strong underline-offset-4 hover:text-accent">
+                    {e.title}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  e.title
+                )}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-muted">{e.detail}</p>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </Section>
   );
 }
